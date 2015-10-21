@@ -131,6 +131,9 @@ public abstract class ResultData {
 		if(!(failureMessage.equalsIgnoreCase("")))
 			json.put("failureMessage", failureMessage);
 		json.put("children", testsChildren);
+		System.out.println("Seems like this is the class that acts as a data wrapper for all things related " + 
+							"to tests. Also, this data is being stored as JSON for access elsewhere in the " + 
+							"plugin.");
 		return json;
 	}
 
