@@ -13,12 +13,12 @@ import net.sf.json.JSONObject;
 import org.jenkinsci.plugins.testresultsanalyzer.result.data.ResultData;
 
 public abstract class Info {
-	
+
 	protected String name;
 	protected Map<Integer,ResultData> buildResults = new HashMap<Integer, ResultData>();
-	
-	protected List<String> statuses = new ArrayList<String>(); 
-	
+
+	protected List<String> statuses = new ArrayList<String>();
+
 	public String getName() {
 		return name;
 	}
@@ -31,9 +31,9 @@ public abstract class Info {
 	public void setBuildPackageResults(Map<Integer, ResultData> buildResults) {
 		this.buildResults = buildResults;
 	}
-	
+
 	protected abstract JSONObject getChildrensJson();
-	
+
 	protected JSONObject getBuildJson(){
 		JSONObject json = new JSONObject();
 		for(Integer buildNumber : buildResults.keySet()){
@@ -41,13 +41,13 @@ public abstract class Info {
 		}
 		return json;
 	}
-	
+
 	public JSONArray getBuildStatuses(){
 		JSONArray buildStatuses = new JSONArray();
 		buildStatuses.addAll(statuses);
 		return buildStatuses;
 	}
-	
+
 	public JSONObject getJsonObject(){
 		JSONObject json = new JSONObject();
 		json.put("name", name);
@@ -56,8 +56,9 @@ public abstract class Info {
 		json.put("builds", getBuildJson());
 		json.put("children", getChildrensJson());
 		return json;
+
 	}
-	
+
 	protected void evaluateStatusses(TestResult testResult){
 		List<String> tStatusses = new ArrayList<String>();
 		if (testResult.getFailCount() > 0) {
@@ -74,8 +75,7 @@ public abstract class Info {
 				statuses.add(tStatus);
 			}
 		}
+		System.out.println("This is a information wrapper that gathers information of either the case/package/class, using the data classes, and put these information in an json object. This json object then used to display the result on the Jenkins webpage -- Comment By Chen Zhang");
 	}
-	
-	
 
 }
