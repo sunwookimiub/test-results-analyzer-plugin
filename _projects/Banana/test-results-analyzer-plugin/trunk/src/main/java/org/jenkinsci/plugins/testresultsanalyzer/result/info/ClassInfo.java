@@ -44,6 +44,7 @@ public class ClassInfo extends Info{
 		for(String testName : tests.keySet()){
 			json.put(testName, tests.get(testName).getJsonObject());
 		}
+		System.out.println("ClassInfo.java:47 getChildrensJson() returns JSONObject representing the tree of tests. Iterates the TreeMap and puts each tests' JSON object into this new object to return. -sapin2");
 		return json;
 	}
 }
