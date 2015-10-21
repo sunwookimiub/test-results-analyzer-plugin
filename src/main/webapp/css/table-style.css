@@ -24,20 +24,12 @@
         font-size: larger;
     }
     
-	.failed {
-        background-color: #F37A7A;
+    .failed {
+    	color: red;    
     }
-
+    
     .passed {
-        background-color: #92D050;
-    }
-
-    .skipped{
-        background-color: #FDED72;
-    }
-
-    .no_status{
-        background-color: #E8F5FF;
+    	color: green;
     }
 
 	img {
@@ -104,10 +96,6 @@
 		padding: 10px;
 		text-align: center;
 		border: 1px solid rgb(150, 171, 239);
-	}
-
-	.build-result{
-		font-size: 14px;
 	}
     
 	.heading {

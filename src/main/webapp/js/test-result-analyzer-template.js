@@ -13,7 +13,7 @@ var tableContent = '<div class="table-row {{parentclass}}-{{addName text}}" pare
         '>&nbsp;{{text}}</div>' +
     '' +
     '{{#each this.buildResults}}' +
-    '\n' + '         <div class="table-cell build-result {{applystatus status}}" data-result=\'{{JSON2string this}}\'>{{applyvalue status totalTimeTaken}}</div>' +
+    '\n' + '         <div class="table-cell build-result {{applystatus status}}" data-result=\'{{JSON2string this}}\'>{{status}}</div>' +
     '{{/each}}' +
     '\n' + '</div>' +
     '{{#each children}}\n' +
@@ -25,7 +25,7 @@ var tableContent = '<div class="table-row {{parentclass}}-{{addName text}}" pare
     '{{/each}}';
 
 var tableBody = '<div class="heading">' +
-    '\n' + '        <div class="table-cell">Chart</div><div class="table-cell">See children</div> <div class="table-cell">Build Number &rArr;<br>Package-Class-Testmethod names &dArr;</div>' +
+    '\n' + '        <div class="table-cell">Graph report selection</div><div class="table-cell">See children</div> <div class="table-cell">Build Number &rArr;<br>Package-Class-Testmethod names &dArr;</div>' +
     '{{#each builds}}' +
     '\n' + '         <div class="table-cell">{{this}}</div>' +
     '{{/each}}' +
@@ -74,26 +74,14 @@ Handlebars.registerHelper('addName', function (name) {
     return removeSpecialChars(name);
 });
 
-Handlebars.registerHelper('applyvalue', function (status, totalTimeTaken) {
-    if (displayValues == true){
-        return isNaN(totalTimeTaken) ? '' : totalTimeTaken.toFixed(3) ;
-    }else{
-        return status;
-    }
-});
-
-
 Handlebars.registerHelper('applystatus', function (status) {
-    var statusClass = "no_status";
+    var statusClass = "";
     switch (status) {
         case "FAILED":
             statusClass = "failed";
             break;
         case "PASSED":
             statusClass = "passed";
-            break;
-        case "SKIPPED":
-            statusClass = "skipped";
             break;
     }
     return statusClass;

@@ -1,14 +1,6 @@
 
 
 var chartResult;
-
-var statusColors = {
-    "passed" :"#92D050",
-    "failed" :"#F37A7A",
-    "skipped" :"#FDED72",
-    "total" :"#67A4F5",
-    "na" :""
-};
 function generateChart(chartType) {
     var finalResult = {};
 
@@ -215,7 +207,7 @@ function getLineChartConfig(chartCategories, chartData){
             verticalAlign: 'middle',
             borderWidth: 0
         },
-        colors : [statusColors["passed"], statusColors["failed"], statusColors["skipped"],statusColors["total"]]
+        colors : ['#24A516', '#FD0505', '#AEAEAE','#67A4F5']
         ,
         plotOptions: {
             series: {
@@ -224,12 +216,11 @@ function getLineChartConfig(chartCategories, chartData){
                     events: {
                         click: function (e) {
                             var x1 = this.x;
-                            var category = this.category;
                             var passed = this.series.chart.series[0].data[x1].y;
                             var failed = this.series.chart.series[1].data[x1].y;
                             var skipped = this.series.chart.series[2].data[x1].y;
                             var total = this.series.chart.series[3].data[x1].y;
-                            var resultTitle = 'Build details for build: '+category;
+                            var resultTitle = 'Build details for build: '+x1;
                             generatePieChart(calculatePercentage(passed,failed,skipped,total),resultTitle);
 
                         }
@@ -283,7 +274,7 @@ function getBarChartConfig(chartCategories, chartData){
                 color: '#808080'
             }]
         },
-        colors : [statusColors["passed"], statusColors["failed"], statusColors["skipped"]],
+        colors : ['#24A516', '#FD0505', '#AEAEAE'],
         credits: {
             enabled: false
         },
@@ -345,7 +336,7 @@ function getPieChartConfig(inputData, resultTitle){
                 }
             }
         },
-        colors : [statusColors["passed"], statusColors["failed"], statusColors["skipped"],statusColors["total"]],
+        colors : ['#24A516', '#FD0505', '#AEAEAE','#67A4F5'],
         series: [{
             type: 'pie',
             name: 'Build Detail',
