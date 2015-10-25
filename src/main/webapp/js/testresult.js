@@ -13,6 +13,8 @@ function populateTemplate(){
     var noOfBuilds = $j('#noofbuilds').val();
     remoteAction.getTreeResult(noOfBuilds,$j.proxy(function(t) {
         var itemsResponse = t.responseObject();
+        console.log("JSON Object print testresult.js:16");
+        console.log(itemsResponse);
         treeMarkup = analyzerTemplate(itemsResponse);
         $j(".table").html(treeMarkup);
         addEvents();

@@ -52,8 +52,6 @@ Handlebars.registerHelper('store', function (context, key, value, options) {
 });
 
 Handlebars.registerHelper('JSON2string', function (object) {
-    console.log("JSON Object print test-result-analyzer-template.js:54");
-    console.log(object);
     return JSON.stringify(object);
 });
 
