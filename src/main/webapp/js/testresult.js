@@ -17,6 +17,8 @@ function populateTemplate(){
 
     remoteAction.getTreeResult(noOfBuilds,$j.proxy(function(t) {
         var itemsResponse = t.responseObject();
+        console.log("JSON Object print testresult.js:20");
+        console.log(itemsResponse);
         treeMarkup = analyzerTemplate(itemsResponse);
         $j(".table").html(treeMarkup);
         addEvents();
