@@ -26,6 +26,7 @@ public class JsTreeUtil {
             results.add(createJson(builds, packageJson));
         }
         tree.put("results", results);
+	System.out.println(tree.toString());
         return tree;
     }
 
