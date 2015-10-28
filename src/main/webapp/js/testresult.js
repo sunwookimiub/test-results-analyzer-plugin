@@ -13,9 +13,10 @@ function reset(){
 function populateTemplate(){
     reset();
     var noOfBuilds = $j('#noofbuilds').val();
+    var statusFilter = $j('#teststatus').val();
     displayValues  = $j("#show-durations").is(":checked");
 
-    remoteAction.getTreeResult(noOfBuilds,$j.proxy(function(t) {
+    remoteAction.getTreeResult(noOfBuilds, statusFilter, $j.proxy(function(t) {
         var itemsResponse = t.responseObject();
         console.log("JSON Object print testresult.js:20");
         console.log(itemsResponse);

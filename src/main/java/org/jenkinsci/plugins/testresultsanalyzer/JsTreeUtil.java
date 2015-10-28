@@ -10,7 +10,7 @@ import net.sf.json.JSONObject;
 
 public class JsTreeUtil {
 
-    public JSONObject getJsTree(List<Integer> builds, ResultInfo resultInfo) {
+    public JSONObject getJsTree(List<Integer> builds, ResultInfo resultInfo, String statusFilter) {
         JSONObject tree = new JSONObject();
 
         JSONArray buildJson = new JSONArray();
@@ -23,10 +23,12 @@ public class JsTreeUtil {
         for (Object packageName : packageResults.keySet()) {
 
             JSONObject packageJson = packageResults.getJSONObject((String) packageName);
-            results.add(createJson(builds, packageJson));
+            jsonObject subtree = createJson(builds, packageJson, statusFilter);
+            if (subtree != null) {
+                results.add(subtree);
+            }
         }
         tree.put("results", results);
-	System.out.println(tree.toString());
         return tree;
     }
 
@@ -37,25 +39,35 @@ public class JsTreeUtil {
         return jsonObject;
     }
 
-    private JSONObject createJson(List<Integer> builds, JSONObject dataJson) {
+    private JSONObject createJson(List<Integer> builds, JSONObject dataJson, String statusFilter) {
         JSONObject baseJson = getBaseJson();
         baseJson.put("text", dataJson.get("name"));
         baseJson.put("type", dataJson.get("type"));
         baseJson.put("buildStatuses", dataJson.get("buildStatuses"));
         JSONObject packageBuilds = dataJson.getJSONObject("builds");
         JSONArray treeDataJson = new JSONArray();
+        boolean addToTree = false;
+        if (statusFilter.equals("all")) {
+            addToTree = true;
+        }
         for (Integer buildNumber : builds) {
             JSONObject build = new JSONObject();
             if (packageBuilds.containsKey(buildNumber.toString())) {
                 JSONObject buildResult = packageBuilds.getJSONObject(buildNumber.toString());
-                //String status = buildResult.getString("status");
                 buildResult.put("buildNumber", buildNumber.toString());
                 build = buildResult;
+                String status = buildResult.getString("status");
+                if (status.equals(statusFilter)) {
+                    addToTree = true;
+                }
             } else {
                 build.put("status", "N/A");
                 build.put("buildNumber", buildNumber.toString());
             }
             treeDataJson.add(build);
+        }
+        if (!addToTree) {
+            return null;
         }
         baseJson.put("buildResults", treeDataJson);
 
@@ -65,7 +77,10 @@ public class JsTreeUtil {
             @SuppressWarnings("unchecked")
             Set<String> childeSet = (Set<String>) childrenJson.keySet();
             for (String childName : childeSet) {
-                childrens.add(createJson(builds, childrenJson.getJSONObject(childName)));
+                JSONObject subtree = createJson(builds, childrenJson.getJSONObject(childName), statusFilter);
+                if (subtree != null) {
+                    childrens.add(subtree);
+                }
             }
             baseJson.put("children", childrens);
         }

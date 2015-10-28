@@ -110,7 +110,7 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
 			return builds;
 		}
 		List<Integer> buildList = new ArrayList<Integer>();
-		for (int i = (noOfBuilds - 1); i >= 0; i--) {
+		for (int i = 0; i <= (noOfBuilds - 1); i++) {
 			buildList.add(builds.get(i));
 		}
 		return buildList;
@@ -155,11 +155,11 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
 		}
 	}
     @JavaScriptMethod
-    public JSONObject getTreeResult(String noOfBuildsNeeded) {
+    public JSONObject getTreeResult(String noOfBuildsNeeded, String statusFilter) {
         int noOfBuilds = getNoOfBuildRequired(noOfBuildsNeeded);
         List<Integer> buildList = getBuildList(noOfBuilds);
 
         JsTreeUtil jsTreeUtils = new JsTreeUtil();
-        return jsTreeUtils.getJsTree(buildList, resultInfo);
+        return jsTreeUtils.getJsTree(buildList, resultInfo, statusFilter);
     }
 }
