@@ -23,7 +23,7 @@ public class JsTreeUtil {
         for (Object packageName : packageResults.keySet()) {
 
             JSONObject packageJson = packageResults.getJSONObject((String) packageName);
-            jsonObject subtree = createJson(builds, packageJson, statusFilter);
+            JSONObject subtree = createJson(builds, packageJson, statusFilter);
             if (subtree != null) {
                 results.add(subtree);
             }
