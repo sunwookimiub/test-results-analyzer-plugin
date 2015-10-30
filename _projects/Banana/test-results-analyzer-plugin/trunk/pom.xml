@@ -38,7 +38,7 @@
             <version>1.2-beta-4</version>
         </dependency>
     </dependencies>
-	<!-- get every artifact through repo.jenkins-ci.org, which proxies all the 
+	<!-- get every artifact through repo.jenkins-ci.org, which proxies all the
 		artifacts that we need -->
 	<repositories>
 		<repository>
