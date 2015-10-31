@@ -65,7 +65,7 @@ Last builds and show
  tests.
 Display duration: <input type="checkbox" id="show-durations" name="show-durations" value="durations"/>
 
-<button id="getbuildreport">Testing jelly</button>
+<button id="getbuildreport">Get Build Report</button>
 <div class="extrabuttons">
 	<button id="expandall">Expand All</button>
 	<button id="collapseall">Collapse All</button>
