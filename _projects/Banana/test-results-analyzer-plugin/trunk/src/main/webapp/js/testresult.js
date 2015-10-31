@@ -1,5 +1,6 @@
 var colTemplate = "{'cellClass':'col1','value':'build20','header':'20','title':'20'}";
 var treeMarkup = "";
+var testResultData = "";
 var reevaluateChartData = true;
 var displayValues = false;
 
@@ -20,6 +21,7 @@ function populateTemplate(){
         var itemsResponse = t.responseObject();
         console.log("JSON Object print testresult.js:20");
         console.log(itemsResponse);
+        testResultData = itemsResponse;
         treeMarkup = analyzerTemplate(itemsResponse);
         $j(".table").html(treeMarkup);
         addEvents();
