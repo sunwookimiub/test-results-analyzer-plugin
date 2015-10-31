@@ -24,7 +24,7 @@ function getDiffs(resultData) {
                 }*/
                 //get last build results and second to last build results
                 //TODO: check if these exist first
-                if (numClasses >= 2) {
+                if (numTestCases >= 2) {
                     var latestResult = testCases[0]['buildResults'];
                     var nextLatestResult = testCases[1]['buildResults'];
                     addDifferentResultsToList(diffList, latestResult, nextLatestResult);
