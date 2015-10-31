@@ -24,7 +24,7 @@ function populateTemplate(){
         console.log("JSON Object print testresult.js:20");
         console.log(itemsResponse);
         testResultData = itemsResponse; //gets data out for other uses
-        $j("#diffList").html(diffList(itemsResponse)); // add list with differences
+        $j("#diffList").html(getDiffs(itemsResponse)); // add list with differences
         treeMarkup = analyzerTemplate(itemsResponse);
         $j(".table").html(treeMarkup);
         addEvents();
