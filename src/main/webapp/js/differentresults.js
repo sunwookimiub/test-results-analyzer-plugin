@@ -19,16 +19,15 @@ function getDiffs(resultData) {
                 //iterate tests (no action taken on iteration atm)
                 var testCases = classes[clsIdx]['children'];
                 var numTestCases = testCases.length;
-                /*for (var tstIdx = 0; tstIdx < numTestCases; tstIdx++) {
+                for (var tstIdx = 0; tstIdx < numTestCases; tstIdx++) {
                     //get results for current test case
                     var testCaseResults = testCases[tstIdx]['buildResults'];
-
-                }*/
-                //get last build results and second to last build results
-                //TODO: check if these exist first
-                var latestResult = testCases[0]['buildResults'];
-                var nextLatestResult = testCases[1]['buildResults'];
-                diffList = addDifferentResultsToList(diffList, latestResult, nextLatestResult);
+                    //get last build results and second to last build results
+                    //TODO: check if these exist first
+                    var latestResult = testCaseResults[0];
+                    var nextLatestResult = testCaseResults[1];
+                    diffList = addDifferentResultsToList(diffList, latestResult, nextLatestResult);
+                }
             
             }
         }
