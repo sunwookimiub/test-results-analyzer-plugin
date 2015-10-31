@@ -88,6 +88,9 @@ ${it.lastTwoBuilds}
 <br/>
 <br/>
 
+<div id="diffList">
+</div>
+
 <div id="charts">
    <div id="linechart">
 
