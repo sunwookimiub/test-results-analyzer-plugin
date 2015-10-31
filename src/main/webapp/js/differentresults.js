@@ -5,7 +5,10 @@ function getDiffs(resultData) {
     //empty list to append to
     var diffList = $j('<ul />');
     var packages = resultData['results'];
-    
+    var numBuilds = resultData['builds'].length;
+    if (numBuilds < 2) {
+        return diffList;
+    }
         //iterate packages
         var numPackages = packages.length;
         for (var pkgIdx = 0; pkgIdx < numPackages; pkgIdx++) {
@@ -23,11 +26,10 @@ function getDiffs(resultData) {
                 }*/
                 //get last build results and second to last build results
                 //TODO: check if these exist first
-                if (numTestCases >= 2) {
-                    var latestResult = testCases[0]['buildResults'];
-                    var nextLatestResult = testCases[1]['buildResults'];
-                    diffList = addDifferentResultsToList(diffList, latestResult, nextLatestResult);
-                }
+                var latestResult = testCases[0]['buildResults'];
+                var nextLatestResult = testCases[1]['buildResults'];
+                diffList = addDifferentResultsToList(diffList, latestResult, nextLatestResult);
+            
             }
         }
     return diffList;
