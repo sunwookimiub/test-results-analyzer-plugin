@@ -1,33 +1,55 @@
 //differentresults.js
 
 
-//get package level of JSON object as set in testresults.js
-var packages = testResultsData['results'];
 
-//iterate packages
-var numPackages = packages.length;
-for (var pkgIdx = 0; pkgIdx < numPackages; pkgIdx++) {
-    //iterate classes
-    var classes = packages['children'];
-    var numClasses = classes.length;
-    for (var clsIdx = 0; clsIdx < numClasses; clsIdx++) {
-        //iterate tests
-        var testCases = classes['children'];
-        var numTestCases = testCases.length;
-        for (var tstIdx = 0; tstIdx < numTestCases; tstIdx++) {
-            //get results for current test case
-            var testCaseResults = testCases[tstIdx]['buildResults'];
+//empty list to append to
+var diffList = $j('<ul />');
 
+function getDiffs(resultData) {
+    var packages = resultData['results'];
+
+    
+        //iterate packages
+        var numPackages = packages.length;
+        for (var pkgIdx = 0; pkgIdx < numPackages; pkgIdx++) {
+            //iterate classes
+            var classes = packages['children'];
+            var numClasses = classes.length;
+            for (var clsIdx = 0; clsIdx < numClasses; clsIdx++) {
+                //iterate tests (no action taken on iteration atm)
+                var testCases = classes['children'];
+                var numTestCases = testCases.length;
+                /*for (var tstIdx = 0; tstIdx < numTestCases; tstIdx++) {
+                    //get results for current test case
+                    var testCaseResults = testCases[tstIdx]['buildResults'];
+
+                }*/
+                //get last build results and second to last build results
+                //TODO: check if these exist first
+                if (numClasses >= 2) {
+                    var latestResult = testCases[0]['buildResults'];
+                    var nextLatestResult = testCases[1]['buildResults'];
+                    addDifferentResultsToList(latestResult, nextLatestResult);
+                }
+            }
         }
+    return diffList;
+}
 
+function addDifferentResultsToList(newBuildResults, oldBuildResults) {
+    var newStatus = newBuildResults['status'];
+    var oldStatus = oldBuildResults['status'];
+    if (newStatus != oldStatus) {
+        var item = $j('<li />');
+        var resultName = newBuildResults['name'];
+        item.html('<span>' + resultName + ' changed from ' + oldStatus + ' to ' + newStatus + '</span>');
+        diffList.append(item);
     }
-
 }
 
 /*
 //get last build results and second to last build results
-//list differencess
-var list = $j('<ul />');
+//list differences
 function getDiffs(latestBuildResults, secondToLatestBuildResults) {
     
 }
