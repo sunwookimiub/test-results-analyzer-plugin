@@ -1,11 +1,9 @@
 //differentresults.js
 
 
-
-//empty list to append to
-var diffList = $j('<ul />');
-
 function getDiffs(resultData) {
+    //empty list to append to
+    var diffList = $j('<ul />');
     var packages = resultData['results'];
 
     
@@ -29,14 +27,14 @@ function getDiffs(resultData) {
                 if (numClasses >= 2) {
                     var latestResult = testCases[0]['buildResults'];
                     var nextLatestResult = testCases[1]['buildResults'];
-                    addDifferentResultsToList(latestResult, nextLatestResult);
+                    addDifferentResultsToList(diffList, latestResult, nextLatestResult);
                 }
             }
         }
     return diffList;
 }
 
-function addDifferentResultsToList(newBuildResults, oldBuildResults) {
+function addDifferentResultsToList(diffList, newBuildResults, oldBuildResults) {
     var newStatus = newBuildResults['status'];
     var oldStatus = oldBuildResults['status'];
     if (newStatus != oldStatus) {
