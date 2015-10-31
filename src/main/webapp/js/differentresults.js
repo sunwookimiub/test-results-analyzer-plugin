@@ -19,16 +19,17 @@ for (var pkgIdx = 0; pkgIdx < numPackages; pkgIdx++) {
             var testCaseResults = testCases[tstIdx]['buildResults'];
 
         }
+
     }
 
 }
 
 /*
 //get last build results and second to last build results
-//list differences
+//list differencess
 var list = $j('<ul />');
 function getDiffs(latestBuildResults, secondToLatestBuildResults) {
-
+    
 }
 getDiffs();
 */
