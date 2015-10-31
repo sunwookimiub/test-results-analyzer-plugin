@@ -11,11 +11,11 @@ function getDiffs(resultData) {
         var numPackages = packages.length;
         for (var pkgIdx = 0; pkgIdx < numPackages; pkgIdx++) {
             //iterate classes
-            var classes = packages['children'];
+            var classes = packages[pkgIdx]['children'];
             var numClasses = classes.length;
             for (var clsIdx = 0; clsIdx < numClasses; clsIdx++) {
                 //iterate tests (no action taken on iteration atm)
-                var testCases = classes['children'];
+                var testCases = classes[clsIdx]['children'];
                 var numTestCases = testCases.length;
                 /*for (var tstIdx = 0; tstIdx < numTestCases; tstIdx++) {
                     //get results for current test case
