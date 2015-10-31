@@ -84,6 +84,7 @@ Select chart type:
 <button class = "charts" id="generatechart">Generate Charts</button>
 <button class = "charts" id="hidecharts">Hide Charts</button>
 </div>
+${it.lastTwoBuilds}
 <br/>
 <br/>
 
