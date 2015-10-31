@@ -162,4 +162,8 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
         JsTreeUtil jsTreeUtils = new JsTreeUtil();
         return jsTreeUtils.getJsTree(buildList, resultInfo, statusFilter);
     }
+    
+    public String getLastTwoBuilds() {
+    	return "Same";
+    }
 }
