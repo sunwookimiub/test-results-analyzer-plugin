@@ -85,12 +85,9 @@ Select chart type:
 <button class = "charts" id="generatechart">Generate Charts</button>
 <button class = "charts" id="hidecharts">Hide Charts</button>
 </div>
-<br/>
-<br/>
-
-<div>
 ${it.lastTwoBuilds}
-</div>
+<br/>
+<br/>
 
 <div id="diffList">
 </div>
