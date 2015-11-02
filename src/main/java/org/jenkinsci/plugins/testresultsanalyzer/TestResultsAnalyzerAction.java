@@ -164,7 +164,7 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
     }
     
     public String getLastTwoBuilds() {
-    	String ret = "";
+    	String ret = "Last two builds: \n";
     	Map<String,PackageInfo> results = resultInfo.getPackageResults();
     	Iterator it = results.keySet().iterator();
     	while (it.hasNext()) {
