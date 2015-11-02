@@ -1,28 +1,28 @@
 package org.jenkinsci.plugins.testresultsanalyzer;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-
-import net.sf.json.JSONArray;
-
-import net.sf.json.JSONObject;
-import org.jenkinsci.plugins.testresultsanalyzer.result.info.ResultInfo;
-import org.kohsuke.stapler.bind.JavaScriptMethod;
-
-
-import jenkins.model.Jenkins;
 import hudson.model.Action;
 import hudson.model.Item;
 import hudson.model.AbstractProject;
 import hudson.model.Actionable;
 import hudson.model.Run;
-import hudson.security.Permission;
 import hudson.tasks.junit.PackageResult;
 import hudson.tasks.junit.TestResult;
 import hudson.tasks.test.AbstractTestResultAction;
 import hudson.util.RunList;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+import org.jenkinsci.plugins.testresultsanalyzer.result.data.ResultData;
+import org.jenkinsci.plugins.testresultsanalyzer.result.info.PackageInfo;
+import org.jenkinsci.plugins.testresultsanalyzer.result.info.ResultInfo;
+import org.kohsuke.stapler.bind.JavaScriptMethod;
 
 public class TestResultsAnalyzerAction extends Actionable implements Action{
 @SuppressWarnings("rawtypes") AbstractProject project;
@@ -164,6 +164,19 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
     }
     
     public String getLastTwoBuilds() {
-    	return "Same";
+    	String ret = "";
+    	Map<String,PackageInfo> results = resultInfo.getPackageResults();
+    	Iterator it = results.keySet().iterator();
+    	while (it.hasNext()) {
+    		Map.Entry<String, PackageInfo> pair = (Map.Entry<String, PackageInfo>) it.next();
+    		PackageInfo info = pair.getValue();
+    		Map<Integer,ResultData> buildResults = info.getBuildPackageResults();
+    		Iterator resultIt = buildResults.keySet().iterator();
+    		while (resultIt.hasNext()) {
+    			Map.Entry<Integer, ResultData> resultPair = (Map.Entry<Integer, ResultData>) it.next();
+    			ret += resultPair.getKey().toString() + ": " + resultPair.getValue().getName() + "\n";
+    		}
+    	}
+    	return ret;
     }
 }
