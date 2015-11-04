@@ -55,10 +55,7 @@ public class TestResultsAnalyzerActionTest {
 	@Test
 	public void testGetLastTwoBuilds() throws Exception {
 		FreeStyleProject project = j.createFreeStyleProject();
-		FreeStyleBuild build = project.scheduleBuild2(0).get();
-		FreeStyleBuild build2 = project.scheduleBuild2(0).get();
-		FreeStyleBuild build3 = project.scheduleBuild2(0).get();
-		FreeStyleBuild build4 = project.scheduleBuild2(0).get();
+		
 
 		TestResultsAnalyzerAction action = new TestResultsAnalyzerAction(
 				project);
