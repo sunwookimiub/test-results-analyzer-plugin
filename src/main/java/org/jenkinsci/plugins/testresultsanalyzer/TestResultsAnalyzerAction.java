@@ -165,16 +165,16 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
     
     public String getLastTwoBuilds() {
     	String ret = "Last two builds: \n";
-    	Map<String,PackageInfo> results = resultInfo.getPackageResults();
-    	Iterator it = results.keySet().iterator();
-    	while (it.hasNext()) {
-    		Map.Entry<String, PackageInfo> pair = (Map.Entry<String, PackageInfo>) it.next();
-    		PackageInfo info = pair.getValue();
-    		Map<Integer,ResultData> buildResults = info.getBuildPackageResults();
-    		if (buildResults.keySet().size() >= 2) {// need at least two builds to be able to compare
-    			ret += "There are more 2 or more builds";
-    		}
-    	}
+//    	Map<String,PackageInfo> results = resultInfo.getPackageResults();
+//    	Iterator it = results.keySet().iterator();
+//    	while (it.hasNext()) {
+//    		Map.Entry<String, PackageInfo> pair = (Map.Entry<String, PackageInfo>) it.next();
+//    		PackageInfo info = pair.getValue();
+//    		Map<Integer,ResultData> buildResults = info.getBuildPackageResults();
+//    		if (buildResults.keySet().size() >= 2) {// need at least two builds to be able to compare
+//    			ret += "There are more 2 or more builds";
+//    		}
+//    	}
     	return ret;
     }
 }
