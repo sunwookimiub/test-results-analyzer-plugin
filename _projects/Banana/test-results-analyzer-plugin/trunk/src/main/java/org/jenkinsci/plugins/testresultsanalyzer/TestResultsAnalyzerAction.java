@@ -179,7 +179,7 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
     			ResultData firstBuild = firstEntry.getValue();
     			ResultData secondBuild = secondEntry.getValue();
     			if (firstBuild.isPassed() != secondBuild.isPassed()) {
-    				ret += firstBuild.getName() + " changed.";
+    				ret += firstBuild.getName() + " changed.\n";
     			}
     			
     		}
