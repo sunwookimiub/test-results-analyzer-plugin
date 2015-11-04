@@ -1,17 +1,15 @@
 package org.jenkinsci.plugins.testresultsanalyzer;
 
 import static org.junit.Assert.assertEquals;
+import hudson.model.FreeStyleBuild;
+import hudson.model.FreeStyleProject;
+import hudson.tasks.junit.PackageResult;
+import net.sf.json.JSONObject;
 
-import java.io.IOException;
-import java.util.concurrent.ExecutionException;
-
+import org.jenkinsci.plugins.testresultsanalyzer.result.info.ResultInfo;
 import org.junit.Rule;
 import org.junit.Test;
 import org.jvnet.hudson.test.JenkinsRule;
-
-import hudson.model.FreeStyleBuild;
-import hudson.model.FreeStyleProject;
-import net.sf.json.JSONObject;
 
 public class TestResultsAnalyzerActionTest {
 	@Rule
@@ -55,11 +53,10 @@ public class TestResultsAnalyzerActionTest {
 	@Test
 	public void testGetLastTwoBuilds() throws Exception {
 		FreeStyleProject project = j.createFreeStyleProject();
-		
 
 		TestResultsAnalyzerAction action = new TestResultsAnalyzerAction(
 				project);
-		action.getJsonLoadData();
+		action.resultInfo = new ResultInfo();
 		
 		System.out.println(action.getLastTwoBuilds());
 	}

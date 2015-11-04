@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -165,16 +166,24 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
     
     public String getLastTwoBuilds() {
     	String ret = "Last two builds: \n";
-//    	Map<String,PackageInfo> results = resultInfo.getPackageResults();
-//    	Iterator it = results.keySet().iterator();
-//    	while (it.hasNext()) {
-//    		Map.Entry<String, PackageInfo> pair = (Map.Entry<String, PackageInfo>) it.next();
-//    		PackageInfo info = pair.getValue();
-//    		Map<Integer,ResultData> buildResults = info.getBuildPackageResults();
-//    		if (buildResults.keySet().size() >= 2) {// need at least two builds to be able to compare
-//    			ret += "There are more 2 or more builds";
-//    		}
-//    	}
+    	Map<String,PackageInfo> results = resultInfo.getPackageResults();
+    	Iterator it = results.keySet().iterator();
+    	while (it.hasNext()) {
+    		Map.Entry<String, PackageInfo> pair = (Map.Entry<String, PackageInfo>) it.next();
+    		PackageInfo info = pair.getValue();
+    		Map<Integer,ResultData> buildResults = info.getBuildPackageResults();
+    		if (buildResults.keySet().size() >= 2) {// need at least two builds to be able to compare
+    			Iterator resultIt = buildResults.entrySet().iterator();
+    			Map.Entry<Integer, ResultData> firstEntry = (Entry<Integer, ResultData>) resultIt.next();
+    			Map.Entry<Integer, ResultData> secondEntry = (Entry<Integer, ResultData>) resultIt.next();
+    			ResultData firstBuild = firstEntry.getValue();
+    			ResultData secondBuild = secondEntry.getValue();
+    			if (firstBuild.isPassed() != secondBuild.isPassed()) {
+    				ret += firstBuild.getName() + " changed.";
+    			}
+    			
+    		}
+    	}
     	return ret;
     }
 }
