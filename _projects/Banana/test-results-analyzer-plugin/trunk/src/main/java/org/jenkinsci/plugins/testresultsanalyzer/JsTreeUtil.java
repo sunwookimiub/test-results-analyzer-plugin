@@ -205,8 +205,6 @@ public class JsTreeUtil {
         baseJson_new.put("buildResults",treeDataJson_new);
         if (dataJson.containsKey("children")) { // this part constructs the children
             JSONArray childrens = new JSONArray();
-            JSONARray childrens_new = new JSONArray(); // new childrens
-
             JSONObject childrenJson = dataJson.getJSONObject("children"); // get the entire children set
             @SuppressWarnings("unchecked")
             Set<String> childeSet = (Set<String>) childrenJson.keySet(); // loop over the children set
