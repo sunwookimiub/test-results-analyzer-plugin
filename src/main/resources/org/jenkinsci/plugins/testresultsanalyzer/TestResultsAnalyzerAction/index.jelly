@@ -20,7 +20,7 @@ var $j = jQuery.noConflict();
 </script>
 <j:set var="temp" value="${it.jsonLoadData}"/>
 <j:set var="builds" value="${it.builds}"/>
-<!--
+
 <div>
 Select
 <select id="noofbuilds">
@@ -86,7 +86,7 @@ Select chart type:
 <button class = "charts" id="generatechart">Generate Charts</button>
 <button class = "charts" id="hidecharts">Hide Charts</button>
 </div>
--->
+
 <br/>
 <br/>
 

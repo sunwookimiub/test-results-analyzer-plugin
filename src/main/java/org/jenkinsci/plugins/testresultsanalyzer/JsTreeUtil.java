@@ -139,6 +139,7 @@ public class JsTreeUtil {
 
 
     private JSONObject createJson2(List<Integer>buildsCondense,List<Integer> builds, JSONObject dataJson, String statusFilter) {
+        // this json has the results
         JSONObject baseJson = getBaseJson();
         JSONObject baseJson_new = getBaseJson();
         Integer num_pass=0;
@@ -204,6 +205,8 @@ public class JsTreeUtil {
         baseJson_new.put("buildResults",treeDataJson_new);
         if (dataJson.containsKey("children")) { // this part constructs the children
             JSONArray childrens = new JSONArray();
+            JSONARray childrens_new = new JSONArray(); // new childrens
+
             JSONObject childrenJson = dataJson.getJSONObject("children"); // get the entire children set
             @SuppressWarnings("unchecked")
             Set<String> childeSet = (Set<String>) childrenJson.keySet(); // loop over the children set
