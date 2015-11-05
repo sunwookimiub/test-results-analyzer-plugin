@@ -163,7 +163,7 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
         JsTreeUtil jsTreeUtils = new JsTreeUtil();
         return jsTreeUtils.getJsTree(buildList, resultInfo, statusFilter);
     }
-<<<<<<< .mine
+//<<<<<<< .mine
 		@JavaScriptMethod
     public JSONObject getTreeResult2(String noOfBuildsNeeded, String statusFilter) {
         int noOfBuilds = getNoOfBuildRequired(noOfBuildsNeeded);
@@ -173,8 +173,8 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
         JsTreeUtil jsTreeUtils = new JsTreeUtil();
         return jsTreeUtils.getJsTree2(buildCondense,buildList, resultInfo, statusFilter);
     }
-=======
-    
+//=======
+
     public String getLastTwoBuilds() {
     	String ret = "Last two builds: \n";
     	Map<String,PackageInfo> results = resultInfo.getPackageResults();
@@ -192,10 +192,10 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
     			if (firstBuild.isPassed() != secondBuild.isPassed()) {
     				ret += firstBuild.getName() + " changed.\n";
     			}
-    			
+
     		}
     	}
     	return ret;
     }
->>>>>>> .r18848
+//>>>>>>> .r18848
 }
