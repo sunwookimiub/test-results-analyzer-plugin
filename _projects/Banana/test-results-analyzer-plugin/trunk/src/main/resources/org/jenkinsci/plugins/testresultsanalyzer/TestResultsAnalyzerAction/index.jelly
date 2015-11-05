@@ -1,7 +1,7 @@
 <j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:l="/lib/layout">
 <l:layout title="Test Result Graph">
 <st:include it="${it.project}" page="sidepanel.jelly" />
-<st:bind var="remoteAction" value="${it}"/> 
+<st:bind var="remoteAction" value="${it}"/>
 <l:main-panel>
 <link href="${resURL}/plugin/test-results-analyzer/css/table-style.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="${resURL}/plugin/test-results-analyzer/jquery/js/jquery-1.11.1.min.js"></script>
@@ -20,6 +20,7 @@ var $j = jQuery.noConflict();
 </script>
 <j:set var="temp" value="${it.jsonLoadData}"/>
 <j:set var="builds" value="${it.builds}"/>
+<!--
 <div>
 Select
 <select id="noofbuilds">
@@ -85,6 +86,7 @@ Select chart type:
 <button class = "charts" id="generatechart">Generate Charts</button>
 <button class = "charts" id="hidecharts">Hide Charts</button>
 </div>
+-->
 <br/>
 <br/>
 
@@ -119,15 +121,18 @@ Select chart type:
 </div>
 
 <script>
+
+  window.onload = populateTemplate2(displayValues);
+
 	$j("#getbuildreport").click(function () {
 		populateTemplate(displayValues);
     console.log(${it.lastTwoBuilds});
 	});
-	
+
 	$j("#expandall").click(function () {
 		expandAll();
 	});
-	
+
 	$j("#collapseall").click(function () {
 		collapseAll();
 	});

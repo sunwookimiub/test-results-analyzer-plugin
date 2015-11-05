@@ -16,7 +16,9 @@ function populateTemplate(){
     var noOfBuilds = $j('#noofbuilds').val();
     var statusFilter = $j('#teststatus').val();
     displayValues  = $j("#show-durations").is(":checked");
-
+    noOfBuilds='all';
+    statusFilter='all';
+    displayValues=false;
 
 
     remoteAction.getTreeResult(noOfBuilds, statusFilter, $j.proxy(function(t) {
@@ -36,6 +38,24 @@ function populateTemplate(){
     },this));
 }
 
+function populateTemplate2(){
+    reset();
+    var noOfBuilds = $j('#noofbuilds').val();
+    var statusFilter = $j('#teststatus').val();
+    displayValues  = $j("#show-durations").is(":checked");
+    noOfBuilds='all';
+    statusFilter='all';
+    displayValues=false;
+    remoteAction.getTreeResult2(noOfBuilds, statusFilter, $j.proxy(function(t) {
+        var itemsResponse = t.responseObject();
+        console.log("JSON Object print testresult.js:20");
+        console.log(itemsResponse);
+        treeMarkup = analyzerTemplate(itemsResponse);
+        $j(".table").html(treeMarkup);
+        addEvents();
+    },this));
+}
+
 function collapseAll(){
     reevaluateChartData = true;
     $j(".table").html("")
@@ -49,7 +69,7 @@ function expandAll(){
 	$j(".table .table-row .icon").each(function(){
 		$j(this).click();
 	});
-	
+
 }
 
 function addEvents() {

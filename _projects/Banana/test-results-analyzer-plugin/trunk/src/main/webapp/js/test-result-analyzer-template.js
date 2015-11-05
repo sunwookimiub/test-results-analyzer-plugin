@@ -25,7 +25,7 @@ var tableContent = '<div class="table-row {{parentclass}}-{{addName text}}" pare
     '{{/each}}';
 
 var tableBody = '<div class="heading">' +
-    '\n' + '        <div class="table-cell">Chart</div><div class="table-cell">See children</div> <div class="table-cell">Build Number &rArr;<br>Package-Class-Testmethod names &dArr;</div>' +
+    '\n' + '        <div class="table-cell">Chart</div><div class="table-cell">See children</div> <div class="table-cell">The Condensed Results</div>' +
     '{{#each builds}}' +
     '\n' + '         <div class="table-cell">{{this}}</div>' +
     '{{/each}}' +
