@@ -205,16 +205,23 @@ public class JsTreeUtil {
         baseJson_new.put("buildResults",treeDataJson_new);
         if (dataJson.containsKey("children")) { // this part constructs the children
             JSONArray childrens = new JSONArray();
+            JSONArray childrens_new = new JSONArray();
+
             JSONObject childrenJson = dataJson.getJSONObject("children"); // get the entire children set
             @SuppressWarnings("unchecked")
             Set<String> childeSet = (Set<String>) childrenJson.keySet(); // loop over the children set
             for (String childName : childeSet) {  // recursion to finish this one children. So when finished, this one children contains all of its children
                 JSONObject subtree = createJson(builds, childrenJson.getJSONObject(childName), statusFilter);
+                JSONObject subtree_new = createJson2(buildsCondense,builds, childrenJson.getJSONObject(childName), statusFilter);
                 if (subtree != null) {
                     childrens.add(subtree); // add this one children to the tree
                 }
+                if (subtree_new != null) {
+                    childrens_new.add(subtree_new); // add this one children to the tree
+                }
             }
             baseJson.put("children", childrens); // when all the children are finished, put together the childrens
+            baseJson_new.put("children", childrens_new);
         }
 
         //return baseJson;
