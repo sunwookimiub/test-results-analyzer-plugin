@@ -1,6 +1,12 @@
 //differentresults.js
 
-
+/* getDiffs
+ * creates unordered list
+ * iterates through given result data JSON object
+ * compares each test case in most recent build to previous build
+ * add list items for each test case with differences between those builds
+ * returns list
+*/
 function getDiffs(resultData) {
     //empty list to append to
     var diffList = $j('<ul />');
@@ -23,9 +29,9 @@ function getDiffs(resultData) {
                     //get results for current test case
                     var testCaseResults = testCases[tstIdx]['buildResults'];
                     //get last build results and second to last build results
-                    //TODO: check if these exist first
                     var latestResult = testCaseResults[0];
                     var nextLatestResult = testCaseResults[1];
+                    //compare and add to list
                     diffList = addDifferentResultsToList(diffList, latestResult, nextLatestResult);
                 }
             
@@ -34,6 +40,11 @@ function getDiffs(resultData) {
     return diffList;
 }
 
+/* addDifferentResultsToList
+ * Given the unordered list element and two build results JSON objects,
+ * if status of builds are different, create new list item and add to list
+ * return list whether modified or not
+*/
 function addDifferentResultsToList(diffList, newBuildResults, oldBuildResults) {
     var newStatus = newBuildResults['status'];
     var oldStatus = oldBuildResults['status'];
@@ -45,13 +56,4 @@ function addDifferentResultsToList(diffList, newBuildResults, oldBuildResults) {
     }
     return diffList;
 }
-
-/*
-//get last build results and second to last build results
-//list differences
-function getDiffs(latestBuildResults, secondToLatestBuildResults) {
-    
-}
-getDiffs();
-*/
 

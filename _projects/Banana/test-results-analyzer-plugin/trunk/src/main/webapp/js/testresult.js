@@ -27,6 +27,8 @@ function populateTemplate(){
         var diffList = getDiffs(itemsResponse);
         if (diffList.html() != "") {
             $j("#diffList").html(diffList); // add list with differences
+        } else {
+            diffList.remove();
         }
         treeMarkup = analyzerTemplate(itemsResponse);
         $j(".table").html(treeMarkup);
