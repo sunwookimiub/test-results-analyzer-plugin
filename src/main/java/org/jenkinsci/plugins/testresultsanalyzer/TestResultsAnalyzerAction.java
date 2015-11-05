@@ -28,18 +28,18 @@ import org.kohsuke.stapler.bind.JavaScriptMethod;
 public class TestResultsAnalyzerAction extends Actionable implements Action{
 @SuppressWarnings("rawtypes") AbstractProject project;
 	private List<Integer> builds = new ArrayList<Integer>() ;
-	
+
 	ResultInfo resultInfo;
-	
-	
+
+
 	public TestResultsAnalyzerAction(@SuppressWarnings("rawtypes") AbstractProject project){
 		this.project = project;
 	}
-	
+
 
 	/**
      * The display name for the action.
-     * 
+     *
      * @return the name as String
      */
     public final String getDisplayName() {
@@ -48,7 +48,7 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
 
     /**
      * The icon for this action.
-     * 
+     *
      * @return the icon file as String
      */
     public final String getIconFileName() {
@@ -57,7 +57,7 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
 
     /**
      * The url for this action.
-     * 
+     *
      * @return the url as String
      */
     public String getUrlName() {
@@ -66,7 +66,7 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
 
     /**
      * Search url for this action.
-     * 
+     *
      * @return the url as String
      */
     public String getSearchUrl() {
@@ -75,19 +75,19 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
 
     /**
      * Checks if the user has CONFIGURE permission.
-     * 
+     *
      * @return true - user has permission, false - no permission.
      */
     private boolean hasPermission() {
         return project.hasPermission(Item.READ);
     }
-    
+
     @SuppressWarnings("rawtypes")
 	public AbstractProject getProject(){
     	return this.project;
     }
-    
-   
+
+
 	@JavaScriptMethod
 	public JSONArray getNoOfBuilds(String noOfbuildsNeeded) {
 		JSONArray jsonArray;
@@ -116,7 +116,7 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
 		}
 		return buildList;
 	}
-	
+
 	private int getNoOfBuildRequired(String noOfbuildsNeeded){
 		int noOfBuilds;
 		try {
@@ -126,13 +126,13 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
 		}
 		return noOfBuilds;
 	}
-    
+
 	public boolean isUpdated(){
 		int latestBuildNumber = project.getLastBuild().getNumber();
 		return !(builds.contains(latestBuildNumber));
 	}
-	
-	
+
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void getJsonLoadData() {
 		if (isUpdated()) {
@@ -149,7 +149,7 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
 					TestResult testResult = (TestResult) testAction.getResult();
 					Collection<PackageResult> packageResults = testResult.getChildren();
 					for (PackageResult packageResult : packageResults) { // packageresult
-						resultInfo.addPackage(buildNumber, packageResult);						
+						resultInfo.addPackage(buildNumber, packageResult);
 					}
 				}
 			}
@@ -163,6 +163,17 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
         JsTreeUtil jsTreeUtils = new JsTreeUtil();
         return jsTreeUtils.getJsTree(buildList, resultInfo, statusFilter);
     }
+<<<<<<< .mine
+		@JavaScriptMethod
+    public JSONObject getTreeResult2(String noOfBuildsNeeded, String statusFilter) {
+        int noOfBuilds = getNoOfBuildRequired(noOfBuildsNeeded);
+        List<Integer> buildList = getBuildList(noOfBuilds);
+				List<Integer> buildCondense = getBuildList(3);
+
+        JsTreeUtil jsTreeUtils = new JsTreeUtil();
+        return jsTreeUtils.getJsTree2(buildCondense,buildList, resultInfo, statusFilter);
+    }
+=======
     
     public String getLastTwoBuilds() {
     	String ret = "Last two builds: \n";
@@ -186,4 +197,5 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
     	}
     	return ret;
     }
+>>>>>>> .r18848
 }
