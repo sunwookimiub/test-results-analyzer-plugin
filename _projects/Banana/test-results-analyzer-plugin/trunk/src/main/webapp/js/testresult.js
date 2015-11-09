@@ -16,10 +16,6 @@ function populateTemplate(){
     var noOfBuilds = $j('#noofbuilds').val();
     var statusFilter = $j('#teststatus').val();
     displayValues  = $j("#show-durations").is(":checked");
-    noOfBuilds='all';
-    statusFilter='all';
-    displayValues=false;
-
 
     remoteAction.getTreeResult(noOfBuilds, statusFilter, $j.proxy(function(t) {
         var itemsResponse = t.responseObject();
