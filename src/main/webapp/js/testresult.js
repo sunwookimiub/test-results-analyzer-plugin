@@ -30,7 +30,6 @@ function populateTemplate() {
             diffList.remove();
         }
         var compareMenus = createDropdown(itemsResponse);
-        console.log(compareMenus);
         if (compareMenus.html != "") {
             $j("#compareMenus").html(compareMenus);
         } else {
