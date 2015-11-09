@@ -122,6 +122,8 @@ Select chart type:
 
 <script>
 
+  //window.onload = populateTemplate2(displayValues);
+
 	$j("#getbuildreport").click(function () {
 		populateTemplate(displayValues);
 	});
