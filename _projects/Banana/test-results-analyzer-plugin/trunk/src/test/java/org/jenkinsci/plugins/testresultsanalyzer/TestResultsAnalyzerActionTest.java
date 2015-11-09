@@ -57,7 +57,9 @@ public class TestResultsAnalyzerActionTest {
 		TestResultsAnalyzerAction action = new TestResultsAnalyzerAction(
 				project);
 		action.resultInfo = new ResultInfo();
-		
+
 		System.out.println(action.getLastTwoBuilds());
 	}
+	
+
 }
