@@ -74,6 +74,10 @@ Display duration: <input type="checkbox" id="show-durations" name="show-duration
 	<button id="collapseall">Collapse All</button>
 </div>
 </div>
+
+<div id ="compareMenus">
+</div>
+
 <div class="chartbuttons">
 Select chart type:
 
@@ -92,9 +96,6 @@ Select chart type:
 <br/>
 
 <div id="diffList">
-</div>
-
-<div id ="compareMenus">
 </div>
 
 <div id="charts">
