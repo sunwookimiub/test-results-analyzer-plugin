@@ -11,6 +11,7 @@
 
 <script src="http://code.highcharts.com/modules/exporting.js"></script>
 <script type="text/javascript" src="${resURL}/plugin/test-results-analyzer/js/differentresults.js"></script>
+<script type="text/javascript" src="${resURL}/plugin/test-results-analyzer/js/selectdiffresults.js"></script>
 <script type="text/javascript" src="${resURL}/plugin/test-results-analyzer/js/testresult.js"></script>
 <script type="text/javascript" src="${resURL}/plugin/test-results-analyzer/js/chart-generator.js"></script>
 <script type="text/javascript" src="${resURL}/plugin/test-results-analyzer/js/test-result-analyzer-template.js"></script>
@@ -91,6 +92,9 @@ Select chart type:
 <br/>
 
 <div id="diffList">
+</div>
+
+<div id ="compareMenus">
 </div>
 
 <div id="charts">

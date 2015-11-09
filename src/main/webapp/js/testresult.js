@@ -4,23 +4,24 @@ var testResultData = "";
 var reevaluateChartData = true;
 var displayValues = false;
 
-function reset(){
+function reset() {
     reevaluateChartData = true;
     $j(".table").html("")
-	treeMarkup = "";
+    treeMarkup = "";
     resetCharts();
 }
 
-function populateTemplate(){
+function populateTemplate() {
     reset();
     var noOfBuilds = $j('#noofbuilds').val();
     var statusFilter = $j('#teststatus').val();
-    displayValues  = $j("#show-durations").is(":checked");
+    displayValues = $j("#show-durations").is(":checked");
 
     remoteAction.getTreeResult(noOfBuilds, statusFilter, $j.proxy(function(t) {
         var itemsResponse = t.responseObject();
         console.log("JSON Object print testresult.js:20");
         console.log(itemsResponse);
+        console.log(itemsResponse['builds'].length);
         testResultData = itemsResponse; //gets data out for other uses
         var diffList = getDiffs(itemsResponse);
         if (diffList.html() != "") {
@@ -28,20 +29,27 @@ function populateTemplate(){
         } else {
             diffList.remove();
         }
+        var compareMenus = createDropdown(itemsResponse);
+        console.log(compareMenus);
+        if (compareMenus.html != "") {
+            $j("#compareMenus").html(compareMenus);
+        } else {
+            compareMenus.remove();
+        }
         treeMarkup = analyzerTemplate(itemsResponse);
         $j(".table").html(treeMarkup);
         addEvents();
-    },this));
+    }, this));
 }
 
-function populateTemplate2(){
+function populateTemplate2() {
     reset();
     var noOfBuilds = $j('#noofbuilds').val();
     var statusFilter = $j('#teststatus').val();
-    displayValues  = $j("#show-durations").is(":checked");
-    noOfBuilds='all';
-    statusFilter='all';
-    displayValues=false;
+    displayValues = $j("#show-durations").is(":checked");
+    noOfBuilds = 'all';
+    statusFilter = 'all';
+    displayValues = false;
     remoteAction.getTreeResult2(noOfBuilds, statusFilter, $j.proxy(function(t) {
         var itemsResponse = t.responseObject();
         console.log("JSON Object print testresult.js:20");
@@ -49,28 +57,28 @@ function populateTemplate2(){
         treeMarkup = analyzerTemplate(itemsResponse);
         $j(".table").html(treeMarkup);
         addEvents();
-    },this));
+    }, this));
 }
 
-function collapseAll(){
+function collapseAll() {
     reevaluateChartData = true;
     $j(".table").html("")
     $j(".table").html(treeMarkup);
     addEvents();
 }
 
-function expandAll(){
+function expandAll() {
     reevaluateChartData = true;
-	collapseAll();
-	$j(".table .table-row .icon").each(function(){
-		$j(this).click();
-	});
+    collapseAll();
+    $j(".table .table-row .icon").each(function() {
+        $j(this).click();
+    });
 
 }
 
 function addEvents() {
 
-    var toggleHandler = function (node) {
+    var toggleHandler = function(node) {
         var parent = $j(node).parent().parent(".table-row").attr("parentclass");
         var nodeName = $j(node).parent().parent(".table-row").attr("name");
         var childLocator = "[parentclass='" + parent + "-" + nodeName + "']";
@@ -87,8 +95,8 @@ function addEvents() {
         }
     };
 
-    var hideChilds = function (childs) {
-        childs.each(function () {
+    var hideChilds = function(childs) {
+        childs.each(function() {
             var parent = $j(this).parent().parent(".table-row").attr("parentclass");
             var nodeName = $j(this).parent().parent(".table-row").attr("name");
             var childLocator = "[parentclass='" + parent + "-" + nodeName + "']";
@@ -104,26 +112,25 @@ function addEvents() {
 
     };
 
-    $j(".table .table-row .icon").click(function () {
+    $j(".table .table-row .icon").click(function() {
         toggleHandler(this);
     });
     checkBoxEvents();
 }
 
 function checkBoxEvents() {
-    $j("input[type='checkbox']").change(function () {
-            reevaluateChartData = true;
-            if (this.checked) {
-                checkChildren(this, true);
-                checkParent(this);
-                console.log("checked");
-            } else {
-                checkChildren(this, false);
-                checkParent(this);
-                console.log("unchecked");
-            }
+    $j("input[type='checkbox']").change(function() {
+        reevaluateChartData = true;
+        if (this.checked) {
+            checkChildren(this, true);
+            checkParent(this);
+            console.log("checked");
+        } else {
+            checkChildren(this, false);
+            checkParent(this);
+            console.log("unchecked");
         }
-    );
+    });
 }
 
 function checkChildren(node, checked) {
@@ -132,7 +139,7 @@ function checkChildren(node, checked) {
     var childLocator = "[parentclass='" + parent + "-" + nodeName + "']";
     var childElements = $j(childLocator);
     childElements.find("input[type='checkbox']").prop("checked", checked);
-    childElements.each(function () {
+    childElements.each(function() {
         checkChildren(this, checked)
     });
 }
@@ -143,7 +150,7 @@ function checkParent(node) {
     var childElements = $j(childLocator);
     var childCheckBoxes = childElements.find("input[type='checkbox']");
     var selectParent = true;
-    childCheckBoxes.each(function () {
+    childCheckBoxes.each(function() {
         if ($j(this).prop("checked") != true) {
             selectParent = false;
         }
