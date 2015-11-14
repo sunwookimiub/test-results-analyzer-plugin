@@ -35,7 +35,7 @@ function populateTemplate() {
         } else {
             compareMenus.remove();
         }
-        var compareCheckedBuilds = createButton();
+        var compareCheckedBuilds = createCheckboxButton();
         if (compareCheckedBuilds.html != "") {
             $j("#compareCheckedBuilds").html(compareCheckedBuilds);
         } else {
