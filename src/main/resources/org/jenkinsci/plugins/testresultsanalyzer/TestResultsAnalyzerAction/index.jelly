@@ -78,6 +78,9 @@ Display duration: <input type="checkbox" id="show-durations" name="show-duration
 <div id ="compareMenus">
 </div>
 
+<div id ="compareCheckedBuilds">
+</div>
+
 <div class="chartbuttons">
 Select chart type:
 

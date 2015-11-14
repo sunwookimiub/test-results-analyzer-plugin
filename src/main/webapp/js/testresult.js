@@ -35,6 +35,12 @@ function populateTemplate() {
         } else {
             compareMenus.remove();
         }
+        var compareCheckedBuilds = createButton();
+        if (compareCheckedBuilds.html != "") {
+            $j("#compareCheckedBuilds").html(compareCheckedBuilds);
+        } else {
+            compareCheckedBuilds.remove();
+        }
         treeMarkup = analyzerTemplate(itemsResponse);
         $j(".table").html(treeMarkup);
         addEvents();

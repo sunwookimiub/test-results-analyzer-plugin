@@ -25,9 +25,10 @@ var tableContent = '<div class="table-row {{parentclass}}-{{addName text}}" pare
     '{{/each}}';
 
 var tableBody = '<div class="heading">' +
+
     '\n' + '        <div class="table-cell">Chart</div><div class="table-cell">See children</div> <div class="table-cell">The Condensed Results</div>' +
     '{{#each builds}}' +
-    '\n' + '         <div class="table-cell">{{this}}<input type="checkbox" buildId={{this}} {{#if isChecked}}checked{{/if}}/></div>' +
+    '\n' + '         <div class="table-cell">{{this}}<input type="checkbox" buildId={{this}}/></div>' +
     '{{/each}}' +
     '\n' + '      </div>' +
     '{{#each results}}' +
