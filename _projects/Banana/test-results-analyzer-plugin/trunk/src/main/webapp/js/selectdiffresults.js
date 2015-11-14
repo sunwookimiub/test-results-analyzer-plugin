@@ -13,3 +13,8 @@ function createDropdown(resultData) {
     var menus = $j('<span>Compare build <select id="selectFirstBuild">'+select+' with build <select id="selectSecondBuild">'+select+'.</span>');
     return menus;
 }
+
+function createCheckboxButton(){
+    var checkbutton = $j('<span><button id="getcheckedbuilds">Compare Checked Builds</button></span>');
+    return checkbutton;
+}
