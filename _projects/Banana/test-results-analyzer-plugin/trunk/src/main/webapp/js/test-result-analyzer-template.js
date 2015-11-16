@@ -13,7 +13,7 @@ var tableContent = '<div class="table-row {{parentclass}}-{{addName text}}" pare
         '>&nbsp;{{text}}</div>' +
     '' +
     '{{#each this.buildResults}}' +
-    '\n' + '         <div class="table-cell build-result {{applystatus status}}" data-result=\'{{JSON2string this}}\'>{{applyvalue status totalTimeTaken}}</div>' +
+    '\n' + '         <div class="table-cell build-result {{applystatus status}}" data-result=\'{{JSON2string this}}\'><a href="{{createURL buildNumber ..}}">{{applyvalue status totalTimeTaken}}</a></div>' +
     '{{/each}}' +
     '\n' + '</div>' +
     '{{#each children}}\n' +
@@ -122,5 +122,27 @@ Handlebars.registerHelper('addHierarchy', function (context, parentHierarchy, op
         parentHierarchy = 0;
     context["hierarchyLevel"] = parentHierarchy + 1;
 });
+
+///adding - patrick
+
+Handlebars.registerHelper('createURL', function(buildNumber, parent) {
+    return createURL(buildNumber, parent);
+});
+
+var currentPackageURL = "";
+function createURL(buildNumber, parent) {
+    var url = "../"+buildNumber+"/testReport/";
+    if (parent.hierarchyLevel == undefined || parent.hierarchyLevel == 0) {
+        url += parent.text;
+        currentPackageURL = url;
+    }
+    else if (parent.hierarchyLevel == 1) {
+        url = currentPackageURL+"/"+parent.text;
+    }
+    else if (parent.hierarchyLevel == 2) {
+        url = currentPackageURL+"/"+parent.parentname+"/"+removeSpecialChars(parent.text)+"/";
+    }
+    return url;
+}
 
 var analyzerTemplate = Handlebars.compile(tableBody);
