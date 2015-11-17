@@ -129,14 +129,14 @@ Select chart type:
 <div id ="compareCheckedBuilds">
 </div>
 
-<button id="testingCheckboxes">Test Checkboxes</button>
-
 <script>
 
   //window.onload = populateTemplate2(displayValues);
 
 	$j("#getbuildreport").click(function () {
         console.log("Get Build Report Button Clicked");
+        console.log($j("#compareCheckedBuilds"));
+        console.log($j("#compareCheckedBuilds").val());
 		populateTemplate(displayValues);
 	});
 
@@ -154,16 +154,8 @@ Select chart type:
     $j("#hidecharts").click(function () {
     		resetCharts();
     });
+    
 
-	$j("#getcheckedbuilds").click(function () {
-        console.log("Get Checked Builds Clicked");
-		populateTemplateAfterChecked(displayValues);
-	});
-
-	$j("#testingCheckboxes").click(function () {
-        console.log("Testing Checkboxes button");
-		populateTemplateAfterChecked(displayValues);
-	});
 
 </script>
   </l:main-panel>
