@@ -159,7 +159,7 @@ Select chart type:
 		populateTemplateAfterChecked(displayValues);
 	});
 
-	$j("#getbuildreport").click(function () {
+	$j("#testingCheckboxes").click(function () {
 		populateTemplateAfterChecked(displayValues);
 	});
 
