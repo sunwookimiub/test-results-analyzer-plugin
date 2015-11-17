@@ -135,15 +135,27 @@ Select chart type:
 
 	$j("#getbuildreport").click(function () {
         console.log("Get Build Report Button Clicked");
+
         $j(".compareCheckedBuilds").find(".button").click(function(){
             console.log("Button Clicked! (used .button)");
         });
+        console.log($j(".compareCheckedBuilds").find(".button"));
+
         $j(".compareCheckedBuilds").find(".getcheckedbuilds").click(function(){
             console.log("Button Clicked! (used .getcheckedbuilds)");
         });
+        console.log($j(".compareCheckedBuilds").find(".getcheckedbuilds"));
+
         $j(".compareCheckedBuilds").find("getcheckedbuilds").click(function(){
             console.log("Button Clicked! (used getcheckedbuilds)");
         });
+        console.log($j(".compareCheckedBuilds").find("getcheckedbuilds"));
+        
+        $j(".compareCheckedBuilds").find("#getcheckedbuilds").click(function(){
+            console.log("Button Clicked! (used getcheckedbuilds)");
+        });
+        console.log($j(".compareCheckedBuilds").find("#getcheckedbuilds"));
+
 		populateTemplate(displayValues);
 	});
 
