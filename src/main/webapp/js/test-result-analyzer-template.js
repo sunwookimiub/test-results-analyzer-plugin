@@ -1,7 +1,7 @@
 var tableContent = '<div class="table-row {{parentclass}}-{{addName text}}" parentclass= "{{parentclass}}" parentname="{{parentname}}" name = "{{addName text}}" {{#if isChild}} style="display:none"{{/if}}>' +
     '\n' + '         ' +
     '\n' + '         ' +
-    '\n' + '         <div class="table-cell"></div><div class="table-cell"><input type="checkbox" parentclass= "{{parentclass}}" parentname="{{parentname}}" name = "checkbox-{{addName text}}" result-name = "{{addName text}}"/></div> ' +
+    '\n' + '         <div class="table-cell"><input type="checkbox" parentclass= "{{parentclass}}" parentname="{{parentname}}" name = "checkbox-{{addName text}}" result-name = "{{addName text}}"/></div> ' +
     '<div class="children  table-cell" >  ' +
     '{{#if children}}' +
         '<div class="icon icon-plus-sign" ></div> ' +
@@ -25,7 +25,8 @@ var tableContent = '<div class="table-row {{parentclass}}-{{addName text}}" pare
     '{{/each}}';
 
 var tableBody = '<div class="heading">' +
-    '\n' + '       <div class="table-cell"><button id="getcheckedbuilds">Compare Checked Builds </button></div><div class="table-cell">Chart</div><div class="table-cell">See children</div> <div class="table-cell">The Condensed Results</div>' +
+
+    '\n' + '        <div class="table-cell">Chart</div><div class="table-cell">See children</div> <div class="table-cell">The Condensed Results</div>' +
     '{{#each builds}}' +
     '\n' + '         <div class="table-cell">{{this}}<input type="checkbox" buildId={{this}} buildName="checked-builds"/></div>' +
     '{{/each}}' +
