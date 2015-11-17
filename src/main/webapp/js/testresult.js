@@ -65,6 +65,48 @@ function populateTemplate2() {
     }, this));
 }
 
+function populateTemplateAfterChecked() {
+    reset();
+    var noOfBuilds = $j('#noofbuilds').val();
+    var statusFilter = $j('#teststatus').val();
+    displayValues = $j("#show-durations").is(":checked");
+
+    var testCheckedBuilds = $j(".table-cell").val(); 
+    var testCheckbox = $j("input").val();
+    var testCheckbox2 = $j( "input:checkbox:checked" ).val();
+
+    console.log("populateTemplateAfterChecked()"); 
+    console.log(testCheckedBuilds);
+    console.log(testCheckbox);
+    console.log(testCheckbox2);
+
+    remoteAction.getTreeResult(noOfBuilds, statusFilter, $j.proxy(function(t) {
+        var itemsResponse = t.responseObject();
+        testResultData = itemsResponse; //gets data out for other uses
+        var diffList = getDiffs(itemsResponse);
+        if (diffList.html() != "") {
+            $j("#diffList").html(diffList); // add list with differences
+        } else {
+            diffList.remove();
+        }
+        var compareMenus = createDropdown(itemsResponse);
+        if (compareMenus.html != "") {
+            $j("#compareMenus").html(compareMenus);
+        } else {
+            compareMenus.remove();
+        }
+        var compareCheckedBuilds = createCheckboxButton();
+        if (compareCheckedBuilds.html != "") {
+            $j("#compareCheckedBuilds").html(compareCheckedBuilds);
+        } else {
+            compareCheckedBuilds.remove();
+        }
+        treeMarkup = analyzerTemplate(itemsResponse);
+        $j(".table").html(treeMarkup);
+        addEvents();
+    }, this));
+}
+
 function collapseAll() {
     reevaluateChartData = true;
     $j(".table").html("")

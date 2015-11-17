@@ -151,6 +151,11 @@ Select chart type:
     $j("#hidecharts").click(function () {
     		resetCharts();
     });
+
+	$j("#getcheckedbuilds").click(function () {
+		populateTemplateAfterChecked(displayValues);
+	});
+
 </script>
   </l:main-panel>
   </l:layout>
