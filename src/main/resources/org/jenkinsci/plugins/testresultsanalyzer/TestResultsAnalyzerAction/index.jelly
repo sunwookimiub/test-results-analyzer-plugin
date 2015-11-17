@@ -136,6 +136,7 @@ Select chart type:
   //window.onload = populateTemplate2(displayValues);
 
 	$j("#getbuildreport").click(function () {
+        console.log("Get Build Report Button Clicked");
 		populateTemplate(displayValues);
 	});
 
@@ -160,6 +161,7 @@ Select chart type:
 	});
 
 	$j("#testingCheckboxes").click(function () {
+        console.log("Testing Checkboxes button");
 		populateTemplateAfterChecked(displayValues);
 	});
 
