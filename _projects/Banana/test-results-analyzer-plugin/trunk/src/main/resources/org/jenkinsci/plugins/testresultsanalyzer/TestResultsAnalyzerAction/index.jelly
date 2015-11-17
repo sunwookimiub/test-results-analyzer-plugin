@@ -153,6 +153,7 @@ Select chart type:
     });
 
 	$j("#getcheckedbuilds").click(function () {
+        console.log("Get Checked Builds Clicked");
 		populateTemplateAfterChecked(displayValues);
 	});
 
