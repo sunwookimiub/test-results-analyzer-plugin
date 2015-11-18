@@ -72,8 +72,6 @@ function populateTemplateAfterChecked() {
     remoteAction.getTreeResult(noOfBuilds, statusFilter, $j.proxy(function(t) {
         console.log("Printing t");
         console.log(t);
-        console.log("Printing t.val()");
-        console.log(t.val());
 
         var itemsResponse = t.responseObject();
         testResultData = itemsResponse; //gets data out for other uses
@@ -90,8 +88,11 @@ function populateTemplateAfterChecked() {
         } else {
             compareCheckedBuilds.remove();
         }
-
         treeMarkup = analyzerTemplate(itemsResponse);
+
+        console.log("Printing treeMarkup");
+        console.log(treeMarkup);
+
         $j(".table").html(treeMarkup);
         addEvents();
     }, this));
