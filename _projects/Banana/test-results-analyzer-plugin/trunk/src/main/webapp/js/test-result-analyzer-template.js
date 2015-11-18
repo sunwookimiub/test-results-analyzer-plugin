@@ -41,7 +41,7 @@ function removeSpecialChars(name){
     var modName = "";
     //modName = name.split('.').join('_');
     modName = name.replace(/[^a-z\d/-]+/gi, "_");
-    return modName;
+    return modName.split('/').join('_');
 }
 
 Handlebars.registerPartial("tableBodyTemplate", tableContent);
@@ -137,9 +137,11 @@ function createURL(buildNumber, parent) {
         currentPackageURL = url;
     }
     else if (parent.hierarchyLevel == 1) {
+        currentPackageURL = currentPackageURL.replace(/\d+\/testReport\//, (buildNumber+"/testReport/"));
         url = currentPackageURL+"/"+parent.text;
     }
     else if (parent.hierarchyLevel == 2) {
+        currentPackageURL = currentPackageURL.replace(/\d+\/testReport\//, (buildNumber+"/testReport/"));
         url = currentPackageURL+"/"+parent.parentname+"/"+removeSpecialChars(parent.text)+"/";
     }
     return url;
