@@ -158,13 +158,14 @@ function checkBoxEvents() {
             checkChildren(this, true);
             checkParent(this);
             console.log("checked");
-            console.log(this.buildId);
-            checked.push(this.buildId);
+            console.log(this.buildid);
+            console.log(this);
+            checked.push(this.buildid);
         } else {
             checkChildren(this, false);
             checkParent(this);
             console.log("unchecked");
-            checked.pop(this.buildId);
+            checked.pop(this.buildid);
         }
     });
 }
