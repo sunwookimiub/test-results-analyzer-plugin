@@ -30,12 +30,7 @@ function populateTemplate() {
             diffList.remove();
         }
         addOptions(itemsResponse);
-        // var compareMenus = createDropdown(itemsResponse);
-        // if (compareMenus.html != "") {
-        //     $j("#compareMenus").html(compareMenus);
-        // } else {
-        //     compareMenus.remove();
-        // }
+
         var compareCheckedBuilds = createCheckboxButton();
         if (compareCheckedBuilds.html != "") {
             $j("#compareCheckedBuilds").html(compareCheckedBuilds);
@@ -90,12 +85,8 @@ function populateTemplateAfterChecked() {
         } else {
             diffList.remove();
         }
-        var compareMenus = createDropdown(itemsResponse);
-        if (compareMenus.html != "") {
-            $j("#compareMenus").html(compareMenus);
-        } else {
-            compareMenus.remove();
-        }
+        addOptions(itemsResponse);
+
         var compareCheckedBuilds = createCheckboxButton();
         if (compareCheckedBuilds.html != "") {
             $j("#compareCheckedBuilds").html(compareCheckedBuilds);

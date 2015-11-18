@@ -32,7 +32,8 @@ function getDiffs(resultData, firstBuild, secondBuild) {
                 var latestResult = testCaseResults[firstBuild];
                 var nextLatestResult = testCaseResults[secondBuild];
                 //compare and add to list
-                diffList = addDifferentResultsToList(diffList, latestResult, nextLatestResult);
+                diffList = addDifferentResultsToList(diffList, latestResult,
+                               nextLatestResult, testCases[tstIdx]['text']);
             }
 
         }
@@ -45,13 +46,12 @@ function getDiffs(resultData, firstBuild, secondBuild) {
  * if status of builds are different, create new list item and add to list
  * return list whether modified or not
  */
-function addDifferentResultsToList(diffList, newBuildResults, oldBuildResults) {
+function addDifferentResultsToList(diffList, newBuildResults, oldBuildResults, testName) {
     var newStatus = newBuildResults['status'];
     var oldStatus = oldBuildResults['status'];
     if (newStatus != oldStatus) {
         var item = $j('<li />');
-        var resultName = newBuildResults['name'];
-        item.html('<span>' + resultName + ' changed from ' + oldStatus + ' to ' + newStatus + '</span>');
+        item.html('<span>' + testName + ' changed from ' + oldStatus + ' to ' + newStatus + '</span>');
         diffList.append(item);
     }
     return diffList;
