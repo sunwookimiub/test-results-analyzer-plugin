@@ -119,7 +119,7 @@ Select chart type:
 
 <br/>
 <div id="tree">
-   <div class="table" id="treeTable">
+   <div class="table">
 
    </div>
 </div>
@@ -128,12 +128,6 @@ Select chart type:
 </div>
 
 <div id ="compareCheckedBuilds">
-</div>
-
-<div id="compareBuildsTree">
-   <div class="table" id="compareBuildsTreeTable">
-
-   </div>
 </div>
 
 <script>
