@@ -49,6 +49,35 @@ function showDiffs() {
     }, this));
 }
 
+function compareBuilds(items, idx1, idx2) {
+    removeOtherFromArray(items['builds'], idx1, idx2);
+    findChanges(items['results'], idx1, idx2);
+}
+
+function removeOtherFromArray(arr, min, max) {
+    arr.splice(max + 1, arr.length);
+    arr.splice(min + 1, max - min - 1);
+    arr.splice(0, min);
+}
+
+function findChanges(results, idx1, idx2) {
+    for (var i = results.length - 1; i >= 0; i--) {
+        removeOtherFromArray(results[i]['buildResults'], idx1, idx2);
+        if (results[i]['buildResults'][0]['status']
+                == results[i]['buildResults'][1]['status']) {
+            results.splice(i, 1);
+        } else {
+            findChanges(results[i]['children'], idx1, idx2);
+        }
+    }
+}
+
+
+function createCheckboxButton() {
+    var checkbutton = '<button id="getcheckedbuilds">Compare Checked Builds</button>';
+    return checkbutton;
+}
+
 function showCheckedBuilds(){
     var noOfBuilds = $j('#noofbuilds').val();
     var statusFilter = $j('#teststatus').val();
@@ -81,35 +110,4 @@ function removeBuilds(items) {
             }
         }    
     }
-
 }
-
-function compareBuilds(items, idx1, idx2) {
-    removeOtherFromArray(items['builds'], idx1, idx2);
-    findChanges(items['results'], idx1, idx2);
-}
-
-function removeOtherFromArray(arr, min, max) {
-    arr.splice(max + 1, arr.length);
-    arr.splice(min + 1, max - min - 1);
-    arr.splice(0, min);
-}
-
-function findChanges(results, idx1, idx2) {
-    for (var i = results.length - 1; i >= 0; i--) {
-        removeOtherFromArray(results[i]['buildResults'], idx1, idx2);
-        if (results[i]['buildResults'][0]['status']
-                == results[i]['buildResults'][1]['status']) {
-            results.splice(i, 1);
-        } else {
-            findChanges(results[i]['children'], idx1, idx2);
-        }
-    }
-}
-
-
-function createCheckboxButton() {
-    var checkbutton = '<button id="getcheckedbuilds">Compare Checked Builds</button>';
-    return checkbutton;
-}
-
