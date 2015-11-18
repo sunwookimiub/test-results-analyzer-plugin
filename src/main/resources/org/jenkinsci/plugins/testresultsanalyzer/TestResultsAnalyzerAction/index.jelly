@@ -152,27 +152,7 @@ Select chart type:
     		resetCharts();
     });
     
-    $j(".compareCheckedBuilds").find(".button").click(function(){
-        console.log("Button Clicked! (used .button)");
-    });
-    console.log($j(".compareCheckedBuilds").find(".button"));
-
-    $j(".compareCheckedBuilds").find(".getcheckedbuilds").click(function(){
-        console.log("Button Clicked! (used .getcheckedbuilds)");
-    });
-    console.log($j(".compareCheckedBuilds").find(".getcheckedbuilds"));
-
-    $j(".compareCheckedBuilds").find("getcheckedbuilds").click(function(){
-        console.log("Button Clicked! (used getcheckedbuilds)");
-    });
-    console.log($j(".compareCheckedBuilds").find("getcheckedbuilds"));
-    
-    $j(".compareCheckedBuilds").find("#getcheckedbuilds").click(function(){
-        console.log("Button Clicked! (used getcheckedbuilds)");
-    });
-    console.log($j(".compareCheckedBuilds").find("#getcheckedbuilds"));
-
-    $j("#compareCheckedBuilds .button").click(function (){
+    $j("#getcheckedbuilds").click(function (){
         console.log("Clicked!");
     }); 
 
