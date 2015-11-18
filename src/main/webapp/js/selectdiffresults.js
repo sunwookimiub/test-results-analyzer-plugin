@@ -70,6 +70,14 @@ function showCheckedBuilds(){
 function removeBuilds(arr) {
     console.log(arr);
     console.log(checked);
+/*    for(i = 0; i<checked.length; i++){
+        elem = checked[i];
+        var index = checked.indexOf(elem);
+        checked.splice(index,1);
+    }
+    console.log(checked);
+    */
+    arr = checked;
 }
 
 function compareBuilds(items, idx1, idx2) {

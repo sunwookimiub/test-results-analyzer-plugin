@@ -62,27 +62,6 @@ function populateTemplate2() {
     }, this));
 }
 
-function populateTemplateAfterChecked() {
-    reset();
-    var noOfBuilds = $j('#noofbuilds').val();
-    var statusFilter = $j('#teststatus').val();
-    displayValues = $j("#show-durations").is(":checked");
-    console.log(checked);
-
-    remoteAction.getTreeResult(noOfBuilds, statusFilter, $j.proxy(function(t) {
-
-        var itemsResponse = t.responseObject();
-        testResultData = itemsResponse; //gets data out for other uses
-
-        // Delete all other tests...
-
-        treeMarkup = analyzerTemplate(itemsResponse);
-        $j(".table").html(treeMarkup);
-        addEvents();
-    }, this));
-    checked = [];
-}
-
 function collapseAll() {
     reevaluateChartData = true;
     $j(".table").html("")
