@@ -57,10 +57,7 @@ function showCheckedBuilds(){
     remoteAction.getTreeResult(noOfBuilds, statusFilter, $j.proxy(function(t) {
         var itemsResponse = t.responseObject();
         testResultData = itemsResponse; //gets data out for other uses
-//        removeBuilds(itemsResponse['builds']);
-        console.log(itemsResponse);
-        itemsResponse['builds'] = checked;
-        console.log(itemsResponse);
+        removeBuilds(itemsResponse);
 
         if (itemsResponse['results'].length > 0) {
             reset();
@@ -71,17 +68,18 @@ function showCheckedBuilds(){
     }, this));
 }
 
-function removeBuilds(arr) {
-    console.log(arr);
-    console.log(checked);
-/*    for(i = 0; i<checked.length; i++){
-        elem = checked[i];
-        var index = checked.indexOf(elem);
-        checked.splice(index,1);
+function removeBuilds(items) {
+    var buildArr = items['builds'];
+    var resultArr = items['results'];
+
+    for(var i=0; i<buildArr.length; i++){
+        for(var j=0; j<checked.length; j++){
+            if(buildArr[i] == checked[j]){
+                console.log(buildArr[i]);
+            }
+        }    
     }
-    console.log(checked);
-    */
-    arr = checked;
+
 }
 
 function compareBuilds(items, idx1, idx2) {
