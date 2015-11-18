@@ -3,6 +3,10 @@ describe("test-result-analyzer-template.js CreateURL test spec", function() {
 
     var testCaseName = 'DifferentStatusTestBuildResult';
 
+    it("for package createURL ", function() {
+
+    });
+
     var newStatus = {
         name:   testCaseName,
         status: "PASSED" 
