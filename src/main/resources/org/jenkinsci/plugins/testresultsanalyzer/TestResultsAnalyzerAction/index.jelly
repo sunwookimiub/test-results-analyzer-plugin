@@ -158,8 +158,7 @@ Select chart type:
     });
     
     $(document).on('click', '#getcheckedbuilds', function() {
-		populateTemplateAfterChecked(displayValues);
-        console.log("Clicked!");
+		showCheckedBuilds(displayValues);
     });
 
 </script>

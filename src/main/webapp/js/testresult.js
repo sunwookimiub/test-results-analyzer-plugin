@@ -70,29 +70,13 @@ function populateTemplateAfterChecked() {
     console.log(checked);
 
     remoteAction.getTreeResult(noOfBuilds, statusFilter, $j.proxy(function(t) {
-        console.log("Printing t");
-        console.log(t);
 
         var itemsResponse = t.responseObject();
         testResultData = itemsResponse; //gets data out for other uses
-        addOptions(itemsResponse);
 
-        console.log("Printing itemsResponse");
-        console.log(itemsResponse);
-        console.log("Printing testResultData");
-        console.log(testResultData);
+        // Delete all other tests...
 
-        var compareCheckedBuilds = createCheckboxButton();
-        if (compareCheckedBuilds.html != "") {
-            $j("#compareCheckedBuilds").html(compareCheckedBuilds);
-        } else {
-            compareCheckedBuilds.remove();
-        }
         treeMarkup = analyzerTemplate(itemsResponse);
-
-        console.log("Printing treeMarkup");
-        console.log(treeMarkup);
-
         $j(".table").html(treeMarkup);
         addEvents();
     }, this));

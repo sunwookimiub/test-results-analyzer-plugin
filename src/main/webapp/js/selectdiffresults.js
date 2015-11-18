@@ -18,6 +18,7 @@ function addOptions(resultData) {
     }
 }
 
+
 function showDiffs() {
     var noOfBuilds = $j('#noofbuilds').val();
     var statusFilter = $j('#teststatus').val();
@@ -48,9 +49,27 @@ function showDiffs() {
     }, this));
 }
 
-function createCheckboxButton() {
-    var checkbutton = '<button id="getcheckedbuilds">Compare Checked Builds</button>';
-    return checkbutton;
+function showCheckedBuilds(){
+    var noOfBuilds = $j('#noofbuilds').val();
+    var statusFilter = $j('#teststatus').val();
+    displayValues = $j("#show-durations").is(":checked");
+
+    remoteAction.getTreeResult(noOfBuilds, statusFilter, $j.proxy(function(t) {
+        var itemsResponse = t.responseObject();
+        testResultData = itemsResponse; //gets data out for other uses
+        removeBuilds(itemsResponse['builds']);
+        if (itemsResponse['results'].length > 0) {
+            reset();
+            treeMarkup = analyzerTemplate(itemsResponse);
+            $j(".table").html(treeMarkup);
+            addEvents();
+        }
+    }, this));
+}
+
+function removeBuilds(arr) {
+    console.log(arr);
+    console.log(checked);
 }
 
 function compareBuilds(items, idx1, idx2) {
@@ -75,3 +94,10 @@ function findChanges(results, idx1, idx2) {
         }
     }
 }
+
+
+function createCheckboxButton() {
+    var checkbutton = '<button id="getcheckedbuilds">Compare Checked Builds</button>';
+    return checkbutton;
+}
+
