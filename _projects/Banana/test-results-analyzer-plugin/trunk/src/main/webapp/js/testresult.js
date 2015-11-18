@@ -23,18 +23,19 @@ function populateTemplate() {
         console.log(itemsResponse);
         console.log(itemsResponse['builds'].length);
         testResultData = itemsResponse; //gets data out for other uses
-        var diffList = getDiffs(itemsResponse);
+        var diffList = getDiffs(itemsResponse, 0, 1);
         if (diffList.html() != "") {
             $j("#diffList").html(diffList); // add list with differences
         } else {
             diffList.remove();
         }
-        var compareMenus = createDropdown(itemsResponse);
-        if (compareMenus.html != "") {
-            $j("#compareMenus").html(compareMenus);
-        } else {
-            compareMenus.remove();
-        }
+        addOptions(itemsResponse);
+        // var compareMenus = createDropdown(itemsResponse);
+        // if (compareMenus.html != "") {
+        //     $j("#compareMenus").html(compareMenus);
+        // } else {
+        //     compareMenus.remove();
+        // }
         var compareCheckedBuilds = createCheckboxButton();
         if (compareCheckedBuilds.html != "") {
             $j("#compareCheckedBuilds").html(compareCheckedBuilds);
