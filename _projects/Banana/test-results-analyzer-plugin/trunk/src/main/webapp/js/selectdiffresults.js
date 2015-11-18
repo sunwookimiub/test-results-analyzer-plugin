@@ -100,7 +100,10 @@ function showCheckedBuilds(){
 function removeBuilds(items) {
     var buildArr = items['builds'];
     var resultArr = items['results'];
-
+    console.log(buildArr);
+    console.log(resultArr);
+    console.log(checked);
+/*
     var newBuild = [];
     var newResult = [];
 
@@ -115,4 +118,5 @@ function removeBuilds(items) {
 
     items['builds'] = newBuild;
     items['results'] = newResult;
+    */
 }
