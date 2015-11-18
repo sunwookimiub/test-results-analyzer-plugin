@@ -27,13 +27,23 @@ function showDiffs() {
         var itemsResponse = t.responseObject();
         var firstBuildIndex = $j('#selectFirstBuild').val();
         var secondBuildIndex = $j('#selectSecondBuild').val();
-        console.log("Comparing build " + itemsResponse['builds'][firstBuildIndex] + " to build " + itemsResponse['builds'][secondBuildIndex]);
         testResultData = itemsResponse; //gets data out for other uses
-        var diffList = getDiffs(itemsResponse, firstBuildIndex, secondBuildIndex);
+        var max = Math.max(firstBuildIndex, secondBuildIndex);
+        var min = Math.min(firstBuildIndex, secondBuildIndex);
+        var diffList = getDiffs(itemsResponse, min, max);
         if (diffList.html() != "") {
             $j("#diffList").html(diffList); // add list with differences
         } else {
             $j("#diffList").html("No differences between these two builds");
+        }
+        if (firstBuildIndex != secondBuildIndex) {
+            compareBuilds(itemsResponse, min, max);
+            if (itemsResponse['results'].length > 0) {
+                reset();
+                treeMarkup = analyzerTemplate(itemsResponse);
+                $j(".table").html(treeMarkup);
+                addEvents();
+            }
         }
     }, this));
 }
@@ -41,4 +51,27 @@ function showDiffs() {
 function createCheckboxButton() {
     var checkbutton = '<button id="getcheckedbuilds">Compare Checked Builds</button>';
     return checkbutton;
+}
+
+function compareBuilds(items, idx1, idx2) {
+    removeOtherFromArray(items['builds'], idx1, idx2);
+    findChanges(items['results'], idx1, idx2);
+}
+
+function removeOtherFromArray(arr, min, max) {
+    arr.splice(max + 1, arr.length);
+    arr.splice(min + 1, max - min - 1);
+    arr.splice(0, min);
+}
+
+function findChanges(results, idx1, idx2) {
+    for (var i = results.length - 1; i >= 0; i--) {
+        removeOtherFromArray(results[i]['buildResults'], idx1, idx2);
+        if (results[i]['buildResults'][0]['status']
+                == results[i]['buildResults'][1]['status']) {
+            results.splice(i, 1);
+        } else {
+            findChanges(results[i]['children'], idx1, idx2);
+        }
+    }
 }
