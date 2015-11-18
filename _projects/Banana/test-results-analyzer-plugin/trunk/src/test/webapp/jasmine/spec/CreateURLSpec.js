@@ -3,43 +3,20 @@ describe("test-result-analyzer-template.js CreateURL test spec", function() {
 
     var testCaseName = 'DifferentStatusTestBuildResult';
 
-    it("for package createURL ", function() {
+    it("for package-level row returns a URL to that package's test report page", function() {
 
     });
 
-    var newStatus = {
-        name:   testCaseName,
-        status: "PASSED" 
-    };
-    var oldStatusPassed = {
-        name:   testCaseName,
-        status: "PASSED" 
-    };
-    var oldStatusFailed = {
-        name:   testCaseName,
-        status: "FAILED" 
-    };
-
-    it("addDifferentResultsToList does nothing when the statuses are the same", function() {
-        //expected
-        var expectedList = $j('<ul />');
-        //actual
-        var diffList = $j('<ul />');
-        diffList = addDifferentResultsToList(diffList, newStatus, oldStatusPassed);
-        //test
-        expect(diffList).toEqual(expectedList);
+    it("for class-level row returns a URL to that class's test report page", function() {
+        
     });
 
-    it("addDifferentResultsToList adds a new list item when the statuses are different", function() {
-        //expected
-        var expectedList = $j('<ul />');
-        var expectedListElementStr = "<li><span>"+testCaseName+" changed from FAILED to PASSED</span></li>";
-        expectedList.html(expectedListElementStr);
-        //actual
-        var diffList = $j('<ul />');
-        diffList = addDifferentResultsToList(diffList, newStatus, oldStatusFailed);
-        //test
-        expect(diffList).toEqual(expectedList);
+    it("for testcase-level row returns a URL to that test case's test report page", function() {
+        
+    });
+
+    it("testcases with forward slashes in the name are replaced with underscores in URL", function() {
+
     });
 
     var fullDepthJSON = {
@@ -101,18 +78,5 @@ describe("test-result-analyzer-template.js CreateURL test spec", function() {
             type: "package"
         } ]
     };
-
-    it("getDiffs also returns a list of items that have changed", function() {
-        //expected
-        var expectedList = $j('<ul />');
-        var expectedListElementStr = "<li><span>"+testCaseName+" changed from FAILED to PASSED</span></li>";
-        expectedList.html(expectedListElementStr);
-        //actual
-        var diffList = $j('<ul />');
-        diffList = getDiffs(fullDepthJSON);
-        //test
-        expect(diffList).toEqual(expectedList);
-    });
-
 });
 
