@@ -157,9 +157,9 @@ Select chart type:
     		resetCharts();
     });
     
-    $j("#getcheckedbuilds").click(function (){
+    $(document).on('click', '#getcheckedbuilds', function() {
         console.log("Clicked!");
-    }); 
+    });
 
 </script>
   </l:main-panel>
