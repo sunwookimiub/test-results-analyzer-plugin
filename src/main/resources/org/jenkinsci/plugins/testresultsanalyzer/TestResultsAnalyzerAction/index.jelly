@@ -76,6 +76,7 @@ Display duration: <input type="checkbox" id="show-durations" name="show-duration
 </div>
 
 <div id ="compareMenus">
+<span>Compare build <select id="selectFirstBuild"></select> with build <select id="selectSecondBuild"></select><button id="compareBuildsButton">Compare Selected Builds</button></span>
 </div>
 
 
@@ -136,6 +137,10 @@ Select chart type:
 	$j("#getbuildreport").click(function () {
 		populateTemplate(displayValues);
 	});
+
+  $j("#compareBuildsButton").click(function () {
+    showDiffs(displayValues);
+  });
 
 	$j("#expandall").click(function () {
 		expandAll();
