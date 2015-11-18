@@ -172,7 +172,9 @@ Select chart type:
     });
     console.log($j(".compareCheckedBuilds").find("#getcheckedbuilds"));
 
-    
+    $j("#compareCheckedBuilds .button").click(function (){
+        console.log("Clicked!");
+    }); 
 
 </script>
   </l:main-panel>
