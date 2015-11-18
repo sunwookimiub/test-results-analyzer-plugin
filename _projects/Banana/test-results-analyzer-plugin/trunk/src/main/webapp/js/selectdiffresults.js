@@ -1,6 +1,9 @@
 // Creates the dropdown menus that allows the user to select which two builds they want to compare.
 
 function addOptions(resultData) {
+    // clear out all options previously in this drop down
+    $j("#selectFirstBuild").find('option').remove();
+    $j("#selectSecondBuild").find('option').remove();
     var numBuilds = resultData['builds'].length;
     for (var i = 0; i < numBuilds; i++) {
         var buildNumber = resultData['builds'][i];
