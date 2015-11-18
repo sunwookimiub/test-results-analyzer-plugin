@@ -57,7 +57,11 @@ function showCheckedBuilds(){
     remoteAction.getTreeResult(noOfBuilds, statusFilter, $j.proxy(function(t) {
         var itemsResponse = t.responseObject();
         testResultData = itemsResponse; //gets data out for other uses
-        removeBuilds(itemsResponse['builds']);
+//        removeBuilds(itemsResponse['builds']);
+        console.log(itemsResponse);
+        itemsResponse['builds'] = checked;
+        console.log(itemsResponse);
+
         if (itemsResponse['results'].length > 0) {
             reset();
             treeMarkup = analyzerTemplate(itemsResponse);
