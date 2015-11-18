@@ -130,6 +130,9 @@ Select chart type:
 <div id ="compareCheckedBuilds">
 </div>
 
+<div id="compareBuildsTree">
+</div>
+
 <script>
 
   //window.onload = populateTemplate2(displayValues);
