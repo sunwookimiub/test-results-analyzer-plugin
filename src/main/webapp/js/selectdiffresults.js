@@ -15,6 +15,8 @@ function createDropdown(resultData) {
 }
 
 function createCheckboxButton(){
-    var checkbutton = $j('<button id="getcheckedbuilds">Compare Checked Builds</button>');
+//    var checkbutton = $j('<button id="getcheckedbuilds">Compare Checked Builds</button>');
+
+    var checkbutton = $j('<input type="submit" value="Link" class="button" />');
     return checkbutton;
 }

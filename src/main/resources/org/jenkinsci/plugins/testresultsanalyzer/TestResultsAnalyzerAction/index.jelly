@@ -172,6 +172,7 @@ Select chart type:
     });
     console.log($j(".compareCheckedBuilds").find("#getcheckedbuilds"));
 
+    
 
 </script>
   </l:main-panel>
