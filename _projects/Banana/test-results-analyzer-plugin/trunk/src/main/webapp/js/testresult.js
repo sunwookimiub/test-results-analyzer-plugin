@@ -158,8 +158,10 @@ function checkBoxEvents() {
             checkChildren(this, true);
             checkParent(this);
             console.log("checked");
-            console.log(this.buildid);
             console.log(this);
+            console.log(this.buildid);
+            console.log(this.type);
+            console.log(this.buildname);
             checked.push(this.buildid);
         } else {
             checkChildren(this, false);
