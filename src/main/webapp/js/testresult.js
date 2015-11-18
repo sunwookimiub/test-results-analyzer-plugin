@@ -68,14 +68,6 @@ function populateTemplateAfterChecked() {
     var statusFilter = $j('#teststatus').val();
     displayValues = $j("#show-durations").is(":checked");
     console.log(checked);
-    var testCheckedBuilds = $j(".table-cell").val(); 
-    var testCheckbox = $j("input").val();
-    var testCheckbox2 = $j( "input:checkbox:checked" ).val();
-
-    console.log("populateTemplateAfterChecked()"); 
-    console.log(testCheckedBuilds);
-    console.log(testCheckbox);
-    console.log(testCheckbox2);
 
     remoteAction.getTreeResult(noOfBuilds, statusFilter, $j.proxy(function(t) {
         var itemsResponse = t.responseObject();
@@ -98,6 +90,7 @@ function populateTemplateAfterChecked() {
         $j(".table").html(treeMarkup);
         addEvents();
     }, this));
+    checked = [];
 }
 
 function collapseAll() {
@@ -165,13 +158,13 @@ function checkBoxEvents() {
             checkChildren(this, true);
             checkParent(this);
             console.log("checked");
-            console.log(this.buildid);
-            checked.push(this.buildid);
+            console.log(this.buildId);
+            checked.push(this.buildId);
         } else {
             checkChildren(this, false);
             checkParent(this);
             console.log("unchecked");
-            checked.pop(this.buildid);
+            checked.pop(this.buildId);
         }
     });
 }
