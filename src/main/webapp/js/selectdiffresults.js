@@ -101,13 +101,18 @@ function removeBuilds(items) {
     var buildArr = items['builds'];
     var resultArr = items['results'];
 
+    var newBuild = [];
+    var newResult = [];
+
     for(var i=0; i<buildArr.length; i++){
         for(var j=0; j<checked.length; j++){
-            if(buildArr[i] != checked[j]){
-                console.log("Splicing " + buildArr[i]);
-                buildArr.splice(i,1);
-                resultArr.splice(i,1);
+            if(buildArr[i] == checked[j]){
+                newBuild.push(buildArr[i]);
+                newResult.push(resultArr[i]);
             }
         }    
     }
+
+    items['builds'] = newBuild;
+    items['results'] = newResult;
 }
