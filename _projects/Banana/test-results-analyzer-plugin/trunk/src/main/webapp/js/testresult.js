@@ -70,15 +70,19 @@ function populateTemplateAfterChecked() {
     console.log(checked);
 
     remoteAction.getTreeResult(noOfBuilds, statusFilter, $j.proxy(function(t) {
+        console.log("Printing t");
+        console.log(t);
+        console.log("Printing t.val()");
+        console.log(t.val());
+
         var itemsResponse = t.responseObject();
         testResultData = itemsResponse; //gets data out for other uses
-        var diffList = getDiffs(itemsResponse);
-        if (diffList.html() != "") {
-            $j("#diffList").html(diffList); // add list with differences
-        } else {
-            diffList.remove();
-        }
         addOptions(itemsResponse);
+
+        console.log("Printing itemsResponse");
+        console.log(itemsResponse);
+        console.log("Printing testResultData");
+        console.log(testResultData);
 
         var compareCheckedBuilds = createCheckboxButton();
         if (compareCheckedBuilds.html != "") {
@@ -86,6 +90,7 @@ function populateTemplateAfterChecked() {
         } else {
             compareCheckedBuilds.remove();
         }
+
         treeMarkup = analyzerTemplate(itemsResponse);
         $j(".table").html(treeMarkup);
         addEvents();
@@ -158,10 +163,6 @@ function checkBoxEvents() {
             checkChildren(this, true);
             checkParent(this);
             console.log("checked");
-            console.log(this);
-            console.log(this.id);
-            console.log(this.type);
-            console.log(this.value);
             checked.push(this.id);
         } else {
             checkChildren(this, false);
