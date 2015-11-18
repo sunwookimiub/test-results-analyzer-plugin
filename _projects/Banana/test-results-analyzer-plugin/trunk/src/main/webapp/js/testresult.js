@@ -3,6 +3,7 @@ var treeMarkup = "";
 var testResultData = "";
 var reevaluateChartData = true;
 var displayValues = false;
+var checked = [];
 
 function reset() {
     reevaluateChartData = true;
@@ -66,7 +67,7 @@ function populateTemplateAfterChecked() {
     var noOfBuilds = $j('#noofbuilds').val();
     var statusFilter = $j('#teststatus').val();
     displayValues = $j("#show-durations").is(":checked");
-
+    console.log(checked);
     var testCheckedBuilds = $j(".table-cell").val(); 
     var testCheckbox = $j("input").val();
     var testCheckbox2 = $j( "input:checkbox:checked" ).val();
@@ -164,10 +165,13 @@ function checkBoxEvents() {
             checkChildren(this, true);
             checkParent(this);
             console.log("checked");
+            console.log(this.buildid);
+            checked.push(this.buildid);
         } else {
             checkChildren(this, false);
             checkParent(this);
             console.log("unchecked");
+            checked.pop(this.buildid);
         }
     });
 }
