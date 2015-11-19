@@ -101,43 +101,24 @@ function showCheckedBuilds(){
 }
 
 function removeBuilds(items) {
-    console.log("Removing Builds and Results that are not in ");
-    console.log(checked);
     removeBuildsHelper(items['builds']);
-    console.log(items['builds']);
     for (var i = items['results'].length - 1; i >= 0; i--) {
         removeBuildsHelper(items['results'][i]['buildResults']);
     }
 }
 
 function removeBuildsHelper(arr) {
-    console.log("Remove Builds Helper function called on");
     arr.reverse();
-    console.log(arr);
     var end = checked.length-1;
     var max = checked[end];
     if(end !== 0){
         var min = checked[0];
-        console.log("max " + max);
-        console.log("min " + min);
         arr.splice(max, arr.length);
-        console.log(arr);
         for(var i= end-1; i>=0; i--){
-            console.log(checked[i]);
-            console.log(checked[i+1]);
             arr.splice(checked[i], checked[i+1]-checked[i]-1);
-            console.log(arr);
         }
-
-        /*if(end === 1){
-            arr.splice(min, max-min-1);
-            console.log(arr);
-        }*/
-    
         arr.splice(0, min-1);
-        console.log(arr);
         arr.reverse();
-        console.log(arr);
     }
     else{
         arr.splice(max, arr.length);
