@@ -122,7 +122,7 @@ function removeBuildsHelper(arr) {
         console.log("min " + min);
         arr.splice(max, arr.length);
         console.log(arr);
-        for(var i= end-1; i>0; i++){
+        for(var i= end-1; i>0; i--){
             console.log(checked[i]);
             console.log(checked[i+1]);
             arr.splice(checked[i]+1, checked[i+1]-checked[i]-1);
