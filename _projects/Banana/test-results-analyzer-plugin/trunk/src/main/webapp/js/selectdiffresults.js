@@ -104,7 +104,8 @@ function removeBuilds(items) {
     console.log(checked);
     removeBuildsHelper(items['builds']);
     for (var i = items['results'].length - 1; i >= 0; i--) {
-        removeBuildsHelper(items['results']);
+        console.log(i);
+        removeBuildsHelper(items['results'][i]['buildresults']);
     }
 }
 
