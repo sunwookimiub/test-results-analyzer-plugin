@@ -86,6 +86,8 @@ function showCheckedBuilds(){
     remoteAction.getTreeResult(noOfBuilds, statusFilter, $j.proxy(function(t) {
         var itemsResponse = t.responseObject();
         testResultData = itemsResponse; //gets data out for other uses
+        checked = checked.map(Number);
+        checked.sort(function(a, b){return a-b});
         removeBuilds(itemsResponse);
 
         if (itemsResponse['results'].length > 0) {
@@ -98,6 +100,8 @@ function showCheckedBuilds(){
 }
 
 function removeBuilds(items) {
+    console.log("Removing Builds and Results that are not in ");
+    console.log(checked);
     removeBuildsHelper(items['builds']);
     for (var i = items['results'].length - 1; i >= 0; i--) {
         removeBuildsHelper(items['results']);
@@ -105,6 +109,8 @@ function removeBuilds(items) {
 }
 
 function removeBuildsHelper(arr) {
+    console.log("Remove Builds Helper function called on");
+    console.log(arr);
     var end = checked.length-1;
     var max = checked[end];
     var min = checked[0];
