@@ -100,8 +100,17 @@ describe("test-result-analyzer-template.js CreateURL test spec", function() {
         expect(output).toEqual(expected);
     });
 
-    /*it("testcases with forward slashes in the name are replaced with underscores in URL", function() {
+    it("testcases with forward slashes in the name are replaced with underscores in URL", function() {
+        var parent = fullDepthJSON.results[0].children[0].children[0];
+        var buildNumber = 1; 
+        var testCaseWithSlashesName = 'org/test/BuildResult';
+        var testCaseWithoutSlashesName = 'org_test_BuildResult';
+        parent.text = testCaseWithSlashesName;
+        var output = createURL(buildNumber, parent);
 
-    });*/
+        var expected = "../1/testReport/Test.Package/TestClass/"+testCaseWithoutSlashesName+"/";
+
+        expect(output).toEqual(expected);
+    });
 });
 
