@@ -62,9 +62,6 @@ function removeOtherFromArray(arr, min, max) {
 
 function findChanges(results, idx1, idx2) {
     for (var i = results.length - 1; i >= 0; i--) {
-        console.log(i);
-        console.log(results[i]);
-        console.log(results[i]['buildResults']);
         removeOtherFromArray(results[i]['buildResults'], idx1, idx2);
         if (results[i]['buildResults'][0]['status']
                 == results[i]['buildResults'][1]['status']) {
@@ -92,6 +89,7 @@ function showCheckedBuilds(){
         checked = checked.map(Number);
         checked.sort(function(a, b){return a-b});
         removeBuilds(itemsResponse);
+        checked = [];
 
         if (itemsResponse['results'].length > 0) {
             reset();
@@ -108,11 +106,7 @@ function removeBuilds(items) {
     removeBuildsHelper(items['builds']);
     console.log(items['builds']);
     for (var i = items['results'].length - 1; i >= 0; i--) {
-        console.log(i);
-        console.log(items['results']);
-        console.log(items['results'][i]);
         removeBuildsHelper(items['results'][i]['buildResults']);
-        console.log(items['results'][i]['buildResults']);
     }
 }
 
@@ -124,10 +118,14 @@ function removeBuildsHelper(arr) {
     var min = checked[0];
 
     arr.splice(max + 1, arr.length);
-
+    console.log(arr);
     for(var i= end-1; i>0; i++){
+        console.log(checked[i]);
+        console.log(checked[i+1]);
         arr.splice(checked[i]+1, checked[i+1]-checked[i]-1);
+        console.log(arr);
     }
     
     arr.splice(0, min);
+    console.log(arr);
 }
