@@ -122,15 +122,16 @@ function removeBuildsHelper(arr) {
         console.log("min " + min);
         arr.splice(max, arr.length);
         console.log(arr);
-        for(var i= end-1; i>0; i--){
+        for(var i= end-1; i>=0; i--){
             console.log(checked[i]);
             console.log(checked[i+1]);
-            arr.splice(checked[i]+1, checked[i+1]-checked[i]-1);
+            arr.splice(checked[i], checked[i+1]-checked[i]-1);
             console.log(arr);
         }
 
         if(end === 1){
-            arr.splice(min-1, max-min-1);
+            arr.splice(min, max-min-1);
+            console.log(arr);
         }
     
         arr.splice(0, min-1);
@@ -139,7 +140,7 @@ function removeBuildsHelper(arr) {
         console.log(arr);
     }
     else{
-        arr.splice(max-1, end);
+        arr.splice(max-1, arr.length);
         arr.splice(0,max-1);
     }
 }
