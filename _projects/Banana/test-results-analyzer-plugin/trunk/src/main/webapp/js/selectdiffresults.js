@@ -130,7 +130,7 @@ function removeBuildsHelper(arr) {
         }
 
         if(end === 1){
-            arr.splice(max-min-1);
+            arr.splice(min-1, max-min-1);
         }
     
         arr.splice(0, min-1);
@@ -139,7 +139,7 @@ function removeBuildsHelper(arr) {
         console.log(arr);
     }
     else{
-        arr.splice(max, end);
+        arr.splice(max-1, end);
         arr.splice(0,max-1);
     }
 }
