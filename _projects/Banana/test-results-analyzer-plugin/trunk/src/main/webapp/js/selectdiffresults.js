@@ -116,7 +116,8 @@ function removeBuildsHelper(arr) {
     var end = checked.length-1;
     var max = checked[end];
     var min = checked[0];
-
+    console.log("max " + max);
+    console.log("min " + min);
     arr.splice(max + 1, arr.length);
     console.log(arr);
     for(var i= end-1; i>0; i++){
