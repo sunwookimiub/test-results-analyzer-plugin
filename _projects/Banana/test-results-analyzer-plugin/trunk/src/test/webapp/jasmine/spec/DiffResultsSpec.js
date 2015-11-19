@@ -33,7 +33,7 @@ describe("differentresults.js test spec", function() {
         expectedList.html(expectedListElementStr);
         //actual
         var diffList = $j('<ul />');
-        diffList = addDifferentResultsToList(diffList, newStatus, oldStatusFailed);
+        diffList = addDifferentResultsToList(diffList, newStatus, oldStatusFailed, testCaseName);
         //test
         expect(diffList).toEqual(expectedList);
     });
@@ -105,7 +105,7 @@ describe("differentresults.js test spec", function() {
         expectedList.html(expectedListElementStr);
         //actual
         var diffList = $j('<ul />');
-        diffList = getDiffs(fullDepthJSON);
+        diffList = getDiffs(fullDepthJSON, 0, 1);
         //test
         expect(diffList).toEqual(expectedList);
     });
