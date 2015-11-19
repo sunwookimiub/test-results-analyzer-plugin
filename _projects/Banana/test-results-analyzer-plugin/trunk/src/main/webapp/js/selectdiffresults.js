@@ -98,29 +98,22 @@ function showCheckedBuilds(){
 }
 
 function removeBuilds(items) {
-    var buildArr = items['builds'];
-    var resultArr = items['results'];
-    console.log(buildArr);
-    console.log(resultArr);
-    console.log(checked);
+    removeBuildsHelper(items['builds']);
+    for (var i = items['results'].length - 1; i >= 0; i--) {
+        removeBuildsHelper(items['results']);
+    }
+}
 
-    var newBuild = [];
-    var newResult = [];
+function removeBuildsHelper(arr) {
+    var end = checked.length-1;
+    var max = checked[end];
+    var min = checked[0];
 
-    for(var i=0; i<buildArr.length; i++){
-        for(var j=0; j<checked.length; j++){
-            if(buildArr[i] == checked[j]){
-                newBuild.push(buildArr[i]);
-                newResult.push(resultArr[i]);
-            }
-        }    
+    arr.splice(max + 1, arr.length);
+
+    for(var i= end-1; i>0; i++){
+        arr.splice(checked[i]+1, checked[i+1]-checked[i]-1);
     }
     
-    console.log(newBuild);
-    console.log(newResult);
-
-    items['builds'] = newBuild;
-    items['results'] = newResult;
-    console.log(items['builds']);
-    console.log(items['results']);
+    arr.splice(0, min);
 }
