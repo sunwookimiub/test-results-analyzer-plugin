@@ -67,16 +67,16 @@ describe("CheckBox Event Tests", function() {
  it ("should check the selected boxes", function() {
     // This following two methods are basically doing the same thing
     $('#1').trigger( "click" );
-    spyEvent = spyOnEvent('#1', 'click');
+    //spyEvent = spyOnEvent('#1', 'click');
 
     expect('click').toHaveBeenTriggeredOn("#1");
-    expect(spyEvent).toHaveBeenTriggered();
+    //expect(spyEvent).toHaveBeenTriggered();
   });
 
   // This checks if click on compare results, the needed builds are shown.
   describe( "Check Compare results event tests", function () {
 
-    showCheckedBuilds();
+    //showCheckedBuilds();
     it ("should show only the selected boxes", function(){
 
       expect(by.id('#1')).toExist();
@@ -87,4 +87,3 @@ describe("CheckBox Event Tests", function() {
   });
 
 });
-
