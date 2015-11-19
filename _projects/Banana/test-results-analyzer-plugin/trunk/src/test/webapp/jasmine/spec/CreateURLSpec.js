@@ -100,8 +100,8 @@ describe("test-result-analyzer-template.js CreateURL test spec", function() {
         expect(output).toEqual(expected);
     });
 
-    it("testcases with forward slashes in the name are replaced with underscores in URL", function() {
+    /*it("testcases with forward slashes in the name are replaced with underscores in URL", function() {
 
-    });
+    });*/
 });
 
