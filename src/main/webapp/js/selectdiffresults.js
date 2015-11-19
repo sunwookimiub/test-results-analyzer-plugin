@@ -62,6 +62,9 @@ function removeOtherFromArray(arr, min, max) {
 
 function findChanges(results, idx1, idx2) {
     for (var i = results.length - 1; i >= 0; i--) {
+        console.log(i);
+        console.log(results[i]);
+        console.log(results[i]['buildResults']);
         removeOtherFromArray(results[i]['buildResults'], idx1, idx2);
         if (results[i]['buildResults'][0]['status']
                 == results[i]['buildResults'][1]['status']) {
@@ -103,9 +106,13 @@ function removeBuilds(items) {
     console.log("Removing Builds and Results that are not in ");
     console.log(checked);
     removeBuildsHelper(items['builds']);
+    console.log(items['builds']);
     for (var i = items['results'].length - 1; i >= 0; i--) {
         console.log(i);
-        removeBuildsHelper(items['results'][i]['buildresults']);
+        console.log(items['results']);
+        console.log(items['results'][i]);
+        removeBuildsHelper(items['results'][i]['buildResults']);
+        console.log(items['results'][i]['buildResults']);
     }
 }
 
