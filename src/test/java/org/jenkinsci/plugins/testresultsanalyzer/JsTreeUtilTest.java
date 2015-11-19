@@ -40,7 +40,7 @@ public class JsTreeUtilTest {
 		System.out.println(jsonObject.toString());
 		assertFalse(jsonObject.toString().equals(""));
 		assertTrue(jsonObject instanceof JSONObject);
-		
+
 
 	}
 
@@ -60,7 +60,7 @@ public class JsTreeUtilTest {
 		String statusFilter = "hello";
 		JsTreeUtil util = new JsTreeUtil();
 
-		JSONObject jsonObject = util.getJsTree2(buildsCondense, builds, resultInfo, statusFilter);
+		JSONObject jsonObject = util.getJsTreeCondensed(buildsCondense, builds, resultInfo, statusFilter);
 		System.out.println(jsonObject.toString());
 		assertFalse(jsonObject.toString().equals(""));
 		assertTrue(jsonObject instanceof JSONObject);

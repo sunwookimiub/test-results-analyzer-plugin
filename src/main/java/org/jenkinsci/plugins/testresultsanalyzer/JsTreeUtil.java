@@ -35,7 +35,7 @@ public class JsTreeUtil {
     }
 
 
-    public JSONObject getJsTree2(List<Integer>buildsCondense,List<Integer> builds, ResultInfo resultInfo, String statusFilter) {
+    public JSONObject getJsTreeCondensed(List<Integer>buildsCondense,List<Integer> builds, ResultInfo resultInfo, String statusFilter) {
         JSONObject tree = new JSONObject();
         JSONObject tree_new = new JSONObject(); // the condensed has only three component
 
@@ -61,7 +61,7 @@ public class JsTreeUtil {
 
             JSONObject packageJson = packageResults.getJSONObject((String) packageName);
             JSONObject subtree = createJson(builds, packageJson, statusFilter);
-            JSONObject subtree_new = createJson2(buildsCondense,builds, packageJson, statusFilter); // This create JSON should create a new subtree with the condensed results
+            JSONObject subtree_new = createJsonCondensed(buildsCondense,builds, packageJson, statusFilter); // This create JSON should create a new subtree with the condensed results
             if (subtree != null) {
                 //console.log('one of the subtree');
                 //console.log(subtree);
@@ -138,7 +138,7 @@ public class JsTreeUtil {
     }
 
 
-    private JSONObject createJson2(List<Integer>buildsCondense,List<Integer> builds, JSONObject dataJson, String statusFilter) {
+    private JSONObject createJsonCondensed(List<Integer>buildsCondense,List<Integer> builds, JSONObject dataJson, String statusFilter) {
         // this json has the results
         JSONObject baseJson = getBaseJson();
         JSONObject baseJson_new = getBaseJson();
@@ -212,7 +212,7 @@ public class JsTreeUtil {
             Set<String> childeSet = (Set<String>) childrenJson.keySet(); // loop over the children set
             for (String childName : childeSet) {  // recursion to finish this one children. So when finished, this one children contains all of its children
                 JSONObject subtree = createJson(builds, childrenJson.getJSONObject(childName), statusFilter);
-                JSONObject subtree_new = createJson2(buildsCondense,builds, childrenJson.getJSONObject(childName), statusFilter);
+                JSONObject subtree_new = createJsonCondensed(buildsCondense,builds, childrenJson.getJSONObject(childName), statusFilter);
                 if (subtree != null) {
                     childrens.add(subtree); // add this one children to the tree
                 }
