@@ -140,7 +140,7 @@ function removeBuildsHelper(arr) {
         console.log(arr);
     }
     else{
-        arr.splice(max-1, arr.length);
+        arr.splice(max, arr.length);
         arr.splice(0,max-1);
     }
 }
