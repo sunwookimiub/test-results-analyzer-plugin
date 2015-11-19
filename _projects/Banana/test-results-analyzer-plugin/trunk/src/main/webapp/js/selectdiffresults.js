@@ -112,6 +112,7 @@ function removeBuilds(items) {
 
 function removeBuildsHelper(arr) {
     console.log("Remove Builds Helper function called on");
+    arr.reverse();
     console.log(arr);
     var end = checked.length-1;
     var max = checked[end];
@@ -128,5 +129,7 @@ function removeBuildsHelper(arr) {
     }
     
     arr.splice(0, min);
+    console.log(arr);
+    arr.reverse();
     console.log(arr);
 }
