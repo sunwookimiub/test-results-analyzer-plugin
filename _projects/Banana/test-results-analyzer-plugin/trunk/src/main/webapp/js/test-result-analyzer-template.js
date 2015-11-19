@@ -132,6 +132,9 @@ Handlebars.registerHelper('createURL', function(buildNumber, parent) {
 var currentPackageURL = "";
 function createURL(buildNumber, parent) {
     var url = "../"+buildNumber+"/testReport/";
+    if (parent == undefined || parent.text == undefined) {
+        return url;
+    }
     if (parent.hierarchyLevel == undefined || parent.hierarchyLevel == 0) {
         url += parent.text;
         currentPackageURL = url;
