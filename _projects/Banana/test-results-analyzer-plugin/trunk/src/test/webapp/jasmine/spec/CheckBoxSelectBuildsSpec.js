@@ -1,7 +1,7 @@
-/*describe("CheckBox Event Tests", function() {
+describe("CheckBox Event Tests", function() {
   // This fullDepthJSON is borrowed from elsewhere
   var testCaseName = 'CheckBoxEventTests';
-/*
+
   var fullDepthJSON = {
       builds: ["1", "0"],
       results: [ {
@@ -61,37 +61,29 @@
           type: "package"
       } ]
   };
-*/
+
 //  var spyEvent;
   // This checks if the selected boxes are selected
-/*  it ("should check the selected boxes", function() {
+ it ("should check the selected boxes", function() {
     // This following two methods are basically doing the same thing
-    //$('#0').trigger( "click" );
-    //spyEvent = spyOnEvent('#0', 'click');
+    $('#1').trigger( "click" );
+    spyEvent = spyOnEvent('#1', 'click');
 
-    //expect('click').toHaveBeenTriggeredOn("#0");
-    //expect(spyEvent).toHaveBeenTriggered();
-    expect(1).toEqual(1);
-  });*/
-/*  it('adds two numbers together', function () {
-          expect(1 + 2).toEqual(3);
-      });
+    expect('click').toHaveBeenTriggeredOn("#1");
+    expect(spyEvent).toHaveBeenTriggered();
+  });
+
   // This checks if click on compare results, the needed builds are shown.
-/*  describe( "Check Compare results event tests", function () {
+  describe( "Check Compare results event tests", function () {
 
-    //showCheckedBuilds();
-
+    showCheckedBuilds();
     it ("should show only the selected boxes", function(){
 
+      expect(by.id('#1')).toExist();
+      expect(by.id('#0')).not.toExist();
 
     });
 
   });
-*/
-//});
 
-describe('JavaScript addition operator', function () {
-    it('adds two numbers together', function () {
-        expect(1 + 2).toEqual(3);
-    });
 });
