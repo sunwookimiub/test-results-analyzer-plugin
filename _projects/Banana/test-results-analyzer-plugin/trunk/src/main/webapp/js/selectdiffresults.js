@@ -103,7 +103,7 @@ function removeBuilds(items) {
     console.log(buildArr);
     console.log(resultArr);
     console.log(checked);
-/*
+
     var newBuild = [];
     var newResult = [];
 
@@ -115,8 +115,12 @@ function removeBuilds(items) {
             }
         }    
     }
+    
+    console.log(newBuild);
+    console.log(newResult);
 
     items['builds'] = newBuild;
     items['results'] = newResult;
-    */
+    console.log(items['builds']);
+    console.log(items['results']);
 }
