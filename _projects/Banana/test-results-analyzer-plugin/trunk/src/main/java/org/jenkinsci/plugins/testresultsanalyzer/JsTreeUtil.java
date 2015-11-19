@@ -60,20 +60,13 @@ public class JsTreeUtil {
         for (Object packageName : packageResults.keySet()) { // this loop over all the packages, but there is only one package ?
 
             JSONObject packageJson = packageResults.getJSONObject((String) packageName);
-            JSONObject subtree = createJson(builds, packageJson, statusFilter);
             JSONObject subtree_new = createJsonCondensed(buildsCondense,builds, packageJson, statusFilter); // This create JSON should create a new subtree with the condensed results
-            if (subtree != null) {
-                //console.log('one of the subtree');
-                //console.log(subtree);
-                results.add(subtree);
-            }
             if (subtree_new != null) {
                 //console.log('one of the subtree');
                 //console.log(subtree);
                 results_new.add(subtree_new);
             }
         }
-        tree.put("results", results);
         tree_new.put("results", results_new);
 
         //return tree;
