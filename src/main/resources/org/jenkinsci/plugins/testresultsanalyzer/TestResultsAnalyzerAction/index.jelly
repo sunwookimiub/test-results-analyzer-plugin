@@ -132,7 +132,7 @@ Select chart type:
 
 <script>
 
-  window.onload = populateTemplateCondensed(displayValues);
+  //window.onload = populateTemplateCondensed(displayValues);
 
 	$j("#getbuildreport").click(function () {
 		populateTemplate(displayValues);
