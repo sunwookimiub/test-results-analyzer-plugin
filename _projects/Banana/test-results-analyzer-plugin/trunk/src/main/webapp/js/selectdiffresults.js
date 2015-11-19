@@ -116,20 +116,30 @@ function removeBuildsHelper(arr) {
     console.log(arr);
     var end = checked.length-1;
     var max = checked[end];
-    var min = checked[0];
-    console.log("max " + max);
-    console.log("min " + min);
-    arr.splice(max + 1, arr.length);
-    console.log(arr);
-    for(var i= end-1; i>0; i++){
-        console.log(checked[i]);
-        console.log(checked[i+1]);
-        arr.splice(checked[i]+1, checked[i+1]-checked[i]-1);
+    if(end !== 0){
+        var min = checked[0];
+        console.log("max " + max);
+        console.log("min " + min);
+        arr.splice(max, arr.length);
+        console.log(arr);
+        for(var i= end-1; i>0; i++){
+            console.log(checked[i]);
+            console.log(checked[i+1]);
+            arr.splice(checked[i]+1, checked[i+1]-checked[i]-1);
+            console.log(arr);
+        }
+
+        if(end === 1){
+            arr.splice(max-min-1);
+        }
+    
+        arr.splice(0, min-1);
+        console.log(arr);
+        arr.reverse();
         console.log(arr);
     }
-    
-    arr.splice(0, min);
-    console.log(arr);
-    arr.reverse();
-    console.log(arr);
+    else{
+        arr.splice(max, end);
+        arr.splice(0,max-1);
+    }
 }
