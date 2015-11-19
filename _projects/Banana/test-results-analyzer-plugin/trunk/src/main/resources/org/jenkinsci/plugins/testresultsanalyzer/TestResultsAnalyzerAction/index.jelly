@@ -132,7 +132,7 @@ Select chart type:
 
 <script>
 
-  //window.onload = populateTemplate2(displayValues);
+  //window.onload = populateTemplateCondensed(displayValues);
 
 	$j("#getbuildreport").click(function () {
 		populateTemplate(displayValues);
@@ -156,7 +156,7 @@ Select chart type:
     $j("#hidecharts").click(function () {
     		resetCharts();
     });
-    
+
     $(document).on('click', '#getcheckedbuilds', function() {
 		showCheckedBuilds(displayValues);
     });

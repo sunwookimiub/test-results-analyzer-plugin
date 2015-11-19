@@ -44,7 +44,7 @@ function populateTemplate() {
     }, this));
 }
 
-function populateTemplate2() {
+function populateTemplateCondensed() {
     reset();
     var noOfBuilds = $j('#noofbuilds').val();
     var statusFilter = $j('#teststatus').val();
@@ -52,7 +52,7 @@ function populateTemplate2() {
     noOfBuilds = 'all';
     statusFilter = 'all';
     displayValues = false;
-    remoteAction.getTreeResult2(noOfBuilds, statusFilter, $j.proxy(function(t) {
+    remoteAction.getTreeResultCondensed(noOfBuilds, statusFilter, $j.proxy(function(t) {
         var itemsResponse = t.responseObject();
         console.log("JSON Object print testresult.js:20");
         console.log(itemsResponse);

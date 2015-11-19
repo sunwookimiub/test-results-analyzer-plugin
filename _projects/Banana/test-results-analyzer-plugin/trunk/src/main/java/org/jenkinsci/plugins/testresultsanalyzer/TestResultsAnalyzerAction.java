@@ -165,13 +165,13 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
     }
 //<<<<<<< .mine
 		@JavaScriptMethod
-    public JSONObject getTreeResult2(String noOfBuildsNeeded, String statusFilter) {
+    public JSONObject getTreeResultCondensed(String noOfBuildsNeeded, String statusFilter) {
         int noOfBuilds = getNoOfBuildRequired(noOfBuildsNeeded);
         List<Integer> buildList = getBuildList(noOfBuilds);
 				List<Integer> buildCondense = getBuildList(3);
 
         JsTreeUtil jsTreeUtils = new JsTreeUtil();
-        return jsTreeUtils.getJsTree2(buildCondense,buildList, resultInfo, statusFilter);
+        return jsTreeUtils.getJsTreeCondensed(buildCondense,buildList, resultInfo, statusFilter);
     }
 //=======
 
