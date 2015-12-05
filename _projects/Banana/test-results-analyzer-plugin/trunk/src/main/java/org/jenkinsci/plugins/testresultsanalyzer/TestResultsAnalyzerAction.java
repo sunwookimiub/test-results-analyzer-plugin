@@ -36,7 +36,7 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
 		this.project = project;
 	}
 
-    public getProjectName() {
+    public String getProjectName() {
         return project.name;
     }
 
