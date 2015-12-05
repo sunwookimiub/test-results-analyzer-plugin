@@ -57,9 +57,19 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
         Collection<Job> allJobs = project.getAllJobs();
         ArrayList<Job> jobList = new ArrayList<Job>(allJobs);
         String ret = "";
-        for (int i=0; i < jobList.size(); i++){
-            ret += "JOB" + i + ": " + jobList.get(i).getFullName() + " ";
+        int numJobs = jobList.size();
+        if (numJobs > 1) {
+            ret = "<ul>"
+            for (int i=0; i < numJobs; i++){
+                String name = jobList.get(i).getFullName();
+                int slashIdx = name.indexOf('/');
+                if (slashIdx != -1) {
+                    ret += "<li><a href='../../"+name+"/"+Constants.URL+"'>"+name.substring(slashIdx+1, name.length())+"</a></li>";
+                }
+            } 
+            ret += "</ul>";
         }
+        
         return ret;
     }
 

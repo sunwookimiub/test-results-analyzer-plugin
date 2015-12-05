@@ -24,7 +24,8 @@ var $j = jQuery.noConflict();
 <h2>${it.projectRootDirectory}</h2>
 <h2>${it.projectRootsDirectories}</h2>
 <h2>${it.rootProjectName}</h2>
-<h2>${it.allJobs}</h2>
+<h2 id="moduleList">${it.allJobs}</h2>
+
 
 <j:set var="temp" value="${it.jsonLoadData}"/>
 <j:set var="builds" value="${it.builds}"/>
@@ -140,6 +141,11 @@ Select chart type:
 <script>
 
   //window.onload = populateTemplateCondensed(displayValues);
+
+  if ($j("#moduleList").html() != ""){
+    var temp = $j("#moduleList").html();
+    $j("#main-panel").html(temp);
+  }
 
 	$j("#getbuildreport").click(function () {
 		populateTemplate(displayValues);
