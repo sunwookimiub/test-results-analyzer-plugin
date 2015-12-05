@@ -48,6 +48,9 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
         return project.getModuleRoot();
     }
 
+    public String getRootProjectName() {
+        return project.getRootProject().getFullName();
+    }
 	/**
      * The display name for the action.
      *
