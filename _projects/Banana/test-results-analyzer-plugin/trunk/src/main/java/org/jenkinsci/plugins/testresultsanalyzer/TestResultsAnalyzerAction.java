@@ -57,7 +57,7 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
         List jobList = new ArrayList(allJobs);
         String ret = "";
         for (int i=0; i < jobList.size(); i++){
-            ret += "JOB" + i + ": " jobList.get(i).getFullName() + " ";
+            ret += "JOB" + i + ": " + jobList.get(i).getFullName() + " ";
         }
         return ret;
     }
