@@ -51,6 +51,20 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
     public String getRootProjectName() {
         return project.getRootProject().getFullName();
     }
+
+    public String getAllJobs() {
+        List <AbstractProject> allJobs = project.getAllJobs();
+        String ret = "";
+        for (Object o : allJobs)
+            ret += o;
+    }
+
+    /*
+    public InputStream readProjectPom() {
+        FilePath projectDirectory = getProjectRootDirectory();
+        project.getModulesRoot().toString() + "/pom.xml"
+    }
+    */
 	/**
      * The display name for the action.
      *
