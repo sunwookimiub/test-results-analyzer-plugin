@@ -56,8 +56,9 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
         Collection allJobs = project.getAllJobs();
         List jobList = new ArrayList(allJobs);
         String ret = "";
-        for (AbstractProject prj : jobList)
-            ret += prj.getFullName();
+        for (int i=0; i < jobList.size(); i++){
+            ret += jobList.get(i);
+        }
         return ret;
     }
 
