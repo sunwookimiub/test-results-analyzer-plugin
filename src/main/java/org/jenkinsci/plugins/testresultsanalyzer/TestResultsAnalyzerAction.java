@@ -5,6 +5,7 @@ import hudson.model.Item;
 import hudson.model.AbstractProject;
 import hudson.model.Actionable;
 import hudson.model.Run;
+import hudson.model.Job;
 import hudson.tasks.junit.PackageResult;
 import hudson.tasks.junit.TestResult;
 import hudson.tasks.test.AbstractTestResultAction;
