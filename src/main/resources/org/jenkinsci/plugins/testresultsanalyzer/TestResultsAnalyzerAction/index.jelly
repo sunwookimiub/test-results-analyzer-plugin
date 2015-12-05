@@ -21,6 +21,8 @@ var $j = jQuery.noConflict();
 </script>
 
 <h2>${it.projectName}</h2>
+<h2>${it.projectRootDirectory}</h2>
+<h2>${it.projectRootsDirectories}</h2>
 
 <j:set var="temp" value="${it.jsonLoadData}"/>
 <j:set var="builds" value="${it.builds}"/>
