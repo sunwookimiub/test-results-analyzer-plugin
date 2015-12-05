@@ -20,7 +20,7 @@
 var $j = jQuery.noConflict();
 </script>
 
-<h2>${it.getProjectName}</h2>
+<h2>${it.projectName}</h2>
 
 <j:set var="temp" value="${it.jsonLoadData}"/>
 <j:set var="builds" value="${it.builds}"/>
