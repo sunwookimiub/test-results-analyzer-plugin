@@ -41,11 +41,11 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
     }
 
     public String getProjectRootDirectory() {
-        return project.getModuleRoot();
+        return project.getModuleRoot().toString();
     }
     
     public String getProjectRootsDirectories() {
-        return project.getModuleRoot();
+        return project.getModuleRoot().toString();
     }
 
     public String getRootProjectName() {
