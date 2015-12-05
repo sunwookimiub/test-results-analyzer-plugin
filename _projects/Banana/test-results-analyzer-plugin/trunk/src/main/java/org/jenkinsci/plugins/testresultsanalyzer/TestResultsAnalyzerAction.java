@@ -59,7 +59,7 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
         String ret = "";
         int numJobs = jobList.size();
         if (numJobs > 1) {
-            ret = "<ul>"
+            ret = "<ul>";
             for (int i=0; i < numJobs; i++){
                 String name = jobList.get(i).getFullName();
                 int slashIdx = name.indexOf('/');
