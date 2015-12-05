@@ -1,9 +1,13 @@
 
 describe("test-result-analyzer-template.js CreateURL test spec", function() {
 
+    var buildNumber;
+    var parent;
+
     var testPackageName = 'Test.Package';
     var testClassName = 'TestClass';
     var testCaseName = 'DifferentStatusTestBuildResult';
+
 
     var fullDepthJSON = {
         builds: ["1", "0"],
@@ -66,49 +70,46 @@ describe("test-result-analyzer-template.js CreateURL test spec", function() {
         } ]
     };
 
+    beforeEach(function() {
+        buildNumber = 1;
+        parent = fullDepthJSON.results[0];
+    });
+
+
     it("for package-level row returns a URL to that package's test report page", function() {
-        var parent = fullDepthJSON.results[0];
-        var buildNumber = 1; 
-
         var output = createURL(buildNumber, parent);
-
-        var expected = "../1/testReport/Test.Package";
-
+        var expected = "../"+buildNumber+"/testReport/"+testPackageName;
         expect(output).toEqual(expected);
-
     });
 
     it("for class-level row returns a URL to that class's test report page", function() {
-        var parent = fullDepthJSON.results[0].children[0];
-        var buildNumber = 1; 
-
+        parent = parent.children[0];
+        currentPackageURL = "../"+buildNumber+"/testReport/"+testPackageName;
         var output = createURL(buildNumber, parent);
-
-        var expected = "../1/testReport/Test.Package/TestClass";
+        var expected = "../"+buildNumber+"/testReport/"+testPackageName+'/'+testClassName;
 
         expect(output).toEqual(expected);
     });
 
     it("for testcase-level row returns a URL to that test case's test report page", function() {
-        var parent = fullDepthJSON.results[0].children[0].children[0];
-        var buildNumber = 1; 
-
+        parent = parent.children[0].children[0];
+        currentPackageURL = "../"+buildNumber+"/testReport/"+testPackageName;
         var output = createURL(buildNumber, parent);
 
-        var expected = "../1/testReport/Test.Package/TestClass/"+testCaseName+"/";
+        var expected = "../"+buildNumber+"/testReport/"+testPackageName+'/'+testClassName+'/'+testCaseName+"/";
 
         expect(output).toEqual(expected);
     });
 
     it("testcases with forward slashes in the name are replaced with underscores in URL", function() {
-        var parent = fullDepthJSON.results[0].children[0].children[0];
-        var buildNumber = 1; 
+        parent = parent.children[0].children[0];
         var testCaseWithSlashesName = 'org/test/BuildResult';
         var testCaseWithoutSlashesName = 'org_test_BuildResult';
         parent.text = testCaseWithSlashesName;
+        currentPackageURL = "../"+buildNumber+"/testReport/"+testPackageName;
         var output = createURL(buildNumber, parent);
 
-        var expected = "../1/testReport/Test.Package/TestClass/"+testCaseWithoutSlashesName+"/";
+        var expected = "../"+buildNumber+"/testReport/"+testPackageName+'/'+testClassName+'/'+testCaseWithoutSlashesName+"/";
 
         expect(output).toEqual(expected);
     });

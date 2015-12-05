@@ -41,7 +41,7 @@ function removeSpecialChars(name){
     var modName = "";
     //modName = name.split('.').join('_');
     modName = name.replace(/[^a-z\d/-]+/gi, "_");
-    return modName.split('/').join('_');
+    return modName.split('/').join('_'); //forward slashes were not being replaced correctly
 }
 
 Handlebars.registerPartial("tableBodyTemplate", tableContent);
@@ -123,29 +123,34 @@ Handlebars.registerHelper('addHierarchy', function (context, parentHierarchy, op
     context["hierarchyLevel"] = parentHierarchy + 1;
 });
 
-///adding - patrick
-
+//Handlebars Helper function for createURL
 Handlebars.registerHelper('createURL', function(buildNumber, parent) {
     return createURL(buildNumber, parent);
 });
 
+
 var currentPackageURL = "";
+/* createURL - creates a relative URL to point to the Jenkins test report page 
+ *      for a given package, class, or test case in the current module for the
+ *      specified build
+ * buildNumber - The number for the build being selected
+ * parent - the JSON object of the build result selected (in the table this is called in an each loop)
+ */
 function createURL(buildNumber, parent) {
     var url = "../"+buildNumber+"/testReport/";
-    if (parent == undefined || parent.text == undefined) {
-        return url;
-    }
-    if (parent.hierarchyLevel == undefined || parent.hierarchyLevel == 0) {
-        url += parent.text;
-        currentPackageURL = url;
-    }
-    else if (parent.hierarchyLevel == 1) {
-        currentPackageURL = currentPackageURL.replace(/\d+\/testReport\//, (buildNumber+"/testReport/"));
-        url = currentPackageURL+"/"+parent.text;
-    }
-    else if (parent.hierarchyLevel == 2) {
-        currentPackageURL = currentPackageURL.replace(/\d+\/testReport\//, (buildNumber+"/testReport/"));
-        url = currentPackageURL+"/"+parent.parentname+"/"+removeSpecialChars(parent.text)+"/";
+    if (parent != undefined && parent.text != undefined) {
+        if (parent.hierarchyLevel == undefined || parent.hierarchyLevel == 0) {
+            url += parent.text;
+            currentPackageURL = url;
+        }
+        else if (parent.hierarchyLevel == 1) {
+            currentPackageURL = currentPackageURL.replace(/\d+\/testReport\//, (buildNumber+"/testReport/"));
+            url = currentPackageURL+"/"+parent.text;
+        }
+        else if (parent.hierarchyLevel == 2) {
+            currentPackageURL = currentPackageURL.replace(/\d+\/testReport\//, (buildNumber+"/testReport/"));
+            url = currentPackageURL+"/"+parent.parentname+"/"+removeSpecialChars(parent.text)+"/";
+        }
     }
     return url;
 }
