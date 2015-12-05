@@ -55,8 +55,8 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
     public String getAllJobs() {
         List <AbstractProject> allJobs = project.getAllJobs();
         String ret = "";
-        for (Object o : allJobs)
-            ret += o;
+        for (AbstractProject prj : allJobs)
+            ret += prj.getFullName();
     }
 
     /*
