@@ -57,7 +57,7 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
         List jobList = new ArrayList(allJobs);
         String ret = "";
         for (int i=0; i < jobList.size(); i++){
-            ret += jobList.get(i) + " ";
+            ret += "JOB" + i + ": " jobList.get(i).getFullName() + " ";
         }
         return ret;
     }
@@ -68,6 +68,7 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
         project.getModulesRoot().toString() + "/pom.xml"
     }
     */
+
 	/**
      * The display name for the action.
      *
