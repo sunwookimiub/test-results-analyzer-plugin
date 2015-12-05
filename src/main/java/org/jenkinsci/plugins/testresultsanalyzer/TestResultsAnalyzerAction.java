@@ -53,11 +53,11 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
     }
 
     public String getAllJobs() {
-        Collection allJobs = project.getAllJobs();
-        List jobList = new ArrayList(allJobs);
+        Collection<Job> allJobs = project.getAllJobs();
+        ArrayList<Job> jobList = new ArrayList<Job>(allJobs);
         String ret = "";
         for (int i=0; i < jobList.size(); i++){
-            ret += "JOB" + i + ": " + jobList.get(i) + " ";
+            ret += "JOB" + i + ": " + jobList.get(i).getFullName() + " ";
         }
         return ret;
     }
