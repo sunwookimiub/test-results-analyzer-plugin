@@ -37,34 +37,18 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
 		this.project = project;
 	}
 
-    public String getProjectName() {
-        return project.getFullName();
-    }
-
-    public String getProjectRootDirectory() {
-        return project.getModuleRoot().toString();
-    }
-    
-    public String getProjectRootsDirectories() {
-        return project.getModuleRoot().toString();
-    }
-
-    public String getRootProjectName() {
-        return project.getRootProject().getFullName();
-    }
-
     public String getAllJobs() {
         Collection<Job> allJobs = project.getAllJobs();
         ArrayList<Job> jobList = new ArrayList<Job>(allJobs);
         String ret = "";
         int numJobs = jobList.size();
         if (numJobs > 1) {
-            ret = "<ul>";
+            ret = "<h1>Choose a module to analyze:</h1><ul>";
             for (int i=0; i < numJobs; i++){
                 String name = jobList.get(i).getFullName();
                 int slashIdx = name.indexOf('/');
                 if (slashIdx != -1) {
-                    ret += "<li><a href='../../"+name+"/"+Constants.URL+"'>"+name.substring(slashIdx+1, name.length())+"</a></li>";
+                    ret += "<li><h2><a href='../../"+name+"/"+Constants.URL+"'>"+name.substring(slashIdx+1, name.length())+"</a></h2></li>";
                 }
             } 
             ret += "</ul>";
