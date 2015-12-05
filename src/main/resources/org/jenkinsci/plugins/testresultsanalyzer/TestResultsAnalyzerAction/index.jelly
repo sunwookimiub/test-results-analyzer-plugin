@@ -20,11 +20,7 @@
 var $j = jQuery.noConflict();
 </script>
 
-<h2>${it.projectName}</h2>
-<h2>${it.projectRootDirectory}</h2>
-<h2>${it.projectRootsDirectories}</h2>
-<h2>${it.rootProjectName}</h2>
-<h2 id="moduleList">${it.allJobs}</h2>
+<div id="moduleList">${it.allJobs}</div>
 
 
 <j:set var="temp" value="${it.jsonLoadData}"/>
@@ -145,34 +141,38 @@ Select chart type:
   if ($j("#moduleList").html() != ""){
     var temp = $j("#moduleList").html();
     $j("#main-panel").html(temp);
+  } else {
+
+
+
+  	$j("#getbuildreport").click(function () {
+  		populateTemplate(displayValues);
+  	});
+
+    $j("#compareBuildsButton").click(function () {
+      showDiffs(displayValues);
+    });
+
+  	$j("#expandall").click(function () {
+  		expandAll();
+  	});
+
+  	$j("#collapseall").click(function () {
+  		collapseAll();
+  	});
+  	$j("#generatechart").click(function () {
+  	        var chartType = $j('#reporttype').val();
+      		generateChart(chartType);
+      });
+      $j("#hidecharts").click(function () {
+      		resetCharts();
+      });
+
+      $(document).on('click', '#getcheckedbuilds', function() {
+  		showCheckedBuilds(displayValues);
+      });
+
   }
-
-	$j("#getbuildreport").click(function () {
-		populateTemplate(displayValues);
-	});
-
-  $j("#compareBuildsButton").click(function () {
-    showDiffs(displayValues);
-  });
-
-	$j("#expandall").click(function () {
-		expandAll();
-	});
-
-	$j("#collapseall").click(function () {
-		collapseAll();
-	});
-	$j("#generatechart").click(function () {
-	        var chartType = $j('#reporttype').val();
-    		generateChart(chartType);
-    });
-    $j("#hidecharts").click(function () {
-    		resetCharts();
-    });
-
-    $(document).on('click', '#getcheckedbuilds', function() {
-		showCheckedBuilds(displayValues);
-    });
 
 </script>
   </l:main-panel>
