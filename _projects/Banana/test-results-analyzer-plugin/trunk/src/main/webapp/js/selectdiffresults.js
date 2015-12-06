@@ -73,11 +73,20 @@ function findChanges(results, idx1, idx2) {
 }
 
 
+/**
+ * Returns html code that is implemented in the jelly file to create the checkbox button
+ * @method createCheckboxButton
+ * @return {string} html code
+ * */
 function createCheckboxButton() {
     var checkbutton = '<button id="getcheckedbuilds">Compare Checked Builds</button>';
     return checkbutton;
 }
 
+/**
+ * Populates the chart after getting the builds that were checked in the checkboxes and removes all other builds that were not checked
+ * @method showCheckedBuilds
+ * */
 function showCheckedBuilds(){
     var noOfBuilds = $j('#noofbuilds').val();
     var statusFilter = $j('#teststatus').val();
@@ -100,12 +109,21 @@ function showCheckedBuilds(){
     }, this));
 }
 
+/**
+ * Removes all other builds and its respective results that were not checked
+ * @method removeBuilds
+ * @param {JavaScript object} items
+ * */
 function removeBuilds(items) {
     removeFromArray(items['builds']);
     removeResults(items['results']);
-//    removeFromArray(items['results'][0]['buildResults']);
 }
 
+/**
+ * Helper function that removes items in an array that weren't checked
+ * @method removeFromArray
+ * @param {Array} arr
+ * */
 function removeFromArray(arr) {
     arr.reverse();
     var end = checked.length-1;
@@ -119,6 +137,11 @@ function removeFromArray(arr) {
     arr.reverse();
 }
 
+/**
+ * Helper function that removes results of the builds that were not checked. 
+ * @method removeResults
+ * @param {Array} results
+ * */
 function removeResults(results) {
     for (var i = results.length - 1; i >= 0; i--) {
         removeFromArray(results[i]['buildResults']);
