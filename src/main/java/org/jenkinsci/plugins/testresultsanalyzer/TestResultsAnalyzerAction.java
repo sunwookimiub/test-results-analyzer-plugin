@@ -159,7 +159,6 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
         return !(builds.contains(latestBuildNumber));
     }
 
-
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public void getJsonLoadData() {
         if (isUpdated()) {
@@ -182,6 +181,16 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
             }
         }
     }
+
+    /**
+     * A bridge function connecting the front-end with back-end data stores.
+     * This function is invoked by populateTemplate(), and calls
+     * jsTreeUtils.getJsTree() to retrieve a JSONObject containing test results.
+     * @method getTreeResult
+     * @param noOfBuildsNeeded An integer denoting the number of builds needed
+     * @param statusFilter The string indicator for filtering test cases/suites
+     * @return The generated JSON object containing test results
+     */
     @JavaScriptMethod
     public JSONObject getTreeResult(String noOfBuildsNeeded, String statusFilter) {
         int noOfBuilds = getNoOfBuildRequired(noOfBuildsNeeded);
@@ -190,26 +199,41 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
         JsTreeUtil jsTreeUtils = new JsTreeUtil();
         return jsTreeUtils.getJsTree(buildList, resultInfo, statusFilter);
     }
-//<<<<<<< .mine
-        @JavaScriptMethod
+
+    /**
+     * A bridge function connecting the front-end with back-end data stores.
+     * This function is invoked by populateTemplateCondensed(), and calls
+     * jsTreeUtils.getJsTree() to retrieve a JSONObject containing condensed
+     * statistics about the test results.
+     * @method getTreeResultCondensed
+     * @param noOfBuildsNeeded An integer denoting the number of builds needed
+     * @param statusFilter The string indicator for filtering test cases/suites
+     * @return The generated JSONObject containing condensed test results stats
+     */
+    @JavaScriptMethod
     public JSONObject getTreeResultCondensed(String noOfBuildsNeeded, String statusFilter) {
         int noOfBuilds = getNoOfBuildRequired(noOfBuildsNeeded);
         List<Integer> buildList = getBuildList(noOfBuilds);
-                List<Integer> buildCondense = getBuildList(3);
+        List<Integer> buildCondense = getBuildList(3);
 
         JsTreeUtil jsTreeUtils = new JsTreeUtil();
-        return jsTreeUtils.getJsTreeCondensed(buildCondense,buildList, resultInfo, statusFilter);
+        return jsTreeUtils.getJsTreeCondensed(buildCondense, buildList, resultInfo, statusFilter);
     }
-//=======
 
+    /**
+     * Generates a string containing names of all the test cases whose results
+     * in the last two builds are different.
+     * @method getLastTwoBuilds
+     * @return The generated string
+     */
     public String getLastTwoBuilds() {
         String ret = "Last two builds: \n";
         Map<String,PackageInfo> results = resultInfo.getPackageResults();
         Iterator it = results.keySet().iterator();
-        while (it.hasNext()) {
+        while (it.hasuNext()) {
             Map.Entry<String, PackageInfo> pair = (Map.Entry<String, PackageInfo>) it.next();
             PackageInfo info = pair.getValue();
-            Map<Integer,ResultData> buildResults = info.getBuildPackageResults();
+            Map<Integer,ResltData> buildResults = info.getBuildPackageResults();
             if (buildResults.keySet().size() >= 2) {// need at least two builds to be able to compare
                 Iterator resultIt = buildResults.entrySet().iterator();
                 Map.Entry<Integer, ResultData> firstEntry = (Entry<Integer, ResultData>) resultIt.next();
@@ -219,10 +243,9 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
                 if (firstBuild.isPassed() != secondBuild.isPassed()) {
                     ret += firstBuild.getName() + " changed.\n";
                 }
-
             }
         }
         return ret;
     }
-//>>>>>>> .r18848
+
 }
