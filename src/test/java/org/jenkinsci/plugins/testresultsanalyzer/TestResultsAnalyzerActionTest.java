@@ -1,6 +1,7 @@
 package org.jenkinsci.plugins.testresultsanalyzer;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import hudson.model.FreeStyleBuild;
 import hudson.model.FreeStyleProject;
 import hudson.tasks.junit.PackageResult;
