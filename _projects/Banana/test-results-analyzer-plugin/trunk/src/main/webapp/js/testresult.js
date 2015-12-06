@@ -20,9 +20,6 @@ function populateTemplate() {
 
     remoteAction.getTreeResult(noOfBuilds, statusFilter, $j.proxy(function(t) {
         var itemsResponse = t.responseObject();
-        console.log("JSON Object print testresult.js:20");
-        console.log(itemsResponse);
-        console.log(itemsResponse['builds'].length);
         testResultData = itemsResponse; //gets data out for other uses
         var diffList = getDiffs(itemsResponse, 0, 1);
         if (diffList.html() != "") {
@@ -54,8 +51,6 @@ function populateTemplateCondensed() {
     displayValues = false;
     remoteAction.getTreeResultCondensed(noOfBuilds, statusFilter, $j.proxy(function(t) {
         var itemsResponse = t.responseObject();
-        console.log("JSON Object print testresult.js:20");
-        console.log(itemsResponse);
         treeMarkup = analyzerTemplate(itemsResponse);
         $j(".table").html(treeMarkup);
         addEvents();
@@ -126,12 +121,10 @@ function checkBoxEvents() {
         if (this.checked) {
             checkChildren(this, true);
             checkParent(this);
-            console.log("checked");
             checked.push(this.id);
         } else {
             checkChildren(this, false);
             checkParent(this);
-            console.log("unchecked");
             checked.pop(this.id);
         }
     });
