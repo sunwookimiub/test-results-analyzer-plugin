@@ -66,7 +66,7 @@ describe("CheckBox Event Tests", function() {
   // This checks if the selected boxes are selected
  it ("should check the selected boxes", function() {
     // This following two methods are basically doing the same thing
-    $('#1').trigger( "click" );
+    $j('#1').trigger( "click" );
     //spyEvent = spyOnEvent('#1', 'click');
 
     expect('click').toHaveBeenTriggeredOn("#1");
@@ -80,8 +80,8 @@ describe("CheckBox Event Tests", function() {
     //showCheckedBuilds();
     it ("should show only the selected boxes", function(){
 
-      expect(by.id('#1')).toExist();
-      expect(by.id('#0')).not.toExist();
+      expect($j('#1')).toExist();
+      expect($j('#0')).not.toExist();
   //      expect(1).toEqual(1);
     });
 
