@@ -9,6 +9,7 @@
  * @author Sun Woo Kim
  */
 
+$j = $;
 
 /**
  * Populates the "Compare builds" drop down menus on the page with availabe
