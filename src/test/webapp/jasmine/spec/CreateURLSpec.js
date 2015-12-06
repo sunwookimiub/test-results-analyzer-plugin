@@ -1,5 +1,5 @@
 
-describe("test-result-analyzer-template.js CreateURL test spec", function() {
+describe("test-result-analyzer-template.js createURL:", function() {
 
     var buildNumber;
     var parent;
@@ -76,13 +76,13 @@ describe("test-result-analyzer-template.js CreateURL test spec", function() {
     });
 
 
-    it("for package-level row returns a URL to that package's test report page", function() {
+    it("Package-level row returns a URL to that package's test report page", function() {
         var output = createURL(buildNumber, parent);
         var expected = "../"+buildNumber+"/testReport/"+testPackageName;
         expect(output).toEqual(expected);
     });
 
-    it("for class-level row returns a URL to that class's test report page", function() {
+    it("Class-level row returns a URL to that class's test report page", function() {
         parent = parent.children[0];
         currentPackageURL = "../"+buildNumber+"/testReport/"+testPackageName;
         var output = createURL(buildNumber, parent);
@@ -91,7 +91,7 @@ describe("test-result-analyzer-template.js CreateURL test spec", function() {
         expect(output).toEqual(expected);
     });
 
-    it("for testcase-level row returns a URL to that test case's test report page", function() {
+    it("Testcase-level row returns a URL to that test case's test report page", function() {
         parent = parent.children[0].children[0];
         currentPackageURL = "../"+buildNumber+"/testReport/"+testPackageName;
         var output = createURL(buildNumber, parent);
@@ -101,7 +101,7 @@ describe("test-result-analyzer-template.js CreateURL test spec", function() {
         expect(output).toEqual(expected);
     });
 
-    it("testcases with forward slashes in the name are replaced with underscores in URL", function() {
+    it("Testcases with forward slashes in the name are replaced with underscores in URL", function() {
         parent = parent.children[0].children[0];
         var testCaseWithSlashesName = 'org/test/BuildResult';
         var testCaseWithoutSlashesName = 'org_test_BuildResult';
