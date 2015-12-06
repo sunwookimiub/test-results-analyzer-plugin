@@ -1,5 +1,5 @@
 
-describe("selectdiffresults.js test spec", function() {
+describe("selectdiffresults.js", function() {
 
     var testCaseName = 'DifferentStatusTestBuildResult';
 
@@ -136,7 +136,7 @@ describe("selectdiffresults.js test spec", function() {
         } ]
     };
 
-var fullDepthJSON3 = {
+    var fullDepthJSON3 = {
         builds: ["1", "0"],
         results: [ {
             //buildResults: Array[29]
@@ -232,7 +232,7 @@ var fullDepthJSON3 = {
         
     });*/
 
-    it("getDiffs also returns a list of items that have changed: FAILED to PASSED", function() {
+    it("getDiffs: Returns a list of items that have changed: FAILED to PASSED", function() {
         //expected
         var expectedList = $j('<ul />');
         var expectedListElementStr = "<li><span>"+testCaseName+" changed from FAILED to PASSED</span></li>";
@@ -244,7 +244,7 @@ var fullDepthJSON3 = {
         expect(diffList).toEqual(expectedList);
     });
 
-    it("getDiffs also returns a list of items that have changed: PASSED to FAILED", function() {
+    it("getDiffs: Returns a list of items that have changed: PASSED to FAILED", function() {
         //expected
         var expectedList = $j('<ul />');
         var expectedListElementStr = "<li><span>"+testCaseName+" changed from PASSED to FAILED</span></li>";

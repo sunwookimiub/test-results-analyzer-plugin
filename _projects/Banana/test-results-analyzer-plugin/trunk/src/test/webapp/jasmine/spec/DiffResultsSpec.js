@@ -1,5 +1,5 @@
 
-describe("differentresults.js test spec", function() {
+describe("differentresults.js", function() {
 
     var testCaseName = 'DifferentStatusTestBuildResult';
 
@@ -16,7 +16,7 @@ describe("differentresults.js test spec", function() {
         status: "FAILED" 
     };
 
-    it("addDifferentResultsToList does nothing when the statuses are the same", function() {
+    it("addDifferentResultsToList: Does nothing when the statuses are the same", function() {
         //expected
         var expectedList = $j('<ul />');
         //actual
@@ -26,7 +26,7 @@ describe("differentresults.js test spec", function() {
         expect(diffList).toEqual(expectedList);
     });
 
-    it("addDifferentResultsToList adds a new list item when the statuses are different", function() {
+    it("addDifferentResultsToList: Adds a new list item when the statuses are different", function() {
         //expected
         var expectedList = $j('<ul />');
         var expectedListElementStr = "<li><span>"+testCaseName+" changed from FAILED to PASSED</span></li>";
@@ -98,7 +98,7 @@ describe("differentresults.js test spec", function() {
         } ]
     };
 
-    it("getDiffs also returns a list of items that have changed", function() {
+    it("getDiffs: Also returns a list of items that have changed", function() {
         //expected
         var expectedList = $j('<ul />');
         var expectedListElementStr = "<li><span>"+testCaseName+" changed from FAILED to PASSED</span></li>";
