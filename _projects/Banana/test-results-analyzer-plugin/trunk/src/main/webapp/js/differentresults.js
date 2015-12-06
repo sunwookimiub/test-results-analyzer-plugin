@@ -5,6 +5,8 @@
  * @author Patrick Sapin
  */
 
+ $j = $;
+
 /**
  * creates unordered list
  * iterates through given result data JSON object
