@@ -74,8 +74,8 @@ Display duration: <input type="checkbox" id="show-durations" name="show-duration
 
 <button id="getbuildreport">Get Build Report</button>
 <div class="extrabuttons">
-	<button id="expandall">Expand All</button>
-	<button id="collapseall">Collapse All</button>
+  <button id="expandall">Expand All</button>
+  <button id="collapseall">Collapse All</button>
 </div>
 </div>
 
@@ -145,31 +145,31 @@ Select chart type:
 
 
 
-  	$j("#getbuildreport").click(function () {
-  		populateTemplate(displayValues);
-  	});
+    $j("#getbuildreport").click(function () {
+      populateTemplate(displayValues);
+    });
 
     $j("#compareBuildsButton").click(function () {
       showDiffs(displayValues);
     });
 
-  	$j("#expandall").click(function () {
-  		expandAll();
-  	});
+    $j("#expandall").click(function () {
+      expandAll();
+    });
 
-  	$j("#collapseall").click(function () {
-  		collapseAll();
-  	});
-  	$j("#generatechart").click(function () {
-  	        var chartType = $j('#reporttype').val();
-      		generateChart(chartType);
+    $j("#collapseall").click(function () {
+      collapseAll();
+    });
+    $j("#generatechart").click(function () {
+            var chartType = $j('#reporttype').val();
+          generateChart(chartType);
       });
       $j("#hidecharts").click(function () {
-      		resetCharts();
+          resetCharts();
       });
 
       $(document).on('click', '#getcheckedbuilds', function() {
-  		showCheckedBuilds(displayValues);
+      showCheckedBuilds(displayValues);
       });
 
   }
