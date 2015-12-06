@@ -14,6 +14,8 @@ import org.junit.Test;
 import org.jvnet.hudson.test.JenkinsRule;
 import org.jvnet.hudson.test.ExtractResourceSCM;
 
+import java.net.URL;
+
 public class TestResultsAnalyzerActionTest {
     @Rule
     public JenkinsRule j = new JenkinsRule();
