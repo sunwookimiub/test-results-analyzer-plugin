@@ -25,9 +25,10 @@ public class TestResultsAnalyzerActionTest {
         j.configureMaven3();
         URL classURL = getClass().getProtectionDomain().getCodeSource().getLocation();
         System.out.println("Class URL: " + classURL);
+        assertEquals("", classURL);
         MavenModuleSet project = j.createMavenProject("project1");
 //        project.setScm(new ExtractResourceSCM(getClass().getResource("test/sample-project.zip"))); 
-        assertTrue(true);
+        //assertTrue(true);
     }
 
     @Test
