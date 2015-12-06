@@ -24,7 +24,7 @@ public class TestResultsAnalyzerActionTest {
     public void testGetModuleList() throws Exception {
         j.configureMaven3();
         URL classURL = getClass().getProtectionDomain().getCodeSource().getLocation();
-        System.out.println(classURL);
+        System.out.println("Class URL: " + classURL);
         MavenModuleSet project = j.createMavenProject("project1");
 //        project.setScm(new ExtractResourceSCM(getClass().getResource("test/sample-project.zip"))); 
         assertTrue(true);
