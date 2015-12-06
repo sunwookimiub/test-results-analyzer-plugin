@@ -20,7 +20,7 @@
 var $j = jQuery.noConflict();
 </script>
 
-<div id="moduleList">${it.allJobs}</div>
+<div id="moduleList">${it.moduleList}</div>
 
 
 <j:set var="temp" value="${it.jsonLoadData}"/>
