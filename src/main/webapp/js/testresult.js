@@ -5,6 +5,10 @@ var reevaluateChartData = true;
 var displayValues = false;
 var checked = [];
 
+/**
+ * Clears all the tables and charts on the plugin page.
+ * @method reset
+ */
 function reset() {
     reevaluateChartData = true;
     $j(".table").html("")
@@ -12,6 +16,11 @@ function reset() {
     resetCharts();
 }
 
+/**
+ * Collects all the values of drop down selections on the page and sends them
+ * to the Java side to generate and update the content of the table.
+ * @method populateTemplate
+ */
 function populateTemplate() {
     reset();
     var noOfBuilds = $j('#noofbuilds').val();
