@@ -12,6 +12,7 @@ import org.jenkinsci.plugins.testresultsanalyzer.result.info.ResultInfo;
 import org.junit.Rule;
 import org.junit.Test;
 import org.jvnet.hudson.test.JenkinsRule;
+import org.jvnet.hudson.test.ExtractResourceSCM;
 
 public class TestResultsAnalyzerActionTest {
     @Rule
