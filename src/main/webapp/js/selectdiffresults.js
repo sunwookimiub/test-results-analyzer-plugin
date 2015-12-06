@@ -101,14 +101,12 @@ function showCheckedBuilds(){
 }
 
 function removeBuilds(items) {
-    removeBuildsHelper(items['builds']);
-    for (var i = items['results'].length - 1; i >= 0; i--) {
-        console.log(i);
-        removeBuildsHelper(items['results'][i]['buildResults']);
-    }
+    removeFromArray(items['builds']);
+    removeResults(items['results']);
+//    removeFromArray(items['results'][0]['buildResults']);
 }
 
-function removeBuildsHelper(arr) {
+function removeFromArray(arr) {
     arr.reverse();
     var end = checked.length-1;
     var max = checked[end];
@@ -119,4 +117,9 @@ function removeBuildsHelper(arr) {
     }
     arr.splice(0, min-1);
     arr.reverse();
+}
+
+function removeResults(results) {
+    removeFromArray(results[0]['buildResults'];
+    removeResults(results[0]['children'];
 }
