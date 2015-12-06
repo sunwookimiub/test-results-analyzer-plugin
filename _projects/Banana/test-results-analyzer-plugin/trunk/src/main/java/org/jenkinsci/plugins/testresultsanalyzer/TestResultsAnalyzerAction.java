@@ -51,26 +51,18 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
         String ret = "";
         int numJobs = jobList.size();
         if (numJobs > 1) {
-            ret = "<h1>Choose a module to analyze:</h1><ul>";
+            ret = "<h1>Select a module to analyze:</h1><ul>";
             for (int i=0; i < numJobs; i++){
                 String displayName = jobList.get(i).getDisplayName();
                 String name = jobList.get(i).getFullName();
-                int slashIdx = name.indexOf('/');
-                if (slashIdx != -1) {
-                    ret += "<li><h2><a href='../../"+name+"/"+Constants.URL+"'>"+displayName+"</a></h2></li>";//name.substring(slashIdx+1, name.length())+
+                if (name.indexOf('/') != -1) { // forward slash in getFullName means this Job is a module
+                    ret += "<li><h2><a href='../../"+name+"/"+Constants.URL+"'>"+displayName+"</a></h2></li>";
                 }
             } 
             ret += "</ul>";
         }
         return ret;
     }
-
-    /*
-    public InputStream readProjectPom() {
-        FilePath projectDirectory = getProjectRootDirectory();
-        project.getModulesRoot().toString() + "/pom.xml"
-    }
-    */
 
 	/**
      * The display name for the action.
