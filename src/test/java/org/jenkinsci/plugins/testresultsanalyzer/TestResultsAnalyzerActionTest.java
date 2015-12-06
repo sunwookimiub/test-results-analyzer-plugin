@@ -16,6 +16,12 @@ public class TestResultsAnalyzerActionTest {
 	public JenkinsRule j = new JenkinsRule();
 
 	@Test
+	public void testGetModuleList() throws Exception {
+		
+		assertTrue(true);
+	}
+
+	@Test
 	public void testGetTreeResult1() throws Exception {
 		FreeStyleProject project = j.createFreeStyleProject();
 		FreeStyleBuild build = project.scheduleBuild2(0).get();

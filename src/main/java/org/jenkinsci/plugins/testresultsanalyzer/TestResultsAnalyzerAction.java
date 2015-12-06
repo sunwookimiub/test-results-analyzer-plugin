@@ -45,7 +45,7 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
      *
      * @return the HTML list of link to modules or an empty string
      */
-    public String getAllJobs() {
+    public String getModuleList() {
         Collection<Job> allJobs = project.getAllJobs();
         ArrayList<Job> jobList = new ArrayList<Job>(allJobs);
         String ret = "";
