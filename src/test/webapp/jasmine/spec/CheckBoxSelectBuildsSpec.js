@@ -80,8 +80,8 @@ describe("CheckBox Event Tests", function() {
     //showCheckedBuilds();
     it ("should show only the selected boxes", function(){
 
-      expect($j('#1')).toExist();
-      expect($j('#0')).not.toExist();
+      expect($j('#1')).toBeInDOM();
+      expect($j('#0')).not.toBeInDOM();
   //      expect(1).toEqual(1);
     });
 
