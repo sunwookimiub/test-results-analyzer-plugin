@@ -1,3 +1,8 @@
+/**
+ * Utility class containing functions that generates a JSON object containing
+ * data of test results from the ResultInfo object.
+ */
+
 package org.jenkinsci.plugins.testresultsanalyzer;
 
 import java.util.List;
@@ -10,6 +15,16 @@ import net.sf.json.JSONObject;
 
 public class JsTreeUtil {
 
+    /**
+     * Generates a JSON object containing data of test results from ResultInfo.
+     * Filters out all test cases/suites that does not have a status specified
+     * by statusFilter in any of the builds.
+     * @method getJsTree
+     * @param builds An array of build numbers
+     * @param resultInfo The object containing data of all test results
+     * @param statusFilter The status indicator for filtering
+     * @return The JSONObject generated
+     */
     public JSONObject getJsTree(List<Integer> builds, ResultInfo resultInfo, String statusFilter) {
         JSONObject tree = new JSONObject();
 
@@ -25,8 +40,6 @@ public class JsTreeUtil {
             JSONObject packageJson = packageResults.getJSONObject((String) packageName);
             JSONObject subtree = createJson(builds, packageJson, statusFilter);
             if (subtree != null) {
-                //console.log('one of the subtree');
-                //console.log(subtree);
                 results.add(subtree);
             }
         }
@@ -34,7 +47,15 @@ public class JsTreeUtil {
         return tree;
     }
 
-
+    /**
+     * Generates a JSON object containing statistics of the test result data.
+     * @method getJsTreeCondensed
+     * @param buildsCondense An array of condensed build numbers
+     * @param builds An array of build numbers
+     * @param resultInfo The object containing data of all test results
+     * @param statusFilter The status indicator for filtering
+     * @return The JSONObject generated
+     */
     public JSONObject getJsTreeCondensed(List<Integer>buildsCondense,List<Integer> builds, ResultInfo resultInfo, String statusFilter) {
         JSONObject tree = new JSONObject();
         JSONObject tree_new = new JSONObject(); // the condensed has only three component
@@ -44,9 +65,6 @@ public class JsTreeUtil {
         for (Integer buildNumber : builds) {
             buildJson.add(buildNumber.toString());
         }
-        /*for (Integer buildNumber2 : buildsCondense) {
-            buildJson_new.add(buildNumber2.toString());
-        }*/
         buildJson_new.add("Passed");
         buildJson_new.add("Failed");
         buildJson_new.add("Skipped");
@@ -62,8 +80,6 @@ public class JsTreeUtil {
             JSONObject packageJson = packageResults.getJSONObject((String) packageName);
             JSONObject subtree_new = createJsonCondensed(buildsCondense,builds, packageJson, statusFilter); // This create JSON should create a new subtree with the condensed results
             if (subtree_new != null) {
-                //console.log('one of the subtree');
-                //console.log(subtree);
                 results_new.add(subtree_new);
             }
         }
