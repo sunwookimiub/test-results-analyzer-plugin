@@ -37,6 +37,14 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
 		this.project = project;
 	}
 
+    /**
+     * Gets all the dependant jobs of the AbstractProject. If in a module already
+     * will only find one job and return an empty string. If not yet in a module,
+     * will find multiple jobs and will create an HTML list containing links to the
+     * appropriate plugin pages for each module.
+     *
+     * @return the HTML list of link to modules or an empty string
+     */
     public String getAllJobs() {
         Collection<Job> allJobs = project.getAllJobs();
         ArrayList<Job> jobList = new ArrayList<Job>(allJobs);
@@ -45,15 +53,15 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
         if (numJobs > 1) {
             ret = "<h1>Choose a module to analyze:</h1><ul>";
             for (int i=0; i < numJobs; i++){
+                String displayName = jobList.get(i).getDisplayName();
                 String name = jobList.get(i).getFullName();
                 int slashIdx = name.indexOf('/');
                 if (slashIdx != -1) {
-                    ret += "<li><h2><a href='../../"+name+"/"+Constants.URL+"'>"+name.substring(slashIdx+1, name.length())+"</a></h2></li>";
+                    ret += "<li><h2><a href='../../"+name+"/"+Constants.URL+"'>"+displayName+"</a></h2></li>";//name.substring(slashIdx+1, name.length())+
                 }
             } 
             ret += "</ul>";
         }
-        
         return ret;
     }
 
