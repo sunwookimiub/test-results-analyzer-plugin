@@ -19,7 +19,7 @@ public class TestResultsAnalyzerActionTest {
     @Test
     public void testGetModuleList() throws Exception {
         j.configureMaven3();
-        project = j.createMavenProject("project1");
+        MavenModuleSet project = j.createMavenProject("project1");
         project.setScm(new ExtractResourceSCM(getClass().getResource("test/sample-project.zip"))); 
         assertTrue(true);
     }
