@@ -120,6 +120,8 @@ function removeFromArray(arr) {
 }
 
 function removeResults(results) {
-    removeFromArray(results[0]['buildResults'];
-    removeResults(results[0]['children'];
+    for (var i = results.length - 1; i >= 0; i--) {
+        removeFromArray(results[i]['buildResults']);
+        removeResults(results[i]['children']);
+    }
 }
