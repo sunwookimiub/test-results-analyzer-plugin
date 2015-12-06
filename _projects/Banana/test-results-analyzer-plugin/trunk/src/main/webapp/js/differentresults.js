@@ -1,11 +1,17 @@
-//differentresults.js
+/**
+ * Compares the results of two selected builds and displays the differences
+ * as text on the plugin page.
+ *
+ * @author Patrick Sapin
+ */
 
-/* getDiffs
+/**
  * creates unordered list
  * iterates through given result data JSON object
  * compares each test case in most recent build to previous build
  * add list items for each test case with differences between those builds
- * returns list
+ * @method getDiffs
+ * @return list
  */
 function getDiffs(resultData, firstBuild, secondBuild) {
     //empty list to append to
@@ -41,10 +47,11 @@ function getDiffs(resultData, firstBuild, secondBuild) {
     return diffList;
 }
 
-/* addDifferentResultsToList
+/**
  * Given the unordered list element and two build results JSON objects,
  * if status of builds are different, create new list item and add to list
- * return list whether modified or not
+ * @method addDifferentResultsToList
+ * @return list whether modified or not
  */
 function addDifferentResultsToList(diffList, newBuildResults, oldBuildResults, testName) {
     var newStatus = newBuildResults['status'];

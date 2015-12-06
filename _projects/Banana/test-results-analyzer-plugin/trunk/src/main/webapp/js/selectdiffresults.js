@@ -1,5 +1,22 @@
-// Creates the dropdown menus that allows the user to select which two builds they want to compare.
+/**
+ * Creates the dropdown menus that allows the user to select to build numbers
+ * to compare. Also contains helper functions for the functionality allowing
+ * users to only display results of an arbitrary nubmer of selected builds
+ * using checkboxes.
+ *
+ * @author Yisong Yue
+ * @author Shaan Iqbal
+ * @author Sun Woo Kim
+ */
 
+
+/**
+ * Populates the "Compare builds" drop down menus on the page with availabe
+ * build numbers. Invoked by populateTemplate().
+ * @method addOptions
+ * @param {JavaScript object} resultData A JSON object containing all test
+ *                                       results retrieved from the Java side
+ */
 function addOptions(resultData) {
     // clear out all options previously in this drop down
     $j("#selectFirstBuild").find('option').remove();
@@ -18,7 +35,14 @@ function addOptions(resultData) {
     }
 }
 
-
+/**
+ * Retrieves test result data and further modifies it to remove data of all
+ * builds other than the two that are selected to compare, as well as the test
+ * suites/cases that have the same result (status) in both of the selected
+ * builds. Displays the difference as text and as the content of the table.
+ * The table is not updated if no difference is found.
+ * @method showDiffs
+ */
 function showDiffs() {
     var noOfBuilds = $j('#noofbuilds').val();
     var statusFilter = $j('#teststatus').val();
@@ -49,17 +73,42 @@ function showDiffs() {
     }, this));
 }
 
+/**
+ * Helper function that removes test result data from "items" not needed for
+ * displaying when comparing two builds.
+ * @method compareBuilds
+ * @param {JavaScript object} items A JSON object containing all test results
+ *                                  retrieved from the Java side
+ * @param {int} idx1 Index of first selected build number in the array of data
+ * @param {int} idx2 Index of second selected build number in the array of data
+ */
 function compareBuilds(items, idx1, idx2) {
     removeOtherFromArray(items['builds'], idx1, idx2);
     findChanges(items['results'], idx1, idx2);
 }
 
+/**
+ * Helper function that removes all items from the input array except those at
+ * the two selected indices.
+ * @method removeOtherFromArray
+ * @param {JavaScript array} arr The array to remove items from
+ * @param {int} min The smaller of the two selected indices
+ * @param {int} max The larger of the two selected indices
+ */
 function removeOtherFromArray(arr, min, max) {
     arr.splice(max + 1, arr.length);
     arr.splice(min + 1, max - min - 1);
     arr.splice(0, min);
 }
 
+/**
+ * Helper function that recursively removes all test cases/suites that have the
+ * same result(s) for the builds at selected indices in the result data.
+ * @method findChanges
+ * @param {JavaScript array} results The array of test result data
+ * @param {int} idx1 Index of first selected build number in the array of data
+ * @param {int} idx2 Index of second selected build number in the array of data
+ */
 function findChanges(results, idx1, idx2) {
     for (var i = results.length - 1; i >= 0; i--) {
         removeOtherFromArray(results[i]['buildResults'], idx1, idx2);
@@ -77,7 +126,7 @@ function findChanges(results, idx1, idx2) {
  * Returns html code that is implemented in the jelly file to create the checkbox button
  * @method createCheckboxButton
  * @return {string} html code
- * */
+ */
 function createCheckboxButton() {
     var checkbutton = '<button id="getcheckedbuilds">Compare Checked Builds</button>';
     return checkbutton;
@@ -86,7 +135,7 @@ function createCheckboxButton() {
 /**
  * Populates the chart after getting the builds that were checked in the checkboxes and removes all other builds that were not checked
  * @method showCheckedBuilds
- * */
+ */
 function showCheckedBuilds(){
     var noOfBuilds = $j('#noofbuilds').val();
     var statusFilter = $j('#teststatus').val();
@@ -113,7 +162,7 @@ function showCheckedBuilds(){
  * Removes all other builds and its respective results that were not checked
  * @method removeBuilds
  * @param {JavaScript object} items
- * */
+ */
 function removeBuilds(items) {
     removeFromArray(items['builds']);
     removeResults(items['results']);
@@ -123,7 +172,7 @@ function removeBuilds(items) {
  * Helper function that removes items in an array that weren't checked
  * @method removeFromArray
  * @param {Array} arr
- * */
+ */
 function removeFromArray(arr) {
     arr.reverse();
     var end = checked.length-1;
@@ -141,7 +190,7 @@ function removeFromArray(arr) {
  * Helper function that removes results of the builds that were not checked. 
  * @method removeResults
  * @param {Array} results
- * */
+ */
 function removeResults(results) {
     for (var i = results.length - 1; i >= 0; i--) {
         removeFromArray(results[i]['buildResults']);
