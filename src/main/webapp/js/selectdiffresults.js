@@ -123,9 +123,11 @@ function findChanges(results, idx1, idx2) {
 
 
 /**
- * Returns html code that is implemented in the jelly file to create the checkbox button
+ * Returns html code that is implemented in the jelly file to create the
+ * button that compares checked builds. Invoked by populateTemplate().
  * @method createCheckboxButton
- * @return {string} html code
+ * @return {string} string containing the html code to create the 
+ *                  'Compare Checked Builds' button
  */
 function createCheckboxButton() {
     var checkbutton = '<button id="getcheckedbuilds">Compare Checked Builds</button>';
@@ -133,7 +135,8 @@ function createCheckboxButton() {
 }
 
 /**
- * Populates the chart after getting the builds that were checked in the checkboxes and removes all other builds that were not checked
+ * Populates the chart after getting the builds that were checked in the 
+ * checkboxes and removes all other builds that were not checked
  * @method showCheckedBuilds
  */
 function showCheckedBuilds(){
@@ -159,9 +162,11 @@ function showCheckedBuilds(){
 }
 
 /**
- * Removes all other builds and its respective results that were not checked
+ * Helper function that removes all other builds and its respective results
+ * that were not checked
  * @method removeBuilds
- * @param {JavaScript object} items
+ * @param {JavaScript object} items A JSON object containing all test results 
+ *                                  retrieved from the Java side
  */
 function removeBuilds(items) {
     removeFromArray(items['builds']);
@@ -169,9 +174,9 @@ function removeBuilds(items) {
 }
 
 /**
- * Helper function that removes items in an array that weren't checked
+ * Helper function that removes all items in an array that weren't checked
  * @method removeFromArray
- * @param {Array} arr
+ * @param {JavaScript array} arr The array to remove items from
  */
 function removeFromArray(arr) {
     arr.reverse();
@@ -187,9 +192,10 @@ function removeFromArray(arr) {
 }
 
 /**
- * Helper function that removes results of the builds that were not checked. 
+ * Helper function that recursively removes all results of the builds that were
+ * not checked. 
  * @method removeResults
- * @param {Array} results
+ * @param {JavaScript array} results The array of test result data
  */
 function removeResults(results) {
     for (var i = results.length - 1; i >= 0; i--) {
