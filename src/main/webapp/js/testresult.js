@@ -48,7 +48,7 @@ function populateTemplate() {
         $j(".table").html(treeMarkup);
         addEvents();
         
-        getCode(itemsResponse['results'], windowUrl + "../ws/src/test/java/", "base");
+        initTestCodes(itemsResponse['results'], windowUrl + "../ws/src/test/java/", "base");
     }, this));
 }
 

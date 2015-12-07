@@ -34,7 +34,6 @@ function initTestCodes (results, url, key) {
 
         if (results[i].hierarchyLevel == 2) {
             retrieveCode(newUrl, newKey, results[i].text);
-            console.log(newKey + ": " + newUrl);
         }
 
         initTestCodes(results[i]['children'], newUrl, newKey);
