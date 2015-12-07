@@ -13,7 +13,7 @@ var tableContent = '<div class="table-row {{parentclass}}-{{addName text}}" pare
         '>&nbsp;{{text}}</div>' +
     '' +
     '{{#each this.buildResults}}' +
-    '\n' + '         <div class="table-cell build-result {{applystatus status}}" data-result=\'{{JSON2string this}}\'><a href="{{createURL buildNumber ..}}">{{applyvalue status totalTimeTaken}}</a><button type="button" class="btn btn-primary btn-xs">code</button></div>' +
+    '\n' + '         <div class="table-cell build-result {{applystatus status}}" data-result=\'{{JSON2string this}}\'><a href="{{createURL buildNumber ..}}">{{applyvalue status totalTimeTaken}}</a><button onclick="displayCode()" type="button" class="btn btn-primary btn-xs">code</button></div>' +
     '{{/each}}' +
     '\n' + '</div>' +
     '{{#each children}}\n' +
@@ -36,6 +36,11 @@ var tableBody = '<div class="heading">' +
     '{{store this "parentclass" "base"}}' +
     '{{> tableBodyTemplate}}' +
     '\n' + '{{/each}}';
+
+//Display source code when code button is clicked
+function displayCode(){
+    return;
+}
 
 function removeSpecialChars(name){
     var modName = "";
