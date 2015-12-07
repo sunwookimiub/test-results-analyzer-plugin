@@ -233,7 +233,7 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
         while (it.hasNext()) {
             Map.Entry<String, PackageInfo> pair = (Map.Entry<String, PackageInfo>) it.next();
             PackageInfo info = pair.getValue();
-            Map<Integer,ResltData> buildResults = info.getBuildPackageResults();
+            Map<Integer,ResultData> buildResults = info.getBuildPackageResults();
             if (buildResults.keySet().size() >= 2) {// need at least two builds to be able to compare
                 Iterator resultIt = buildResults.entrySet().iterator();
                 Map.Entry<Integer, ResultData> firstEntry = (Entry<Integer, ResultData>) resultIt.next();
