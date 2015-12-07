@@ -13,7 +13,7 @@ var tableContent = '<div class="table-row {{parentclass}}-{{addName text}}" pare
         '>&nbsp;{{text}}</div>' +
     '' +
     '{{#each this.buildResults}}' +
-    '\n' + '         <div class="table-cell build-result {{applystatus status}}" data-result=\'{{JSON2string this}}\'><button type="button" class="btn btn-primary btn-xs">code</button><a href="{{createURL buildNumber ..}}">{{applyvalue status totalTimeTaken}}</a></div>' +
+    '\n' + '         <div class="table-cell build-result {{applystatus status}}" data-result=\'{{JSON2string this}}\'><a href="{{createURL buildNumber ..}}">{{applyvalue status totalTimeTaken}}</a><button type="button" class="btn btn-primary btn-xs">code</button></div>' +
     '{{/each}}' +
     '\n' + '</div>' +
     '{{#each children}}\n' +
