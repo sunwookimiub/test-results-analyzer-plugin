@@ -58,7 +58,7 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
                 if (name.indexOf('/') != -1) { // forward slash in getFullName means this Job is a module
                     ret += "<li><h2><a href='../../"+name+"/"+Constants.URL+"'>"+displayName+"</a></h2></li>";
                 }
-            } 
+            }
             ret += "</ul>";
         }
         return ret;
@@ -230,7 +230,7 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
         String ret = "Last two builds: \n";
         Map<String,PackageInfo> results = resultInfo.getPackageResults();
         Iterator it = results.keySet().iterator();
-        while (it.hasuNext()) {
+        while (it.hasNext()) {
             Map.Entry<String, PackageInfo> pair = (Map.Entry<String, PackageInfo>) it.next();
             PackageInfo info = pair.getValue();
             Map<Integer,ResltData> buildResults = info.getBuildPackageResults();
