@@ -105,6 +105,9 @@ Select chart type:
 <div id="diffList">
 </div>
 
+<div id="code">
+</div>
+
 <div id="charts">
    <div id="linechart">
 
