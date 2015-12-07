@@ -47,6 +47,8 @@ function populateTemplate() {
         treeMarkup = analyzerTemplate(itemsResponse);
         $j(".table").html(treeMarkup);
         addEvents();
+        
+        getCode(itemsResponse['results'], windowUrl + "../ws/src/test/java/", "base");
     }, this));
 }
 
