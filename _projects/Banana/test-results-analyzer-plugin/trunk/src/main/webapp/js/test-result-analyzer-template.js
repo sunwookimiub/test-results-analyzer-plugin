@@ -10,10 +10,10 @@ var tableContent = '<div class="table-row {{parentclass}}-{{addName text}}" pare
         '{{#if hierarchyLevel}}' +
             'style="padding-left:{{addspaces hierarchyLevel}}em;"' +
         '{{/if}}' +
-        '>&nbsp;{{text}}</div>' +
+        '>&nbsp;{{text}}<button onclick="displayCode(this)" type="button" class="btn btn-primary btn-xs">code</button></div>' +
     '' +
     '{{#each this.buildResults}}' +
-    '\n' + '         <div class="table-cell build-result {{applystatus status}}" data-result=\'{{JSON2string this}}\'><a href="{{createURL buildNumber ..}}">{{applyvalue status totalTimeTaken}}</a><button onclick="displayCode()" type="button" class="btn btn-primary btn-xs">code</button></div>' +
+    '\n' + '         <div class="table-cell build-result {{applystatus status}}" data-result=\'{{JSON2string this}}\'><a href="{{createURL buildNumber ..}}">{{applyvalue status totalTimeTaken}}</a></div>' +
     '{{/each}}' +
     '\n' + '</div>' +
     '{{#each children}}\n' +
@@ -38,9 +38,24 @@ var tableBody = '<div class="heading">' +
     '\n' + '{{/each}}';
 
 //Display source code when code button is clicked
-function displayCode(){
-    return;
-}
+function displayCode(elem){
+    var key = elem.parentNode.parentNode.className.slice(10);
+    var codes = testCodes[key];
+    //    console.log(codes);                                                                                                                                                        
+    var code = "No Code Found.";
+    if(codes!=null)
+    {
+        code = "<textarea rows='" + codes.length + "' cols='100'>";
+        for(var i=0; i<codes.length; i++)
+        {
+            code += (codes[i].replace(/ /g, '&nbsp')) + '&#10';
+        }//end of for                                                                                                                                                                
+        code += "</textarea>";
+    }//end of if                                                                                                                                                                     
+
+    $j("#code").html(code);
+        return;
+}//end of display  
 
 function removeSpecialChars(name){
     var modName = "";
