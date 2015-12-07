@@ -24,9 +24,9 @@ function initTestCodes (results, url, key) {
     for (var i = 0; i < results.length; i++) {
         var newUrl;
         if (results[i].hierarchyLevel == undefined || results[i].hierarchyLevel == 0) {
-            newUrl = url + results[i].text.replace(".", "/") + "/";
+            newUrl = url + results[i].text.replace(/\./g, "/") + "/";
         } else if (results[i].hierarchyLevel == 1) {
-            newUrl = url + results[i].text.replace(".", "/") + ".java";
+            newUrl = url + results[i].text.replace(/\./g, "/") + ".java";
         } else {
             newUrl = url;
         }
