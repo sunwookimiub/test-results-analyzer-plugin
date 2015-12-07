@@ -13,7 +13,7 @@ var tableContent = '<div class="table-row {{parentclass}}-{{addName text}}" pare
         '>&nbsp;{{text}}</div>' +
     '' +
     '{{#each this.buildResults}}' +
-    '\n' + '         <div class="table-cell build-result {{applystatus status}}" data-result=\'{{JSON2string this}}\'><a href="{{createURL buildNumber ..}}">{{applyvalue status totalTimeTaken}}</a></div>' +
+    '\n' + '         <div class="table-cell build-result {{applystatus status}}" data-result=\'{{JSON2string this}}\'><button type="button">Click Me</button><a href="{{createURL buildNumber ..}}">{{applyvalue status totalTimeTaken}}</a></div>' +
     '{{/each}}' +
     '\n' + '</div>' +
     '{{#each children}}\n' +
@@ -130,7 +130,7 @@ Handlebars.registerHelper('createURL', function(buildNumber, parent) {
 
 
 var currentPackageURL = "";
-/* createURL - creates a relative URL to point to the Jenkins test report page 
+/* createURL - creates a relative URL to point to the Jenkins test report page
  *      for a given package, class, or test case in the current module for the
  *      specified build
  * buildNumber - The number for the build being selected
