@@ -140,14 +140,11 @@ Select chart type:
 
 <script>
 
-  //window.onload = populateTemplateCondensed(displayValues);
-
+  //if need to display module list, hide everything else and don't create listeners
   if ($j("#moduleList").html() != ""){
     var temp = $j("#moduleList").html();
     $j("#main-panel").html(temp);
   } else {
-
-
 
     $j("#getbuildreport").click(function () {
       populateTemplate(displayValues);
@@ -175,7 +172,6 @@ Select chart type:
       $(document).on('click', '#getcheckedbuilds', function() {
       showCheckedBuilds(displayValues);
       });
-
   }
 
 </script>
