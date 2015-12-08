@@ -43,7 +43,6 @@ function getDiffs(resultData, firstBuild, secondBuild) {
                 diffList = addDifferentResultsToList(diffList, latestResult,
                                nextLatestResult, testCases[tstIdx]['text']);
             }
-
         }
     }
     return diffList;

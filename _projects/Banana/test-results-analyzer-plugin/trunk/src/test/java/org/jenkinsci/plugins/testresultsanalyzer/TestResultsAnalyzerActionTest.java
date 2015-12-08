@@ -23,12 +23,12 @@ public class TestResultsAnalyzerActionTest {
     @Test
     public void testGetModuleList() throws Exception {
         j.configureMaven3();
-        //URL classURL = getClass().getProtectionDomain().getCodeSource().getLocation();
+        URL classURL = (URL) (getClass().getProtectionDomain().getCodeSource().getLocation()+"../../../src/test/sample-project.zip");
         //System.out.println("Class URL: " + classURL);
-        //assertEquals("", classURL);
+        //assertEquals("", classURL);jobs/banana/workspace/trunk/src/test/sample-project.zip 
         //expected:<> but was:<file:/home/sapin2/.jenkins/jobs/banana/workspace/trunk/target/test-classes/>
         MavenModuleSet project = j.createMavenProject("project1");
-//        project.setScm(new ExtractResourceSCM(getClass().getResource("../../src/test/sample-project.zip"))); 
+        project.setScm(new ExtractResourceSCM(getClass().getResource("../../../src/test/sample-project.zip"))); 
         assertTrue(true);
     }
 
