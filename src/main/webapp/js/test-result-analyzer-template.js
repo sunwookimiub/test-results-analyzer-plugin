@@ -155,11 +155,14 @@ Handlebars.registerHelper('createURL', function(buildNumber, parent) {
 
 
 var currentPackageURL = "";
-/* createURL - creates a relative URL to point to the Jenkins test report page
- *      for a given package, class, or test case in the current module for the
- *      specified build
- * buildNumber - The number for the build being selected
- * parent - the JSON object of the build result selected (in the table this is called in an each loop)
+/**
+ *  Creates a relative URL to point to the Jenkins test report page
+ *  for a given package, class, or test case in the current module for the
+ *  specified build
+ *  @method createURL
+ *  @param {int} buildNumber The number for the build being selected
+ *  @param {JavaScript Object} parent The JSON object of the build result selected
+ *                                    (in the table this is called in an each loop)
  */
 function createURL(buildNumber, parent) {
     var url = "../"+buildNumber+"/testReport/";
