@@ -38,10 +38,15 @@ var tableBody = '<div class="heading">' +
     '\n' + '{{/each}}';
 
 //Display source code when code button is clicked
-function displayCode(elem){
-    var key = elem.parentNode.parentNode.className.slice(10);
-    var codes = testCodes[key];
-    //    console.log(codes);                                                                                                                                                        
+function displayCode(elem,key){
+    if (key==null)
+    {
+      var key = elem.parentNode.parentNode.className.slice(10);
+      var codes = testCodes[key];
+    } else {
+      var codes=key;
+    }
+
     var code = "No Code Found.";
     if(codes!=null)
     {
@@ -49,13 +54,13 @@ function displayCode(elem){
         for(var i=0; i<codes.length; i++)
         {
             code += (codes[i].replace(/ /g, '&nbsp')) + '&#10';
-        }//end of for                                                                                                                                                                
+        }//end of for
         code += "</textarea>";
-    }//end of if                                                                                                                                                                     
+    }//end of if
 
     $j("#code").html(code);
-        return;
-}//end of display  
+    return code;
+}//end of display
 
 function removeSpecialChars(name){
     var modName = "";
