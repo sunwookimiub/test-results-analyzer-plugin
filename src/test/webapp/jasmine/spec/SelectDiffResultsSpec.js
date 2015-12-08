@@ -3,19 +3,6 @@ describe("selectdiffresults.js", function() {
 
     var testCaseName = 'DifferentStatusTestBuildResult';
 
-    var newStatus = {
-        name:   testCaseName,
-        status: "PASSED" 
-    };
-    var oldStatusPassed = {
-        name:   testCaseName,
-        status: "PASSED" 
-    };
-    var oldStatusFailed = {
-        name:   testCaseName,
-        status: "FAILED" 
-    };
-
     var fullDepthJSON = {
         builds: ["1", "0"],
         results: [ {
