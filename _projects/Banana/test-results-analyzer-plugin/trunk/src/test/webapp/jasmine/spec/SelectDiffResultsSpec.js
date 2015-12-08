@@ -222,15 +222,6 @@ describe("selectdiffresults.js", function() {
         } ]
     };
 
-    /*it("showDiffs displays appropriate message when there is no difference", function() {
-        //expected
-        var expectedList = $j('<ul />');
-        //actual
-        var diffList = $j('<ul />');
-        diffList = showDiffs();
-        //test
-        
-    });*/
 
     it("getDiffs: Returns a list of items that have changed: FAILED to PASSED", function() {
         //expected
@@ -255,39 +246,6 @@ describe("selectdiffresults.js", function() {
         //test
         expect(diffList).toEqual(expectedList);
     });
-
-    /*it("getDiffs also returns a list of items that have not changed: FAILED to FAILED", function() {
-        //expected
-        var expectedList = $j('<ul />');
-        var expectedListElementStr = "<li><span>"+testCaseName+": No differences between these two builds</span></li>";
-        expectedList.html(expectedListElementStr);
-        //actual
-        var diffList = $j('<ul />');
-        diffList = getDiffs(fullDepthJSON3, 0, 1);
-        //test
-        expect(diffList).toEqual(expectedList);
-    });   
-
-    it("compareBuilds removes other builds", function() {
-        //expected
-        var expectedList = $j('<ul />');
-        var expectedListElementStr = "<li><span>"+testCaseName+": No differences between these two builds</span></li>";
-        expectedList.html(expectedListElementStr);
-        //actual
-        var diffList = $j('<ul />');
-        diffList = getDiffs(fullDepthJSON3, 0, 1);
-        //test
-        expect(diffList).toEqual(expectedList);
-
-        var inital = fullDepthJSON3;
-
-        var after = compareBuilds(inital, 0, 1);
-
-        expect(initial).toEqual(fullDepthJSON);
-
-
-    });   */
-
 
 });
 
