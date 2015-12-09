@@ -31,7 +31,7 @@ describe("CheckBox Event Tests", function() {
 
   it ("should show the compare builds box is activated", function() {
     var returnedarray2=removeFromArray(testarray,testchecked2);
-
+    
     expect(returnedarray2).toEqual([ ]);
   });
 
