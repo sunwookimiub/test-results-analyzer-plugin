@@ -18,7 +18,7 @@ import org.jvnet.hudson.test.HudsonTestCase;
 
 import java.net.URL;
 
-public class TestResultsAnalyzerActionTest {
+public class TestResultsAnalyzerActionTest extends HudsonTestCase {
     @Rule
     public JenkinsRule j = new JenkinsRule();
 
