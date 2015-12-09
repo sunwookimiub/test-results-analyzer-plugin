@@ -46,18 +46,16 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
      * @return the HTML list of link to modules or an empty string
      */
     public String getModuleList() {
-        Collection<Job> allJobs = project.getAllJobs();
-        ArrayList<Job> jobList = new ArrayList<Job>(allJobs);
+        ArrayList<Job> jobList = new ArrayList<Job>(project.getAllJobs());
         String ret = "";
         int numJobs = jobList.size();
         if (numJobs > 1) {
             ret = "<h1>Select a module to analyze:</h1><ul>";
             for (int i=0; i < numJobs; i++){
-                String displayName = jobList.get(i).getDisplayName();
-                String name = jobList.get(i).getFullName();
-                if (name.indexOf('/') != -1) { // forward slash in getFullName means this Job is a module
-                    ret += "<li><h2><a href='../../"+name+"/"+Constants.URL+"'>"+displayName+"</a></h2></li>";
-                }
+                Job currentJob = jobList.get(i);
+                String name = currentJob.getFullName();
+                if (name.indexOf('/') != -1) // forward slash in getFullName means this Job is a module
+                    ret += "<li><h2><a href='../../"+name+"/"+Constants.URL+"'>"+currentJob.getDisplayName()+"</a></h2></li>";
             }
             ret += "</ul>";
         }
