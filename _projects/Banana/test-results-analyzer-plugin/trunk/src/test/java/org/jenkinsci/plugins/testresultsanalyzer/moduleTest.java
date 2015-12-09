@@ -14,11 +14,11 @@ import org.junit.Test;
 import org.jvnet.hudson.test.JenkinsRule;
 import org.jvnet.hudson.test.ExtractResourceSCM;
 import org.jvnet.hudson.test.SingleFileSCM;
-import org.jvnet.hudson.test.HudsonTestCase; 
+//import org.jvnet.hudson.test.HudsonTestCase; 
 
 import java.net.URL;
 
-public class moduleTest extends HudsonTestCase{
+public class moduleTest {
     @Rule
     public JenkinsRule j = new JenkinsRule();
 
