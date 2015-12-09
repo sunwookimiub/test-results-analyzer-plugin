@@ -140,7 +140,12 @@ Select chart type:
 
 <script>
 
+
+  window.onload = populateTemplateCondensed();
+
+
   //if need to display module list, hide everything else and don't create listeners
+
   if ($j("#moduleList").html() != ""){
     var temp = $j("#moduleList").html();
     $j("#main-panel").html(temp);
