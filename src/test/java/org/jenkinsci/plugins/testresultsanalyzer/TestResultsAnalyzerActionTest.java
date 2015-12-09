@@ -31,8 +31,7 @@ public class TestResultsAnalyzerActionTest {
         MavenModuleSet project = j.createMavenProject("project1");
         project.setScm(new ExtractResourceSCM(getClass().getResource("/sample-project.zip"))); 
 //        project.setScm(new SingleFileSCM ("build.xml", getClass().getResource("build.xml")));
-        FreeStyleBuild build = project.scheduleBuild2(0).get();
-        System.out.println(build.getDisplayName() + " completed");
+        assertBuildStatusSuccess(project.scheduleBuild2(0));
         assertTrue(true);
     }
 
