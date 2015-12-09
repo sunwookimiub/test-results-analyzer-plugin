@@ -1,7 +1,7 @@
 describe("CheckBox Event Tests", function() {
-  // This fullDepthJSON is borrowed from elsewhere
-  var testCaseName = 'CheckBoxEventTests';
 
+  var testCaseName = 'CheckBoxEventTests';
+  // Defines
   var tableBody = '<div class="heading">' +
 
       '\n' + '        <div class="table-cell">Chart</div><div class="table-cell">See children</div> <div class="table-cell">The Condensed Results</div>' +
@@ -14,73 +14,36 @@ describe("CheckBox Event Tests", function() {
       '{{store this "parentclass" "base"}}' +
       '{{> tableBodyTemplate}}' +
       '\n' + '{{/each}}';
-
+  // This builds up the HTML Tags.
   var analyzerTemplate = Handlebars.compile(tableBody);
 
-//  var spyEvent;
-  // This checks if the selected boxes are selected
- it ("should check the selected boxes", function() {
-    // This following two methods are basically doing the same thing
-    $('#1').trigger( "click" );
-    //spyEvent = spyOnEvent('#1', 'click');
-    //expect($('#1')).toEqual("expectedList");
-  //  expect('click').toHaveBeenTriggeredOn($("#1"));
-    //expect(spyEvent).toHaveBeenTriggered();
+  var testarray=["0","1","2","3","4","5","6","7","8"];
+  var testchecked=[0,1];
+  var testresults=["result1","result2","result3","result4","result5"];
+
+  // This checks if the array is removed correctly
+  it ("should return the correct removed array", function() {
+    var returnedarray=removeFromArray(testarray,testchecked);
+    console.log(returnedarray);
+    expect(returnedarray).toEqual(["8"]);
   });
-
-  // This checks if click on compare results, the needed builds are shown.
-/*  describe( "Check Compare results event tests", function () {
-
-    //showCheckedBuilds();
-    it ("should show only the selected boxes", function(){
-
-      //expect($('#1')).toBeInDOM();
-      //expect($('#0')).not.toBeInDOM();
-      expect(1).toEqual(1);
-    });
-
-  });*/
 
 });
 
 
-/*
-describe("Button Click Event Tests", function() {
-  var spyEvent;
-
-  beforeEach(function() {
-    setUpHTMLFixture();
-  });
-
-  it ("should invoke the btnShowMessage click event.", function() {
-    spyEvent = spyOnEvent('#btnShowMessage', 'click');
-    $('#btnShowMessage').trigger( "click" );
-
-    expect('click').toHaveBeenTriggeredOn('#btnShowMessage');
-    expect(spyEvent).toHaveBeenTriggered();
-  });
-
-  it ("should invoke the btnHideMessage click event.", function() {
-    spyEvent = spyOnEvent('#btnHideMessage', 'click');
-    $('#btnHideMessage').trigger( "click" );
-
-    expect('click').toHaveBeenTriggeredOn('#btnHideMessage');
-    expect(spyEvent).toHaveBeenTriggered();
-  });
-});*/
-
-
 describe("tests for retrieving codes", function() {
-
+  // The needed element and node structures are created, btn is the grandparent
   var btn = document.createElement("BUTTON");
   var para = document.createElement("p");
   var node = document.createTextNode("This is new.");
   para.appendChild(node);
   btn.appendChild(para);
+  // the btn.className is input as some randome string. because this string
+  // has no associated code in the testcode and can be used as the testcode to check
   btn.className="nicainicainicai";
-
   var codes=btn.className;
 
+  // Here the code is constructed using the codes, which is the btn.className
   var code = "<textarea rows='" + codes.length + "' cols='100'>";
   for(var i=0; i<codes.length; i++)
   {
@@ -88,13 +51,15 @@ describe("tests for retrieving codes", function() {
   }//end of for
   code += "</textarea>";
 
-
-  it("should return no code at all", function() {
+  // case one, when only the node (grandchild), is passed, there should be node code at all
+  it("should return no code at all, because no code is inputed", function() {
     var returnedcode=displayCode(node);
     expect(returnedcode).toEqual("No Code Found.");
   });
 
-  it("should return the input code", function() {
+  // case two, when the input code (the btn.className) is passed, the returnedcode should be the same as the return code
+  // constructed above.
+  it("should return the input code, because the raw code is inputed", function() {
     var returnedcode=displayCode(btn,btn.className);
     expect(returnedcode).toEqual(code);
   });
