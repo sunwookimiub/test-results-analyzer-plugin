@@ -7,7 +7,6 @@ var checked = [];
 
 /**
  * Clears all the tables and charts on the plugin page.
- * @method reset
  */
 function reset() {
     reevaluateChartData = true;
@@ -19,7 +18,6 @@ function reset() {
 /**
  * Collects all the values of drop down selections on the page and sends them
  * to the Java side to generate and update the content of the table.
- * @method populateTemplate
  */
 function populateTemplate() {
     reset();
@@ -47,7 +45,7 @@ function populateTemplate() {
         treeMarkup = analyzerTemplate(itemsResponse);
         $j(".table").html(treeMarkup);
         addEvents();
-        
+
         initTestCodes(itemsResponse['results'], windowUrl + "../ws/src/test/java/", "base");
     }, this));
 }

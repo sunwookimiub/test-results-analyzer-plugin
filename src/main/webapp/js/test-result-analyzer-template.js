@@ -37,7 +37,11 @@ var tableBody = '<div class="heading">' +
     '{{> tableBodyTemplate}}' +
     '\n' + '{{/each}}';
 
-//Display source code when code button is clicked
+/**
+ * Display source code when code button is clicked
+ * @param {JavaScript Object} elem The DOM element that calls the function
+ * @return {JavaScript Array} An array of strings containing lines of codes
+ */
 function displayCode(elem,key){
     if (key==null)
     {
@@ -54,17 +58,16 @@ function displayCode(elem,key){
         for(var i=0; i<codes.length; i++)
         {
             code += (codes[i].replace(/ /g, '&nbsp')) + '&#10';
-        }//end of for
+        }
         code += "</textarea>";
-    }//end of if
+    }
 
     $j("#code").html(code);
     return code;
-}//end of display
+}
 
 function removeSpecialChars(name){
     var modName = "";
-    //modName = name.split('.').join('_');
     modName = name.replace(/[^a-z\d/-]+/gi, "_");
     return modName.split('/').join('_'); //forward slashes were not being replaced correctly
 }
@@ -156,13 +159,12 @@ Handlebars.registerHelper('createURL', function(buildNumber, parent) {
 
 var currentPackageURL = "";
 /**
- *  Creates a relative URL to point to the Jenkins test report page
- *  for a given package, class, or test case in the current module for the
- *  specified build
- *  @method createURL
- *  @param {int} buildNumber The number for the build being selected
- *  @param {JavaScript Object} parent The JSON object of the build result selected
- *                                    (in the table this is called in an each loop)
+ * Creates a relative URL to point to the Jenkins test report page
+ * for a given package, class, or test case in the current module for the
+ * specified build
+ * @param {int} buildNumber The number for the build being selected
+ * @param {JavaScript Object} parent The JSON object of the build result selected
+ *                                   (in the table this is called in an each loop)
  */
 function createURL(buildNumber, parent) {
     var url = "../"+buildNumber+"/testReport/";
