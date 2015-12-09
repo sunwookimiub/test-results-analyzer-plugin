@@ -88,6 +88,7 @@ function compareBuilds(items, idx1, idx2) {
 /**
  * Helper function that removes all items from the input array except those at
  * the two selected indices.
+ *
  * @param {JavaScript array} arr The array to remove items from
  * @param {int} min The smaller of the two selected indices
  * @param {int} max The larger of the two selected indices
@@ -121,7 +122,7 @@ function findChanges(results, idx1, idx2) {
 /**
  * Returns html code that is implemented in the jelly file to create the
  * button that compares checked builds. Invoked by populateTemplate().
- * @return {string} string containing the html code to create the
+ * @return {string} string containing the html code to create the 
  *                  'Compare Checked Builds' button
  */
 function createCheckboxButton() {
@@ -130,7 +131,7 @@ function createCheckboxButton() {
 }
 
 /**
- * Populates the chart after getting the builds that were checked in the
+ * Populates the chart after getting the builds that were checked in the 
  * checkboxes and removes all other builds that were not checked
  */
 function showCheckedBuilds(){
@@ -158,7 +159,7 @@ function showCheckedBuilds(){
 /**
  * Helper function that removes all other builds and its respective results
  * that were not checked
- * @param {JavaScript object} items A JSON object containing all test results
+ * @param {JavaScript object} items A JSON object containing all test results 
  *                                  retrieved from the Java side
  */
 function removeBuilds(items) {
@@ -170,12 +171,7 @@ function removeBuilds(items) {
  * Helper function that removes all items in an array that weren't checked
  * @param {JavaScript array} arr The array to remove items from
  */
-function removeFromArray(arr,checkedarray) {
-    if (checkedarray!=null)
-    {
-      var checked=checkedarray;
-    }
-
+function removeFromArray(arr) {
     arr.reverse();
     var end = checked.length-1;
     var max = checked[end];
@@ -186,30 +182,16 @@ function removeFromArray(arr,checkedarray) {
     }
     arr.splice(0, min-1);
     arr.reverse();
-    console.log("remove array ends");
-    console.log(arr);
-    console.log(checked);
-
-    return arr;
 }
 
 /**
  * Helper function that recursively removes all results of the builds that were
- * not checked.
+ * not checked. 
  * @param {JavaScript array} results The array of test result data
  */
-function removeResults(results,checkedarray) {
-    if (checkedarray!=null)
-    {
-      for (var i = results.length - 1; i >= 0; i--) {
-        removeFromArray(results[i]['buildResults'],checkedarray);
-        removeResults(results[i]['children'],checkedarray);
-      }
-    } else {
-      for (var i = results.length - 1; i >= 0; i--) {
+function removeResults(results) {
+    for (var i = results.length - 1; i >= 0; i--) {
         removeFromArray(results[i]['buildResults']);
         removeResults(results[i]['children']);
-      }
     }
-    return results;
 }
