@@ -13,6 +13,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.jvnet.hudson.test.JenkinsRule;
 import org.jvnet.hudson.test.ExtractResourceSCM;
+import org.jvnet.hudson.test.SingleFileSCM;
 
 import java.net.URL;
 
