@@ -50,6 +50,10 @@ function populateTemplate() {
     }, this));
 }
 
+/**
+ * Collects the condensed tree results and get the newly-constructed condensed JSON
+ * Pass the condensed JSON to the table generator to generate the condensed table.
+ */
 function populateTemplateCondensed() {
     reset();
     var noOfBuilds = $j('#noofbuilds').val();
