@@ -28,7 +28,7 @@ public class TestResultsAnalyzerActionTest {
         //assertEquals("", classURL);jobs/banana/workspace/trunk/src/test/sample-project.zip 
         //expected:<> but was:<file:/home/sapin2/.jenkins/jobs/banana/workspace/trunk/target/test-classes/>
         MavenModuleSet project = j.createMavenProject("project1");
-        //project.setScm(new ExtractResourceSCM(getClass().getResource("../../../src/test/sample-project.zip"))); 
+        project.setScm(new ExtractResourceSCM(getClass().getResource("/home/sapin2/sample-project.zip"))); 
         assertTrue(true);
     }
 
