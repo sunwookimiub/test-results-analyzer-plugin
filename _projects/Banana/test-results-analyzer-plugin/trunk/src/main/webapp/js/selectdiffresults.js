@@ -14,7 +14,6 @@ $j = $;
 /**
  * Populates the "Compare builds" drop down menus on the page with availabe
  * build numbers. Invoked by populateTemplate().
- * @method addOptions
  * @param {JavaScript object} resultData A JSON object containing all test
  *                                       results retrieved from the Java side
  */
@@ -42,7 +41,6 @@ function addOptions(resultData) {
  * suites/cases that have the same result (status) in both of the selected
  * builds. Displays the difference as text and as the content of the table.
  * The table is not updated if no difference is found.
- * @method showDiffs
  */
 function showDiffs() {
     var noOfBuilds = $j('#noofbuilds').val();
@@ -77,7 +75,6 @@ function showDiffs() {
 /**
  * Helper function that removes test result data from "items" not needed for
  * displaying when comparing two builds.
- * @method compareBuilds
  * @param {JavaScript object} items A JSON object containing all test results
  *                                  retrieved from the Java side
  * @param {int} idx1 Index of first selected build number in the array of data
@@ -91,7 +88,6 @@ function compareBuilds(items, idx1, idx2) {
 /**
  * Helper function that removes all items from the input array except those at
  * the two selected indices.
- * @method removeOtherFromArray
  * @param {JavaScript array} arr The array to remove items from
  * @param {int} min The smaller of the two selected indices
  * @param {int} max The larger of the two selected indices
@@ -105,7 +101,6 @@ function removeOtherFromArray(arr, min, max) {
 /**
  * Helper function that recursively removes all test cases/suites that have the
  * same result(s) for the builds at selected indices in the result data.
- * @method findChanges
  * @param {JavaScript array} results The array of test result data
  * @param {int} idx1 Index of first selected build number in the array of data
  * @param {int} idx2 Index of second selected build number in the array of data
@@ -126,7 +121,6 @@ function findChanges(results, idx1, idx2) {
 /**
  * Returns html code that is implemented in the jelly file to create the
  * button that compares checked builds. Invoked by populateTemplate().
- * @method createCheckboxButton
  * @return {string} string containing the html code to create the 
  *                  'Compare Checked Builds' button
  */
@@ -138,7 +132,6 @@ function createCheckboxButton() {
 /**
  * Populates the chart after getting the builds that were checked in the 
  * checkboxes and removes all other builds that were not checked
- * @method showCheckedBuilds
  */
 function showCheckedBuilds(){
     var noOfBuilds = $j('#noofbuilds').val();
@@ -165,7 +158,6 @@ function showCheckedBuilds(){
 /**
  * Helper function that removes all other builds and its respective results
  * that were not checked
- * @method removeBuilds
  * @param {JavaScript object} items A JSON object containing all test results 
  *                                  retrieved from the Java side
  */
@@ -176,7 +168,6 @@ function removeBuilds(items) {
 
 /**
  * Helper function that removes all items in an array that weren't checked
- * @method removeFromArray
  * @param {JavaScript array} arr The array to remove items from
  */
 function removeFromArray(arr) {
@@ -195,7 +186,6 @@ function removeFromArray(arr) {
 /**
  * Helper function that recursively removes all results of the builds that were
  * not checked. 
- * @method removeResults
  * @param {JavaScript array} results The array of test result data
  */
 function removeResults(results) {

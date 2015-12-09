@@ -12,7 +12,9 @@
  * iterates through given result data JSON object
  * compares each test case in most recent build to previous build
  * add list items for each test case with differences between those builds
- * @method getDiffs
+ * @param {JavaScript object} resultData The object with results of all tests
+ * @param {number} firstBuild The first build number
+ * @param {number} secondBuild The second build number
  * @return list
  */
 function getDiffs(resultData, firstBuild, secondBuild) {
@@ -51,7 +53,10 @@ function getDiffs(resultData, firstBuild, secondBuild) {
 /**
  * Given the unordered list element and two build results JSON objects,
  * if status of builds are different, create new list item and add to list
- * @method addDifferentResultsToList
+ * @param {string} diffList The "list" to add results to
+ * @param {JavaScript object} newBuildResults Results of the newer build
+ * @param {JavaScript object} oldBuildResults Results of the older build
+ * @param {string} testName The name of the test case/suite
  * @return list whether modified or not
  */
 function addDifferentResultsToList(diffList, newBuildResults, oldBuildResults, testName) {

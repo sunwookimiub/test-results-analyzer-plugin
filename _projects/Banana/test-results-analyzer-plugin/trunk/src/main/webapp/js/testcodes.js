@@ -15,7 +15,6 @@ var windowUrl = window.location.href;
  * object, and for each test case, calling retrieveCode().
  * Invoked by populateTemplate().
  *
- * @method initTestCodes
  * @param {JavaScript array} results The array containing test result data
  * @param {string} url The url to build up from to retrieve the source file
  * @param {string} key The key to build up from to look up code for a test case
@@ -44,7 +43,6 @@ function initTestCodes (results, url, key) {
  * Asynchronously retrieves the source code file and calls extractCode() to
  * extract the code snippet for the specified test case.
  *
- * @method retrieveCode
  * @param {string} url The url to build up from to retrieve the source file
  * @param {string} key The key to build up from to look up code for a test case
  * @param {string} testname The name of the specified test case
@@ -69,7 +67,6 @@ function retrieveCode (url, key, testname) {
  * Helper function that extracts the code snippet of the specified test
  * function.
  *
- * @method extractCode
  * @param {string} code The raw text of the retrieved source code file
  * @param {string} testname The name of the specified test case
  * return An array of lines of source code of the specified test case
