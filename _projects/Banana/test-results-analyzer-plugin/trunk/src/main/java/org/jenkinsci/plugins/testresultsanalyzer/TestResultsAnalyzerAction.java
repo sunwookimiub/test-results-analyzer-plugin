@@ -51,11 +51,12 @@ public class TestResultsAnalyzerAction extends Actionable implements Action{
         int numJobs = jobList.size();
         if (numJobs > 1) {
             ret = "<h1>Select a module to analyze:</h1><ul>";
-            for (int i=0; i < numJobs; i++){
+            for (int i = 0; i < numJobs; i++){
                 Job currentJob = jobList.get(i);
                 String name = currentJob.getFullName();
                 if (name.indexOf('/') != -1) // forward slash in getFullName means this Job is a module
-                    ret += "<li><h2><a href='../../"+name+"/"+Constants.URL+"'>"+currentJob.getDisplayName()+"</a></h2></li>";
+                    ret += "<li><h2><a href='../../" + name + "/" + Constants.URL + "'>"
+                        + currentJob.getDisplayName() + "</a></h2></li>";
             }
             ret += "</ul>";
         }
