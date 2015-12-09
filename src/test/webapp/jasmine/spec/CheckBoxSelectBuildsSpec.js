@@ -18,14 +18,21 @@ describe("CheckBox Event Tests", function() {
   var analyzerTemplate = Handlebars.compile(tableBody);
 
   var testarray=["0","1","2","3","4","5","6","7","8"];
-  var testchecked=[0,1];
+  var testchecked1=[0,1];
+  var testchecked2=[2,4,5];
   var testresults=["result1","result2","result3","result4","result5"];
 
   // This checks if the array is removed correctly
   it ("should return the correct removed array", function() {
-    var returnedarray=removeFromArray(testarray,testchecked);
+    var returnedarray=removeFromArray(testarray,testchecked1);
     console.log(returnedarray);
     expect(returnedarray).toEqual(["8"]);
+  });
+
+  it ("should show the compare builds box is activated", function() {
+    var returnedarray2=removeFromArray(testarray,testchecked2);
+
+    expect(returnedarray2).toEqual([ ]);
   });
 
 });
