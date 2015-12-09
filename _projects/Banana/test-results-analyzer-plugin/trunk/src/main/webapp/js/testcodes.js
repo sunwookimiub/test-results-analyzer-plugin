@@ -76,30 +76,30 @@ function retrieveCode (url, key, testname) {
  *        Returns null if no source code found
  */
 function extractCode (code, testname) {
-    var arr = code.split('\n');
-    var snippet = [];
+    var linesOfCode = code.split('\n');
+    var codeSnippet = [];
     var started = false;
     var braceCount = null;
 
-    for (var i = 0; i < arr.length; i++) {
+    for (var i = 0; i < linesOfCode.length; i++) {
         if (!started) {
-            if (arr[i].indexOf("public") != -1 && arr[i].indexOf("void") != -1
-                    && arr[i].indexOf(testname) != -1) {
+            if (linesOfCode[i].indexOf("public") != -1 && linesOfCode[i].indexOf("void") != -1
+                    && linesOfCode[i].indexOf(testname) != -1) {
                 started = true;
-                snippet.push(arr[i]);
-                if (arr[i].split('{').length > 1) {
-                    braceCount = arr[i].split('{').length - arr[i].split('}').length;
+                codeSnippet.push(linesOfCode[i]);
+                if (linesOfCode[i].split('{').length > 1) {
+                    braceCount = linesOfCode[i].split('{').length - linesOfCode[i].split('}').length;
                 }
             }
         } else {
-            snippet.push(arr[i]);
+            codeSnippet.push(linesOfCode[i]);
             if (braceCount != null) {
-                braceCount += arr[i].split('{').length - arr[i].split('}').length;
-            } else if (arr[i].split('{').length > 1) {
-                braceCount = arr[i].split('{').length - arr[i].split('}').length;
+                braceCount += linesOfCode[i].split('{').length - linesOfCode[i].split('}').length;
+            } else if (linesOfCode[i].split('{').length > 1) {
+                braceCount = linesOfCode[i].split('{').length - linesOfCode[i].split('}').length;
             }
             if (braceCount == 0) {
-                return snippet;
+                return codeSnippet;
             }
         }
     }
