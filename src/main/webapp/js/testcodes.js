@@ -11,6 +11,26 @@ var testCodes = {};
 var windowUrl = window.location.href;
 
 /**
+ * Generates the url for the source code for a given class. This generated 
+ * URL assumes that the project is organized according to the standard
+ * Maven directory layout, where test classes are located in the 
+ * src/test/java directory
+ * @param {JavaScript object} result result data for one test
+ * @param (string) url the base url of this porject
+ * @return A new URL that will point to the location of the source file corresponding to
+ * the result.
+ */
+function generateURL(result, url) {
+    if (result.hierarchyLevel == undefined || result.hierarchyLevel == 0) {
+        return url + result.text.replace(/\./g, "/") + "/";
+    } else if (result.hierarchyLevel == 1) {
+        return url + result.text.replace(/\./g, "/") + ".java";
+    } else {
+        return url;
+    }
+}
+
+/**
  * Initializes the testCodes object by recursively traversing the test data
  * object, and for each test case, calling retrieveCode().
  * Invoked by populateTemplate().
@@ -19,23 +39,17 @@ var windowUrl = window.location.href;
  * @param {string} url The url to build up from to retrieve the source file
  * @param {string} key The key to build up from to look up code for a test case
  */
-function initTestCodes (results, url, key) {
+function initTestCodes(results, url, key) {
     for (var i = 0; i < results.length; i++) {
-        var newUrl;
-        if (results[i].hierarchyLevel == undefined || results[i].hierarchyLevel == 0) {
-            newUrl = url + results[i].text.replace(/\./g, "/") + "/";
-        } else if (results[i].hierarchyLevel == 1) {
-            newUrl = url + results[i].text.replace(/\./g, "/") + ".java";
-        } else {
-            newUrl = url;
-        }
-        var newKey = key + "-" + results[i].text.replace(/[^a-z\d/-]+/gi, "_");
+        var curResult = results[i];
+        var newUrl = generateURL(curResult, url);
+        var newKey = key + "-" + curResult.text.replace(/[^a-z\d/-]+/gi, "_");
 
-        if (results[i].hierarchyLevel == 2) {
-            retrieveCode(newUrl, newKey, results[i].text);
+        if (curResult.hierarchyLevel == 2) {
+            retrieveCode(newUrl, newKey, curResult.text);
         }
 
-        initTestCodes(results[i]['children'], newUrl, newKey);
+        initTestCodes(curResult['children'], newUrl, newKey);
     }
 }
 
@@ -47,7 +61,7 @@ function initTestCodes (results, url, key) {
  * @param {string} key The key to build up from to look up code for a test case
  * @param {string} testname The name of the specified test case
  */
-function retrieveCode (url, key, testname) {
+function retrieveCode(url, key, testname) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -60,7 +74,7 @@ function retrieveCode (url, key, testname) {
     function callback(xml) {
         var code = xml.responseText;
         testCodes[key] = extractCode(code, testname);
-    }       
+    }
 }
 
 /**
@@ -72,7 +86,7 @@ function retrieveCode (url, key, testname) {
  * return An array of lines of source code of the specified test case
  *        Returns null if no source code found
  */
-function extractCode (code, testname) {
+function extractCode(code, testname) {
     var linesOfCode = code.split('\n');
     var codeSnippet = [];
     var started = false;
@@ -80,8 +94,7 @@ function extractCode (code, testname) {
 
     for (var i = 0; i < linesOfCode.length; i++) {
         if (!started) {
-            if (linesOfCode[i].indexOf("public") != -1 && linesOfCode[i].indexOf("void") != -1
-                    && linesOfCode[i].indexOf(testname) != -1) {
+            if (linesOfCode[i].indexOf("public") != -1 && linesOfCode[i].indexOf("void") != -1 && linesOfCode[i].indexOf(testname) != -1) {
                 started = true;
                 codeSnippet.push(linesOfCode[i]);
                 if (linesOfCode[i].split('{').length > 1) {
