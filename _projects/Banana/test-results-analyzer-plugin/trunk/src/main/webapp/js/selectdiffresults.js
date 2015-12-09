@@ -171,7 +171,7 @@ function removeBuilds(items) {
  * Helper function that removes all items in an array that weren't checked
  * @param {JavaScript array} arr The array to remove items from
  */
-function removeFromArray(arr,checkedarray) {
+function removeFromArray(arr) {
 
     arr.reverse();
     var end = checked.length-1;
