@@ -57,28 +57,36 @@ public class JsTreeUtil {
      * @return The JSONObject generated
      */
     public JSONObject getJsTreeCondensed(List<Integer>buildsCondense,List<Integer> builds, ResultInfo resultInfo, String statusFilter) {
+        // the condensed has only three component
         JSONObject tree = new JSONObject();
-        JSONObject tree_new = new JSONObject(); // the condensed has only three component
+        JSONObject tree_new = new JSONObject();
 
-        JSONArray buildJson = new JSONArray();  // buildJson contains all the build numbers and renamed as build in the final tree
+        // buildJson contains all the build numbers and renamed as build in the final tree
+        JSONArray buildJson = new JSONArray();
         JSONArray buildJson_new = new JSONArray();
         for (Integer buildNumber : builds) {
             buildJson.add(buildNumber.toString());
         }
+        // Here it builds up the new base JSON Stuff, and using this base JSON it will build up the constructed JSON.
         buildJson_new.add("Passed");
         buildJson_new.add("Failed");
         buildJson_new.add("Skipped");
 
+        // Put the JSON into the base tree.
         tree.put("builds", buildJson);
-        tree_new.put("builds", buildJson_new); // the new tree has build json new as the builds
+        tree_new.put("builds", buildJson_new);
+        // the new tree has build json new as the builds
 
+        // starting from here it gets the test-result and build up the JSON using the test results.
         JSONObject packageResults = resultInfo.getJsonObject();
         JSONArray results = new JSONArray();
-        JSONArray results_new = new JSONArray(); // this results_new should contain the condensed result
-        for (Object packageName : packageResults.keySet()) { // this loop over all the packages, but there is only one package ?
+        // this results_new should contain the condensed result
+        JSONArray results_new = new JSONArray();
+        // this loop over all the packages, but there is only one package
+        for (Object packageName : packageResults.keySet()) {
 
             JSONObject packageJson = packageResults.getJSONObject((String) packageName);
-            JSONObject subtree_new = createJsonCondensed(buildsCondense,builds, packageJson, statusFilter); // This create JSON should create a new subtree with the condensed results
+            JSONObject subtree_new = createJsonCondensed(buildsCondense,builds, packageJson, statusFilter);
             if (subtree_new != null) {
                 results_new.add(subtree_new);
             }
@@ -145,7 +153,6 @@ public class JsTreeUtil {
 
         return baseJson;
     }
-
 
     private JSONObject createJsonCondensed(List<Integer>buildsCondense,List<Integer> builds, JSONObject dataJson, String statusFilter) {
         // this json has the results
