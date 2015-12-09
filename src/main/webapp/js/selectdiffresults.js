@@ -172,10 +172,6 @@ function removeBuilds(items) {
  * @param {JavaScript array} arr The array to remove items from
  */
 function removeFromArray(arr,checkedarray) {
-    if (checkedarray!=null)
-    {
-      checked=checkedarray;
-    }
 
     arr.reverse();
     var end = checked.length-1;
